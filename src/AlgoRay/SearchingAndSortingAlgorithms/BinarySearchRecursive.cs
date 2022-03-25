@@ -5,11 +5,11 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
 {
     public static class BinarySearchRecursive
     {
-        public static (T result, bool) Run<T>(IList<T> sortedInput, T searchedItem)
+        public static int Run<T>(IList<T> sortedInput, T searchedItem)
             where T : IComparable
             => Recursion<T>(sortedInput, searchedItem, 0, sortedInput.Count - 1);
 
-        private static (T result, bool isFound) Recursion<T>(IList<T> sortedInput,
+        private static int Recursion<T>(IList<T> sortedInput,
             T searchedItem,
             int leftPointer,
             int rightPointer)
@@ -19,12 +19,12 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
 
             if (sortedInput[middlePointer].Equals(searchedItem))
             {
-                return (sortedInput[middlePointer], true);
+                return middlePointer;
             }
 
             if (leftPointer > rightPointer)
             {
-                return (default, false);
+                return -1;
             }
 
             if (searchedItem.CompareTo(sortedInput[middlePointer]) == 1)

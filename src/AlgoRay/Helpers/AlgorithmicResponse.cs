@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AlgoRay
+namespace AlgoRay.Helpers
 {
     public class AlgorithmicResponse<T>
     {
         public AlgorithmicResponse(ICollection<T> result, bool isSuccessful)
         {
-            this.Result = result;
+            this.AlgorithmResult = result;
             this.IsSuccessful = isSuccessful;
         }
 
-        public ICollection<T> Result { get; }
+        public ICollection<T> AlgorithmResult { get; }
 
         public bool IsSuccessful { get; }
 
         public static implicit operator T[](AlgorithmicResponse<T> response)
-            => response.Result.ToArray();
+            => response.AlgorithmResult.ToArray();
 
         public static implicit operator List<T>(AlgorithmicResponse<T> response)
-            => response.Result.ToList();
+            => response.AlgorithmResult.ToList();
     }
 }
