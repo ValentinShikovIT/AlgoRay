@@ -1,43 +1,28 @@
 ﻿using System;
-using System.Linq;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public class MergeSortRecursive
     {
-        private static int[] numbers;
-
-        public static void Main(string[] args)
+        public static AlgorithmicResponse<T> Run<T>(T[] inputElements)
+            where T : IComparable
         {
-            //Read the input from the console
-            numbers = Console.ReadLine()
-                .Split(' ')
-                .Select(int.Parse)
-                .ToArray();
-            //Implement the MergeSort with O(n) memory algorithm
-            var result = Implementation(numbers);
-
-            //Print the result
-            Console.WriteLine(string.Join(' ', result));
-        }
-
-        private static int[] Implementation(int[] array)
-        {
-            if (array.Length <= 1)
+            if (inputElements.Length <= 1)
             {
-                return array;
+                return new AlgorithmicResponse<T>(inputElements, true);
             }
 
-            var copy = new int[array.Length];
+            var copy = new T[inputElements.Length];
 
-            Array.Copy(array, copy, array.Length);
+            Array.Copy(inputElements, copy, inputElements.Length);
 
-            MergeSortHelper(array, copy, 0, array.Length - 1);
+            MergeSortHelper(inputElements, copy, 0, inputElements.Length - 1);
 
-            return array;
+            return new AlgorithmicResponse<T>(inputElements, true);
         }
 
-        private static void MergeSortHelper(int[] source, int[] copy, int leftIndex, int rightIndex)
+        private static void MergeSortHelper<T>(T[] source, T[] copy, int leftIndex, int rightIndex)
+            where T : IComparable
         {
             if(leftIndex >= rightIndex)
             {
@@ -52,7 +37,8 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             Merge(source, copy, leftIndex, middleIndex, rightIndex);
         }
 
-        private static void Merge(int[] source, int[] copy, int leftIndex, int middleIndex, int rightIndex)
+        private static void Merge<T>(T[] source, T[] copy, int leftIndex, int middleIndex, int rightIndex)
+            where T : IComparable
         {
             var sourcePointer = leftIndex;
             var leftPointer = leftIndex;
@@ -60,7 +46,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 
             while(leftPointer <= middleIndex && rightPointer <= rightIndex)
             {
-                if(copy[leftPointer] < copy[rightPointer])
+                if(copy[leftPointer].CompareTo(copy[rightPointer]) == -1)
                 {
                     source[sourcePointer++] = copy[leftPointer++];
                 }

@@ -1,47 +1,36 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public class SelectionSortRecursive
     {
-        private static int[] numbers;
-
-        public static void Main(string[] args)
+        public static AlgorithmicResponse<T> Run<T>(IList<T> inputElements)
+            where T : IComparable
         {
-            //Gather inputs
-            numbers = Console.ReadLine()
-                .Split(' ')
-                .Select(int.Parse)
-                .ToArray();
-
-            //Implement sorting Algorithm using recursion
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < inputElements.Count; i++)
             {
-                Implementation(i, i + 1, i);
+                Recursion(inputElements, i, i + 1, i);
             }
 
-            //Print
-            Console.WriteLine(string.Join(" ", numbers));
+            return new AlgorithmicResponse<T>(inputElements, true);
         }
 
-        private static void Implementation(int startingIndex, int currentIndex, int indexOfMin)
+        private static void Recursion<T>(IList<T> inputElements, int startingIndex, int currentIndex, int indexOfMin)
+            where T : IComparable
         {
-            if(currentIndex >= numbers.Length)
+            if(currentIndex >= inputElements.Count)
             {
-                var temp = numbers[startingIndex];
-                numbers[startingIndex] = numbers[indexOfMin];
-                numbers[indexOfMin] = temp;
-
+                (inputElements[indexOfMin], inputElements[startingIndex]) = (inputElements[startingIndex], inputElements[indexOfMin]);
                 return;
             }
 
-            if(numbers[indexOfMin] > numbers[currentIndex])
+            if(inputElements[indexOfMin].CompareTo(inputElements[currentIndex]) == 1)
             {
                 indexOfMin = currentIndex;
             }
 
-            Implementation(startingIndex, currentIndex + 1, indexOfMin);
+            Recursion(inputElements, startingIndex, currentIndex + 1, indexOfMin);
         }
     }
 }

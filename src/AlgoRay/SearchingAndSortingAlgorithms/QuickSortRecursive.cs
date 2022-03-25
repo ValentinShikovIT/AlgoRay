@@ -1,28 +1,21 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
-    public class QuickSortRecursive
+    public static class QuickSortRecursive
     {
-        private static int[] numbers;
-
-        public static void Main(string[] args)
+        //Implement Quick sort algorithm without O(log n) memory optimization
+        public static AlgorithmicResponse<T> Run<T>(IList<T> inputElements)
+            where T : IComparable
         {
-            //Read input from the console
-            numbers = Console.ReadLine()
-                .Split(' ')
-                .Select(int.Parse)
-                .ToArray();
+            Recursion(inputElements, 0, inputElements.Count - 1);
 
-            //Implement Quick sort algorithm without O(log n) memory optimization
-            Implementation(0, numbers.Length -1);
-
-            //Print the result
-            Console.WriteLine(string.Join(' ', numbers));
+            return new AlgorithmicResponse<T>(inputElements, true);
         }
 
-        private static void Implementation(int start, int end)
+        private static void Recursion<T>(IList<T> inputElements, int start, int end)
+            where T : IComparable
         {
             if(start >= end)
             {
@@ -35,33 +28,30 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 
             while(left <= right)
             {
-                if(numbers[left] > numbers[pivot] &&
-                    numbers[right] < numbers[pivot])
+                if(inputElements[left].CompareTo(inputElements[pivot]) == 1 &&
+                    inputElements[right].CompareTo(inputElements[pivot]) == -1)
                 {
-                    Swap(left, right);
+                    Swap(inputElements, left, right);
                 }
 
-                if(numbers[left] <= numbers[pivot])
+                if(inputElements[left].CompareTo(inputElements[pivot]) <= 0)
                 {
                     left++;
                 }
 
-                if(numbers[right] >= numbers[pivot])
+                if(inputElements[right].CompareTo(inputElements[pivot]) >= 0)
                 {
                     right--;
                 }
             }
 
-            Swap(pivot, right);
-            Implementation(start, right - 1);
-            Implementation(right + 1, end);
+            Swap(inputElements, pivot, right);
+            Recursion(inputElements, start, right - 1);
+            Recursion(inputElements, right + 1, end);
         }
 
-        private static void Swap(int first, int second)
-        {
-            var temp = numbers[first];
-            numbers[first] = numbers[second];
-            numbers[second] = temp;
-        }
+        private static void Swap<T>(IList<T> inputElements, int first, int second)
+            where T : IComparable
+            => (inputElements[second], inputElements[first]) = (inputElements[first], inputElements[second]);
     }
 }

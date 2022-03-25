@@ -1,46 +1,28 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
-    public class InsertionSortIterative
+    public static class InsertionSortIterative
     {
-        private static int[] numbers;
-
-        public static void Main(string[] args)
+        public static AlgorithmicResponse<T> Run<T>(IList<T> inputElements)
+            where T : IComparable
         {
-            //Read from the console
-            numbers = Console.ReadLine()
-                .Split(' ')
-                .Select(int.Parse)
-                .ToArray();
-
-            //Implement the InsertionSort algorithm
-            Implementation();
-
-            //Print the sorted numbers
-            Console.WriteLine(string.Join(' ', numbers));
-        }
-
-        private static void Implementation()
-        {
-            for (int i = 1; i < numbers.Length; i++)
+            for (int i = 1; i < inputElements.Count; i++)
             {
                 var insertionIndex = i - 1;
 
-                while(insertionIndex >= 0 && numbers[insertionIndex + 1] < numbers[insertionIndex])
+                while (insertionIndex >= 0 && inputElements[insertionIndex + 1].CompareTo(inputElements[insertionIndex]) == -1)
                 {
-                    Swap(insertionIndex + 1, insertionIndex);
+                    Swap(inputElements, insertionIndex + 1, insertionIndex);
                     insertionIndex--;
                 }
             }
+
+            return new AlgorithmicResponse<T>(inputElements, true);
         }
 
-        private static void Swap(int first, int second)
-        {
-            var temp = numbers[first];
-            numbers[first] = numbers[second];
-            numbers[second] = temp;
-        }
+        private static void Swap<T>(IList<T> inputElements, int first, int second)
+            => (inputElements[second], inputElements[first]) = (inputElements[first], inputElements[second]);
     }
 }

@@ -1,45 +1,29 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
-    public class SelectionSortIterative
+    public static class SelectionSortIterative
     {
-        private static int[] numbers;
-
-        public static void Main(string[] args)
+        public static AlgorithmicResponse<T> Run<T>(IList<T> inputElements)
+            where T : IComparable
         {
-            //Gather inputs
-            numbers = Console.ReadLine()
-                .Split(' ')
-                .Select(int.Parse)
-                .ToArray();
-
-            //Implement sorting Algorithm
-            Implementation();
-
-            //Print
-            Console.WriteLine(string.Join(" ", numbers));
-        }
-
-        private static void Implementation()
-        {
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < inputElements.Count; i++)
             {
                 var indexOfMin = i;
 
-                for (int j = i + 1; j < numbers.Length; j++)
+                for (int j = i + 1; j < inputElements.Count; j++)
                 {
-                    if(numbers[indexOfMin] > numbers[j])
+                    if (inputElements[indexOfMin].CompareTo(inputElements[j]) == 1)
                     {
                         indexOfMin = j;
                     }
                 }
 
-                var temp = numbers[i];
-                numbers[i] = numbers[indexOfMin];
-                numbers[indexOfMin] = temp;
+                (inputElements[indexOfMin], inputElements[i]) = (inputElements[i], inputElements[indexOfMin]);
             }
+
+            return new AlgorithmicResponse<T>(inputElements, true);
         }
     }
 }
