@@ -28,5 +28,11 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             Assert.IsTrue(testResult.IsSuccessful, TestMessages.MaximumAllowedTimeExceeded);
             Assert.AreEqual(testResult.Value, expectedIndex);
         }
+
+        [TestMethod]
+        public void TestShouldFail()
+        {
+            Assert.IsFalse(true);
+        }
     }
 }

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoRay", "AlgoRay\AlgoRay.csproj", "{D18645B5-4810-4CA7-8D57-EB0D312FF7D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoRay.UnitTests", "AlgoRay.UnitTests\AlgoRay.UnitTests.csproj", "{4EBCAEB6-2221-4FB5-8068-CFA07099E355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoRay.UnitTests", "AlgoRay.UnitTests\AlgoRay.UnitTests.csproj", "{4EBCAEB6-2221-4FB5-8068-CFA07099E355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoRay_Projector", "AlgoRay_Projector\AlgoRay_Projector.csproj", "{9837839F-F1FB-4FA5-91F2-C9264642DA25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4EBCAEB6-2221-4FB5-8068-CFA07099E355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EBCAEB6-2221-4FB5-8068-CFA07099E355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EBCAEB6-2221-4FB5-8068-CFA07099E355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9837839F-F1FB-4FA5-91F2-C9264642DA25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9837839F-F1FB-4FA5-91F2-C9264642DA25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9837839F-F1FB-4FA5-91F2-C9264642DA25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9837839F-F1FB-4FA5-91F2-C9264642DA25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
