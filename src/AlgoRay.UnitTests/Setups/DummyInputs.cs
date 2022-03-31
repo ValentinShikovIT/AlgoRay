@@ -6,11 +6,69 @@ namespace AlgoRay.UnitTests.Setups
 {
     public static class DummyInputs
     {
-        public static IList<int> BinarySearch_1 { get; }
+        /// <summary>
+        /// Generated random elements sorted in the range [0 ; 50 000]
+        /// </summary>
+        public static IList<int> BinarySearch_1 { get; } = GetDummyNumbersForBinarySearchTest_1();
 
-        static DummyInputs()
+        /// <summary>
+        /// Generated random elements unsorted in range [0 ; 50 000]
+        /// Numbers in the collection 5000
+        /// </summary>
+        public static IList<int> UnsortedDummyData_Small { get; } = GetDummyNumbersForSortingAlgorithm_SmallAmount();
+
+        /// <summary>
+        /// Generated random elements unsorted in range [0 ; 50 000]
+        /// Numbers in the collection 25000 
+        /// </summary>
+        public static IList<int> UnsortedDummyData_Mediulm { get; } = GetDummyNumbersForSortingAlgorithm_MediumAmount();
+
+        /// <summary>
+        /// Generated random elements unsorted in range [0 ; 50 000]
+        /// Numbers in the collection 50 000
+        /// </summary>
+        public static IList<int> UnsortedDummyDataBig { get; } = GetDummyNumbersForSortingAlgorithm_BigAmount();
+
+        private static IList<int> GetDummyNumbersForSortingAlgorithm_SmallAmount()
         {
-            BinarySearch_1 = GetDummyNumbersForBinarySearchTest_1();
+            var list = new List<int>();
+
+            for (int i = 0; i < 5_000; i++)
+            {
+                var random = new Random().Next(0, 50_000);
+
+                list.Add(random);
+            }
+
+            return list;
+        }
+
+        private static IList<int> GetDummyNumbersForSortingAlgorithm_MediumAmount()
+        {
+            var list = new List<int>();
+
+            for (int i = 0; i < 25_000; i++)
+            {
+                var random = new Random().Next(0, 50_000);
+
+                list.Add(random);
+            }
+
+            return list;
+        }
+
+        private static IList<int> GetDummyNumbersForSortingAlgorithm_BigAmount()
+        {
+            var list = new List<int>();
+
+            for (int i = 0; i < 50_000; i++)
+            {
+                var random = new Random().Next(0, 50_000);
+
+                list.Add(random);
+            }
+
+            return list;
         }
 
         private static IList<int> GetDummyNumbersForBinarySearchTest_1()
@@ -19,7 +77,7 @@ namespace AlgoRay.UnitTests.Setups
 
             for (int i = 0; i < 50_000; i++)
             {
-                var random = new Random().Next(int.MinValue, int.MaxValue);
+                var random = new Random().Next(0, 50_000);
 
                 set.Add(random);
             }
@@ -28,5 +86,7 @@ namespace AlgoRay.UnitTests.Setups
                 .OrderBy(x => x)
                 .ToList();
         }
+
+
     }
 }

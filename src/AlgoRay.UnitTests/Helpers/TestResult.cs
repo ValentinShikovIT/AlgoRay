@@ -1,14 +1,16 @@
-﻿namespace AlgoRay.UnitTests.Helpers
+﻿using System;
+
+namespace AlgoRay.UnitTests.Helpers
 {
     public class TestResult<T>
     {
-        public TestResult(bool isSuccessful, T result)
+        public TestResult(bool isInTimeLimit, T result)
         {
-            this.IsSuccessful = isSuccessful;
+            this.IsInTimeLimit = isInTimeLimit;
             this.Value = result;
         }
 
-        public bool IsSuccessful { get; }
+        public bool IsInTimeLimit { get; }
 
         public T Value { get; }
     }

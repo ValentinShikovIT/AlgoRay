@@ -33,7 +33,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
             }
             else
             {
-                return Recursion(sortedInput, searchedItem, leftPointer, rightPointer - 1);
+                return Recursion(sortedInput, searchedItem, leftPointer, middlePointer - 1);
             }
         }
     }
