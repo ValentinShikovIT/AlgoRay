@@ -13,7 +13,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
         private static IList<int> dummyInput;
 
         [ClassInitialize]
-        public void SetupDummyData()
+        public static void SetupDummyData(TestContext testContext)
         {
             dummyInput = DummyInputs.BinarySearch_1;
         }
