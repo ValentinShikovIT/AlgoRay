@@ -2,24 +2,27 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace AlgoRay_Projector
 {
     internal static class CoreProjector
     {
-        public static Stopwatch ProjectTest(Action testMethod, int millisecondsTimeout)
+        public static async Task<Stopwatch> ProjectTest(Action testMethod, int millisecondsTimeout)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var newThread = new Thread(() => testMethod.Invoke());
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.CancelAfter(millisecondsTimeout);
 
-            newThread.Start();
-            var hasBeenCancelledByJoin = !newThread.Join(millisecondsTimeout);
+            var newTask = new Task(() => testMethod.Invoke(), cancellationTokenSource.Token);
+            newTask.Start();
+            await newTask;
 
             stopwatch.Stop();
 
-            if (hasBeenCancelledByJoin)
+            if (newTask.IsCanceled)
             {
                 throw new Exception("Test timed out!", new AssertFailedException("Test timed out and took too long to run!"));
             }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace AlgoRay_Projector
 {
@@ -13,7 +14,7 @@ namespace AlgoRay_Projector
         private static readonly TestInitilizers _initializers = new TestInitilizers();
         private static readonly UiManager _uiManager = new UiManager();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             _uiManager.PrintStartingMessages();
 
@@ -28,7 +29,7 @@ namespace AlgoRay_Projector
 
             Console.WriteLine(new string('-', 100));
 
-            MainLogic(allTestMethods, succededTests, testNumber, failedTests);
+            await MainLogic(allTestMethods, succededTests, testNumber, failedTests);
 
             Console.WriteLine();
             Console.WriteLine(new string('_', 100));
@@ -47,7 +48,7 @@ namespace AlgoRay_Projector
                 .Where(m => m.GetCustomAttributes(typeof(TestMethodAttribute), false).Length > 0)
                 .ToArray();
 
-        private static void MainLogic(ICollection<MethodInfo> allTestMethods,
+        private static async Task MainLogic(ICollection<MethodInfo> allTestMethods,
             int succededTests,
             int testNumber,
             int failedTests)
@@ -61,7 +62,7 @@ namespace AlgoRay_Projector
 
                 try
                 {
-                    var stopwatch = CoreProjector.ProjectTest(() =>
+                    var stopwatch = await CoreProjector.ProjectTest(() =>
                     {
                         testMethod.Invoke(instance, new object[0]);
                     }, 5000);

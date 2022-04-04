@@ -21,13 +21,13 @@ namespace AlgoRay.UnitTests.Setups
         /// Generated random elements unsorted in range [0 ; 50 000]
         /// Numbers in the collection 25000 
         /// </summary>
-        public static IList<int> UnsortedDummyData_Mediulm { get; } = GetDummyNumbersForSortingAlgorithm_MediumAmount();
+        public static IList<int> UnsortedDummyData_Medium { get; } = GetDummyNumbersForSortingAlgorithm_MediumAmount();
 
         /// <summary>
         /// Generated random elements unsorted in range [0 ; 50 000]
         /// Numbers in the collection 50 000
         /// </summary>
-        public static IList<int> UnsortedDummyDataBig { get; } = GetDummyNumbersForSortingAlgorithm_BigAmount();
+        public static IList<int> UnsortedDummyData_Big { get; } = GetDummyNumbersForSortingAlgorithm_BigAmount();
 
         private static IList<int> GetDummyNumbersForSortingAlgorithm_SmallAmount()
         {

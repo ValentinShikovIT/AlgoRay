@@ -22,7 +22,7 @@ namespace AlgoRay_Projector
 
             _initilizedClasses.Add(typeofClass);
 
-            classInitializeMethod?.Invoke(instance, new object[0]);
+            classInitializeMethod?.Invoke(instance, new object[] { null });
         }
 
         public void TestInitialize_IfExists(Type typeofClass, object instance = null)

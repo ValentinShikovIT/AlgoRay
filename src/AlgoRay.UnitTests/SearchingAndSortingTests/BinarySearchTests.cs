@@ -30,7 +30,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BinarySearchIterative.Run(dummyInput, searchedItem);
             },
-            200m);
+            10m);
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
@@ -49,7 +49,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BinarySearchIterative.Run(dummyInput, searchedItem);
             },
-            200m);
+            10m);
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
@@ -68,7 +68,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BinarySearchRecursive.Run(dummyInput, searchedItem);
             },
-            200m);
+            10m);
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
@@ -87,7 +87,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BinarySearchRecursive.Run(dummyInput, searchedItem);
             },
-            200m);
+            10m);
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
