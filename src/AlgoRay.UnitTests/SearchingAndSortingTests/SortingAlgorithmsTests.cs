@@ -31,7 +31,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BubbleSortIterative.Run(unsortedInputData_Small);
             },
-            400m);
+            400);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -47,7 +47,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BubbleSortIterative.Run(unsortedInputData_Medium);
             },
-            8_000m);
+            8_000);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -62,7 +62,23 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return InsertionSortIterative.Run(unsortedInputData_Small);
             },
-            400m);
+            400);
+
+            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
+            Assert.IsTrue(result.Value.IsSuccessful);
+        }
+
+        [TestMethod]
+        [ProjectorTimeOut(8_000)]
+        public void InsertionSort_ShouldSortElements_Correctly_WithMediumData()
+        {
+            //Arrange
+            //Act
+            var result = TestRunner.RunTest(() =>
+            {
+                return InsertionSortIterative.Run(unsortedInputData_Medium);
+            },
+            5_000);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -79,7 +95,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return MergeSortRecursive.Run(inputDataAsArray);
             },
-            100m);
+            100);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -94,7 +110,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return QuickSortRecursive.Run(unsortedInputData_Large);
             },
-            100m);
+            100);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);

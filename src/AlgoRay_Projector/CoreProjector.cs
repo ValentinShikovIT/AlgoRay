@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,21 +12,35 @@ namespace AlgoRay_Projector
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            var cancellationTokenSource = new CancellationTokenSource();
-            cancellationTokenSource.CancelAfter(millisecondsTimeout);
+            using (var cancellationTokenSource = new CancellationTokenSource(millisecondsTimeout))
+            {
+                var newTask = new Task(() =>
+                {
+                    testMethod.Invoke();
+                },
+                cancellationTokenSource.Token);
 
-            var newTask = new Task(() => testMethod.Invoke(), cancellationTokenSource.Token);
-            newTask.Start();
-            await newTask;
+                await newTask.TryTimeOutTaskAsync(cancellationTokenSource);
+            }
 
             stopwatch.Stop();
 
-            if (newTask.IsCanceled)
+            return stopwatch;
+        }
+
+        private static async Task TryTimeOutTaskAsync(this Task task, CancellationTokenSource cancel)
+        {
+            task.Start();
+
+            while (!task.IsCompleted)
             {
-                throw new Exception("Test timed out!", new AssertFailedException("Test timed out and took too long to run!"));
+                if (cancel.IsCancellationRequested)
+                {
+                    throw new TimeoutException("Test timed out and took too long to run!");
+                }
             }
 
-            return stopwatch;
+            await task;
         }
     }
 }

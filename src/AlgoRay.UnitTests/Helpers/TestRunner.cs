@@ -5,7 +5,7 @@ namespace AlgoRay.UnitTests.Helpers
 {
     public class TestRunner
     {
-        public static TestResult<T> RunTest<T>(Func<T> algortihm, decimal allowedRunningTimeInMilliseconds)
+        public static TestResult<T> RunTest<T>(Func<T> algortihm, int allowedRunningTimeInMilliseconds)
         {
             var stopwatch = new Stopwatch();
 
