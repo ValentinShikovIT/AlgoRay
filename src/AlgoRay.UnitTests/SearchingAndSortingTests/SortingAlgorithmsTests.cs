@@ -31,7 +31,23 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return BubbleSortIterative.Run(unsortedInputData_Small);
             },
-            500m);
+            400m);
+
+            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
+            Assert.IsTrue(result.Value.IsSuccessful);
+        }
+
+        [TestMethod]
+        [ProjectorTimeOut(10_000)]
+        public void BubbleSort_ShouldSortElements_Correctly_WithMediumData()
+        {
+            //Arrange
+            //Act
+            var result = TestRunner.RunTest(() =>
+            {
+                return BubbleSortIterative.Run(unsortedInputData_Medium);
+            },
+            8_000m);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -46,7 +62,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return InsertionSortIterative.Run(unsortedInputData_Small);
             },
-            500m);
+            400m);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -63,7 +79,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return MergeSortRecursive.Run(inputDataAsArray);
             },
-            500m);
+            100m);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
@@ -78,7 +94,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return QuickSortRecursive.Run(unsortedInputData_Large);
             },
-            500m);
+            100m);
 
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
