@@ -61,14 +61,14 @@ namespace AlgoRay_Projector
                 _initializers.TestInitialize_IfExists(testMethod.DeclaringType, instance);
 
                 var projectorAttribute = testMethod.GetCustomAttribute<ProjectorTimeOutAttribute>();
-                var testTimeoutTimeInMilliseconds = projectorAttribute?.TimeoutTimeInMilliseconds;
+                var testTimeoutTimeInMilliseconds = GetProjectorTimeout(projectorAttribute?.TimeoutTimeInMilliseconds);
 
                 try
                 {
                     var stopwatch = await CoreProjector.ProjectTest(() =>
                     {
                         testMethod.Invoke(instance, new object[0]);
-                    }, testTimeoutTimeInMilliseconds?? 1000);
+                    }, testTimeoutTimeInMilliseconds);
 
                     _uiManager.PrintAssertSuccessfullMessage(testMethod.Name, testNumber, stopwatch.ElapsedMilliseconds);
 
@@ -95,5 +95,10 @@ namespace AlgoRay_Projector
                 testNumber++;
             }
         }
+
+        private static int GetProjectorTimeout(int? timeoutInMilliseconds)
+            => Settings.isInProjectorTimeoutMode && timeoutInMilliseconds != null ? 
+            timeoutInMilliseconds.Value : 
+            Settings.defaultTimeout;
     }
 }
