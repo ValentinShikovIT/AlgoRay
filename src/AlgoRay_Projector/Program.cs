@@ -68,7 +68,8 @@ namespace AlgoRay_Projector
                     var stopwatch = await CoreProjector.ProjectTest(() =>
                     {
                         testMethod.Invoke(instance, new object[0]);
-                    }, testTimeoutTimeInMilliseconds);
+                    }, 
+                    testTimeoutTimeInMilliseconds);
 
                     _uiManager.PrintAssertSuccessfullMessage(testMethod.Name, testNumber, stopwatch.ElapsedMilliseconds);
 

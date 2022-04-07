@@ -6,4 +6,8 @@
     <StartupObject>AlgoRay.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Combinatorics\Exercises\" />
+  </ItemGroup>
+
 </Project>

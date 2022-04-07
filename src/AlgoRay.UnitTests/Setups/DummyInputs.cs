@@ -29,6 +29,8 @@ namespace AlgoRay.UnitTests.Setups
         /// </summary>
         public static IList<int> UnsortedDummyData_Big { get; } = GetDummyNumbersForSortingAlgorithm_BigAmount();
 
+        public static string[] RandomStringsFor_PermutationWithoutRepetitionTest_1 = new string[] { "A", "B", "C" };
+
         private static IList<int> GetDummyNumbersForSortingAlgorithm_SmallAmount()
         {
             var list = new List<int>();
@@ -86,7 +88,5 @@ namespace AlgoRay.UnitTests.Setups
                 .OrderBy(x => x)
                 .ToList();
         }
-
-
     }
 }
