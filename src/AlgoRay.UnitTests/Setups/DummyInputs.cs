@@ -6,31 +6,35 @@ namespace AlgoRay.UnitTests.Setups
 {
     public static class DummyInputs
     {
+        // Binary Search
         /// <summary>
         /// Generated random elements sorted in the range [0 ; 50 000]
         /// </summary>
         public static IList<int> BinarySearch_1 { get; } = GetDummyNumbersForBinarySearchTest_1();
 
+        // Sorting Algorithms
         /// <summary>
         /// Generated random elements unsorted in range [0 ; 50 000]
         /// Numbers in the collection 5000
         /// </summary>
         public static IList<int> UnsortedDummyData_Small { get; } = GetDummyNumbersForSortingAlgorithm_SmallAmount();
-
         /// <summary>
         /// Generated random elements unsorted in range [0 ; 50 000]
         /// Numbers in the collection 25000 
         /// </summary>
         public static IList<int> UnsortedDummyData_Medium { get; } = GetDummyNumbersForSortingAlgorithm_MediumAmount();
-
         /// <summary>
         /// Generated random elements unsorted in range [0 ; 50 000]
         /// Numbers in the collection 50 000
         /// </summary>
         public static IList<int> UnsortedDummyData_Big { get; } = GetDummyNumbersForSortingAlgorithm_BigAmount();
 
-        public static string[] RandomStringsFor_PermutationWithoutRepetitionTest_1 = new string[] { "A", "B", "C" };
+        // Permutations
+        public static string[] RandomStringsFor_PermutationWithoutRepetitionTest_1 { get; } = new string[] { "A", "B", "C" };
+        public static string[] RandomStringsFor_PermutationWithRepetitionTest_1 { get; } = new string[] { "A", "B", "B" };
 
+
+        // Methods
         private static IList<int> GetDummyNumbersForSortingAlgorithm_SmallAmount()
         {
             var list = new List<int>();

@@ -3,15 +3,12 @@ using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups;
 using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AlgoRay.UnitTests.Combinatorics
 {
     [TestClass]
-    public class CombinatoricsTests
+    public class CombinatoricsTests : TestsBase
     {
         [TestMethod]
         public void PermutationsWithoutRepetition_ShouldGetAllPermutations_Correctly()
@@ -30,19 +27,43 @@ namespace AlgoRay.UnitTests.Combinatorics
             //Act
             for (int test = 0; test < inputs.Length; test++)
             {
-                var output = TestRunner.RunTest(() =>
+                var testOutput = TestRunner.RunTest(() =>
                 {
                     return PermutationsWithoutRepetitions<string>
                     .Run(inputs[test]);
                 },
                 100);
 
-                Assert.IsTrue(output.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-                Assert.IsTrue(output.Value.IsSuccessful);
-
-                outputs[test].ShouldDeepEqual(output.Value.AlgorithmResult);
+                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
             }
         }
 
+        [TestMethod]
+        public void PermutationsWithRepetition_ShouldGetAllPermutations_Correctly()
+        {
+            //Arrange
+            var inputs = new string[][]
+            {
+                DummyInputs.RandomStringsFor_PermutationWithRepetitionTest_1
+            };
+
+            var outputs = new List<string[]>[]
+            {
+                DummyOutputs.Expected_PermutationWithRepetition_1
+            };
+
+            //Act
+            for (int test = 0; test < inputs.Length; test++)
+            {
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return PermutationsWithRepetitions<string>
+                    .Run(inputs[test]);
+                },
+                100);
+
+                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+            }
+        }
     }
 }

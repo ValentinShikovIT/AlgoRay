@@ -4,6 +4,7 @@ namespace AlgoRay.UnitTests.Setups
 {
     internal class DummyOutputs
     {
+        // Pemutations
         public static List<string[]> Expected_PermutationWithoutRepetition_1 { get; } = new List<string[]>
         {
             new string[] {"A", "B", "C"},
@@ -12,6 +13,13 @@ namespace AlgoRay.UnitTests.Setups
             new string[] {"B", "C", "A"},
             new string[] {"C", "A", "B"},
             new string[] {"C", "B", "A"},
+        };
+
+        public static List<string[]> Expected_PermutationWithRepetition_1 { get; } = new List<string[]>
+        {
+            new string[] {"A", "B", "B"},
+            new string[] {"B", "A", "B"},
+            new string[] {"B", "B", "A"},
         };
     }
 }

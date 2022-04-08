@@ -1,11 +1,10 @@
 ﻿using AlgoRay.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgoRay.Combinatorics
 {
-    public class PermutationsWithoutRepetitions<T>
+    public class PermutationsWithRepetitions<T>
     {
         private static T[] permutation;
         private static bool[] used;
