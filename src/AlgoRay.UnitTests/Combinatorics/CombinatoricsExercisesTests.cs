@@ -15,19 +15,13 @@ namespace AlgoRay.UnitTests.Combinatorics
             // Arrange
             var inputs = new string[][]
             {
-                CombinatoricsDummies.ReverseArrayByRecursion.InputNumbers_1
-                .Select(x => x.ToString())
-                .ToArray(),
-
+                CombinatoricsDummies.ReverseArrayByRecursion.InputStrings_1,
                 CombinatoricsDummies.ReverseArrayByRecursion.InputStrings_2
             };
 
             var outputs = new string[][]
             {
-                CombinatoricsDummies.ReverseArrayByRecursion.ExpectedNumbers_1
-                .Select(x => x.ToString())
-                .ToArray(),
-
+                CombinatoricsDummies.ReverseArrayByRecursion.ExpectedNumbers_1,
                 CombinatoricsDummies.ReverseArrayByRecursion.ExpectedStrings_2
             };
 
