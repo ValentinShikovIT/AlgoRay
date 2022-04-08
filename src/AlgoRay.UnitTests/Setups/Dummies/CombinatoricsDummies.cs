@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgoRay.UnitTests.Setups.Dummies
 {
@@ -102,6 +103,16 @@ namespace AlgoRay.UnitTests.Setups.Dummies
             // Outputs
             internal static int ExpectedFromTest_1 { get; } = 3;
             internal static int ExpectedFromTest_2 { get; } = 10;
+        }
+
+        internal static class ReverseArrayByRecursion
+        {
+            internal static int[] InputNumbers_1 = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            internal static string[] InputStrings_2 = new string[] { "asd", "rtex", "sad" };
+
+            // Outputs
+            internal static int[] ExpectedNumbers_1 = InputNumbers_1.Reverse().ToArray();
+            internal static string[] ExpectedStrings_2 = InputStrings_2.Reverse().ToArray();
         }
     }
 }
