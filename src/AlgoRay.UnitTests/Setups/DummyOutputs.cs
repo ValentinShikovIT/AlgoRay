@@ -4,6 +4,11 @@ namespace AlgoRay.UnitTests.Setups
 {
     internal class DummyOutputs
     {
+        // Sorting
+        public static IList<int> SortedData_Small { get; } = GetOrderedNumbersForSortingAlgorithm_SmallAmount();
+        public static IList<int> SortedData_Medium { get; } = GetOrderedNumbersForSortingAlgorithm_MediumAmount();
+        public static IList<int> SortedData_Large { get; } = GetOrderedNumbersForSortingAlgorithm_BigAmount();
+
         // Pemutations
         public static List<string[]> Expected_PermutationWithoutRepetition_1 { get; } = new List<string[]>
         {
@@ -21,5 +26,42 @@ namespace AlgoRay.UnitTests.Setups
             new string[] {"B", "A", "B"},
             new string[] {"B", "B", "A"},
         };
+
+        // Methods
+        private static IList<int> GetOrderedNumbersForSortingAlgorithm_SmallAmount()
+        {
+            var list = new List<int>();
+
+            for (int i = 0; i < 5_000; i++)
+            {
+                list.Add(1);
+            }
+
+            return list;
+        }
+
+        private static IList<int> GetOrderedNumbersForSortingAlgorithm_MediumAmount()
+        {
+            var list = new List<int>();
+
+            for (int i = 0; i < 25_000; i++)
+            {
+                list.Add(1);
+            }
+
+            return list;
+        }
+
+        private static IList<int> GetOrderedNumbersForSortingAlgorithm_BigAmount()
+        {
+            var list = new List<int>();
+
+            for (int i = 0; i < 50_000; i++)
+            {
+                list.Add(1);
+            }
+
+            return list;
+        }
     }
 }

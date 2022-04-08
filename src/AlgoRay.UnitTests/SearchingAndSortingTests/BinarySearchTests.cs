@@ -34,7 +34,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.AreEqual(testResult.Value, expectedIndex);
+            Assert.AreEqual(testResult.Value.AlgorithmResult, expectedIndex);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.AreEqual(testResult.Value, expectedIndex);
+            Assert.AreEqual(testResult.Value.AlgorithmResult, expectedIndex);
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.AreEqual(testResult.Value, expectedIndex);
+            Assert.AreEqual(testResult.Value.AlgorithmResult, expectedIndex);
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
 
             //Assert
             Assert.IsTrue(testResult.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.AreEqual(testResult.Value, expectedIndex);
+            Assert.AreEqual(testResult.Value.AlgorithmResult, expectedIndex);
         }
     }
 }

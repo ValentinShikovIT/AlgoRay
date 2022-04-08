@@ -6,7 +6,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public static class SelectionSortIterative
     {
-        public static AlgorithmicResponse<T> Run<T>(IList<T> inputElements)
+        public static AlgorithmicResponse<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             for (int i = 0; i < inputElements.Count; i++)
@@ -24,7 +24,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
                 (inputElements[indexOfMin], inputElements[i]) = (inputElements[i], inputElements[indexOfMin]);
             }
 
-            return new AlgorithmicResponse<T>(inputElements, true);
+            return new AlgorithmicResponse<IList<T>>(inputElements, true);
         }
     }
 }

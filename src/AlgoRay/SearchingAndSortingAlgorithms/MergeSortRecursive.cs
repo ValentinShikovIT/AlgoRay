@@ -5,12 +5,12 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public class MergeSortRecursive
     {
-        public static AlgorithmicResponse<T> Run<T>(T[] inputElements)
+        public static AlgorithmicResponse<T[]> Run<T>(T[] inputElements)
             where T : IComparable
         {
             if (inputElements.Length <= 1)
             {
-                return new AlgorithmicResponse<T>(inputElements, true);
+                return new AlgorithmicResponse<T[]>(inputElements, true);
             }
 
             var copy = new T[inputElements.Length];
@@ -19,7 +19,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 
             MergeSortHelper(inputElements, copy, 0, inputElements.Length - 1);
 
-            return new AlgorithmicResponse<T>(inputElements, true);
+            return new AlgorithmicResponse<T[]>(inputElements, true);
         }
 
         private static void MergeSortHelper<T>(T[] source, T[] copy, int leftIndex, int rightIndex)

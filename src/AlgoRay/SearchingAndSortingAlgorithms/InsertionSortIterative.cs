@@ -6,7 +6,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public static class InsertionSortIterative
     {
-        public static AlgorithmicResponse<T> Run<T>(IList<T> inputElements)
+        public static AlgorithmicResponse<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             for (int i = 1; i < inputElements.Count; i++)
@@ -20,7 +20,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
                 }
             }
 
-            return new AlgorithmicResponse<T>(inputElements, true);
+            return new AlgorithmicResponse<IList<T>>(inputElements, true);
         }
 
         private static void Swap<T>(IList<T> inputElements, int first, int second)

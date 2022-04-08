@@ -1,14 +1,13 @@
 ﻿using AlgoRay.Combinatorics;
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups;
-using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace AlgoRay.UnitTests.Combinatorics
 {
     [TestClass]
-    public class CombinatoricsTests : TestsBase
+    public class CombinatoricsTests : CollectionsTest
     {
         [TestMethod]
         public void PermutationsWithoutRepetition_ShouldGetAllPermutations_Correctly()

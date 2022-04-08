@@ -13,6 +13,8 @@ namespace AlgoRay_Projector
     {
         private static readonly TestInitilizers _initializers = new TestInitilizers();
         private static readonly UiManager _uiManager = new UiManager();
+        private static int failedTests = 0;
+        private static int succededTests = 0;
 
         static async Task Main(string[] args)
         {
@@ -24,12 +26,10 @@ namespace AlgoRay_Projector
             var allTestMethods = GetAllTestMethodsFromTestingAssembly(typeof(TestRunner));
 
             int testNumber = 1;
-            int failedTests = 0;
-            int succededTests = 0;
 
             Console.WriteLine(new string('-', 100));
 
-            await MainLogic(allTestMethods, succededTests, testNumber, failedTests);
+            await MainLogic(allTestMethods, testNumber);
 
             Console.WriteLine();
             Console.WriteLine(new string('_', 100));
@@ -49,9 +49,7 @@ namespace AlgoRay_Projector
                 .ToArray();
 
         private static async Task MainLogic(ICollection<MethodInfo> allTestMethods,
-            int succededTests,
-            int testNumber,
-            int failedTests)
+            int testNumber)
         {
             foreach (var testMethod in allTestMethods)
             {

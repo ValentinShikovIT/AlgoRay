@@ -8,11 +8,15 @@ using System.Linq;
 namespace AlgoRay.UnitTests.SearchingAndSortingTests
 {
     [TestClass]
-    public class SortingAlgorithmsTests
+    public class SortingAlgorithmsTests : CollectionsTest
     {
         private static IList<int> unsortedInputData_Small;
         private static IList<int> unsortedInputData_Medium;
         private static IList<int> unsortedInputData_Large;
+
+        private static IList<int> sortedInputData_Small;
+        private static IList<int> sortedInputData_Medium;
+        private static IList<int> sortedInputData_Large;
 
         [TestInitialize]
         public void ResetInputData()
@@ -20,6 +24,10 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             unsortedInputData_Small = new List<int>(DummyInputs.UnsortedDummyData_Small);
             unsortedInputData_Medium = new List<int>(DummyInputs.UnsortedDummyData_Medium);
             unsortedInputData_Large = new List<int>(DummyInputs.UnsortedDummyData_Big);
+
+            sortedInputData_Small = new List<int>(DummyOutputs.SortedData_Small);
+            sortedInputData_Medium = new List<int>(DummyOutputs.SortedData_Medium);
+            sortedInputData_Large = new List<int>(DummyOutputs.SortedData_Large);
         }
 
         [TestMethod]
@@ -33,8 +41,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             400);
 
-            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            AssertTestResultFromAlgorithmicResponse(result, sortedInputData_Small, false, false);
         }
 
         [TestMethod]
@@ -49,8 +56,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             8_000);
 
-            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            AssertTestResultFromAlgorithmicResponse(result, sortedInputData_Medium, false, false);
         }
 
         [TestMethod]
@@ -64,8 +70,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             400);
 
-            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            AssertTestResultFromAlgorithmicResponse(result, sortedInputData_Small, false, false);
         }
 
         [TestMethod]
@@ -80,8 +85,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             5_000);
 
-            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            AssertTestResultFromAlgorithmicResponse(result, sortedInputData_Medium, false, false);
         }
 
         [TestMethod]
@@ -97,8 +101,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             100);
 
-            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            AssertTestResultFromAlgorithmicResponse(result, sortedInputData_Large, false, false);
         }
 
         [TestMethod]
@@ -112,8 +115,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             100);
 
-            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            AssertTestResultFromAlgorithmicResponse(result, sortedInputData_Large, false, false);
         }
     }
 }

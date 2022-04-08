@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace AlgoRay.UnitTests.Helpers
 {
-    public abstract class TestsBase
+    public abstract class CollectionsTest
     {
         public void AssertTestResultFromAlgorithmicResponse<T>(
-            TestResult<AlgorithmicResponse<T>> result, 
+            TestResult<AlgorithmicResponse<IList<T>>> result, 
             ICollection<T> expected,
             bool orderExpected = true,
             bool orderActual = true)
@@ -34,7 +34,7 @@ namespace AlgoRay.UnitTests.Helpers
         }
 
         public void AssertTestResultFromAlgorithmicResponse<T>(
-            TestResult<AlgorithmicResponse<T[]>> result, 
+            TestResult<AlgorithmicResponse<IList<T[]>>> result, 
             ICollection<T[]> expected,
             bool orderExpected = true,
             bool orderActual = true)
@@ -59,5 +59,17 @@ namespace AlgoRay.UnitTests.Helpers
 
             expectedAsOrderedArray.ShouldDeepEqual(resultAsOrderedArray);
         }
+
+        public void AssertTestResultFromAlgorithmicResponse<T>(
+            TestResult<AlgorithmicResponse<T[]>> result,
+            ICollection<T> expected,
+            bool orderExpected = true,
+            bool orderActual = true)
+            => AssertTestResultFromAlgorithmicResponse(
+                new TestResult<AlgorithmicResponse<IList<T>>>(result.IsInTimeLimit,
+                    new AlgorithmicResponse<IList<T>>(result.Value.AlgorithmResult.ToList(), result.Value.IsSuccessful)),
+                expected,
+                orderExpected,
+                orderActual);
     }
 }

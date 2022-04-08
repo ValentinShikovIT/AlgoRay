@@ -1,5 +1,4 @@
 ﻿using AlgoRay.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,14 +10,14 @@ namespace AlgoRay.Combinatorics
         private static bool[] used;
         private static readonly List<T[]> allPermutations = new List<T[]>();
 
-        public static AlgorithmicResponse<T[]> Run(T[] input)
+        public static AlgorithmicResponse<IList<T[]>> Run(T[] input)
         {
             permutation = new T[input.Length];
             used = new bool[input.Length];
 
             Permutations(0, input);
 
-            return new AlgorithmicResponse<T[]>(allPermutations, true);
+            return new AlgorithmicResponse<IList<T[]>>(allPermutations, true);
         }
 
         private static void Permutations(int index, T[] input)

@@ -1,11 +1,17 @@
-﻿using System;
+﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 
 namespace AlgoRay.SearchingAndSortingAlgorithms
 {
+    /// <summary>
+    /// Binary Search returns an algorithmic response with the index of the searched element
+    /// as a response.
+    /// If the element is not found returns -1 as the result
+    /// </summary>
     public static class BinarySearchIterative
     {
-        public static int Run<T>(IList<T> sortedInput, T searchedItem)
+        public static new AlgorithmicResponse<int> Run<T>(IList<T> sortedInput, T searchedItem)
             where T : IComparable
         {
             var leftPointer = 0;
@@ -17,7 +23,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
 
                 if (sortedInput[middlePointer].Equals(searchedItem))
                 {
-                    return middlePointer;
+                    return new AlgorithmicResponse<int>(middlePointer, true);
                 }
 
                 if (searchedItem.CompareTo(sortedInput[middlePointer]) == 1)
@@ -30,7 +36,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
                 }
             }
 
-            return -1;
+            return new AlgorithmicResponse<int>(-1, false);
         }
     }
 }
