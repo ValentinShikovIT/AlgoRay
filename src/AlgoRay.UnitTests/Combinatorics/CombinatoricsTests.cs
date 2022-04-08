@@ -33,7 +33,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
         }
 
@@ -61,7 +61,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
         }
 
@@ -93,7 +93,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
         }
 
@@ -125,7 +125,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
         }
 
@@ -157,7 +157,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
         }
 
@@ -189,7 +189,47 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+            }
+        }
+
+        [TestMethod]
+        public void NChooseKCount_ShouldGetBinom_Correctly()
+        {
+            //Arrange
+            var inputs = new int[][]
+            {
+                new int[] {CombinatoricsDummies.NChooseKCountBinom.Choice_1_For_N,
+                            CombinatoricsDummies.NChooseKCountBinom.Choice_1_For_K},
+
+                new int[] {CombinatoricsDummies.NChooseKCountBinom.Choice_2_For_N,
+                            CombinatoricsDummies.NChooseKCountBinom.Choice_2_For_K},
+            };
+
+            var outputs = new int[]
+            {
+                CombinatoricsDummies.NChooseKCountBinom.ExpectedFromTest_1,
+                CombinatoricsDummies.NChooseKCountBinom.ExpectedFromTest_2
+            };
+
+            var lengthOfVariation = CombinatoricsDummies
+                .Combinations
+                .LengthOfCombinationWithRepetitions_1;
+
+            //Act
+            for (int test = 0; test < inputs.Length; test++)
+            {
+                var n = inputs[test][0];
+                var k = inputs[test][1];
+
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return NChooseKCount
+                    .Run(n, k);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
         }
     }

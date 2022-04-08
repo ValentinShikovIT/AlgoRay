@@ -2,6 +2,7 @@
 using AlgoRay.UnitTests.Setups;
 using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace AlgoRay.UnitTests.Helpers
 {
     public abstract class CollectionsTest
     {
-        public void AssertTestResultFromAlgorithmicResponse<T>(
+        public void AssertTestResultFromTestRunningResponse<T>(
             TestResult<AlgorithmicResponse<IList<T>>> result, 
             ICollection<T> expected,
             bool orderExpected = true,
@@ -33,7 +34,7 @@ namespace AlgoRay.UnitTests.Helpers
             expectedAsOrderedArray.ShouldDeepEqual(resultAsOrderedArray);
         }
 
-        public void AssertTestResultFromAlgorithmicResponse<T>(
+        public void AssertTestResultFromTestRunningResponse<T>(
             TestResult<AlgorithmicResponse<IList<T[]>>> result, 
             ICollection<T[]> expected,
             bool orderExpected = true,
@@ -60,16 +61,27 @@ namespace AlgoRay.UnitTests.Helpers
             expectedAsOrderedArray.ShouldDeepEqual(resultAsOrderedArray);
         }
 
-        public void AssertTestResultFromAlgorithmicResponse<T>(
+        public void AssertTestResultFromTestRunningResponse<T>(
             TestResult<AlgorithmicResponse<T[]>> result,
             ICollection<T> expected,
             bool orderExpected = true,
             bool orderActual = true)
-            => AssertTestResultFromAlgorithmicResponse(
+            => AssertTestResultFromTestRunningResponse(
                 new TestResult<AlgorithmicResponse<IList<T>>>(result.IsInTimeLimit,
                     new AlgorithmicResponse<IList<T>>(result.Value.AlgorithmResult.ToList(), result.Value.IsSuccessful)),
                 expected,
                 orderExpected,
                 orderActual);
+
+        public void AssertTestResultFromTestRunningResponse<T>(
+            TestResult<AlgorithmicResponse<T>> result,
+            T expected)
+            where T : IComparable
+        {
+            Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
+            Assert.IsTrue(result.Value.IsSuccessful);
+
+            Assert.AreEqual(result.Value.AlgorithmResult, expected);
+        }
     }
 }

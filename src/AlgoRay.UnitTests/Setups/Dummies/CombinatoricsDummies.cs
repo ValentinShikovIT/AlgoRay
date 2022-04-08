@@ -89,6 +89,20 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 new string[] {"C", "C"},
             };
         }
+
+        internal static class NChooseKCountBinom
+        {
+            // Input
+            internal static int Choice_1_For_N { get; } = 3;
+            internal static int Choice_1_For_K { get; } = 2;
+
+            internal static int Choice_2_For_N { get; } = 5;
+            internal static int Choice_2_For_K { get; } = 3;
+
+            // Outputs
+            internal static int ExpectedFromTest_1 { get; } = 3;
+            internal static int ExpectedFromTest_2 { get; } = 10;
+        }
     }
 }
 
