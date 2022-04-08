@@ -2,7 +2,7 @@
 {
     internal class Settings
     {
-        internal const bool isInProjectorTimeoutMode = true;
-        internal const int defaultTimeout = 1000;
+        internal const bool IsInProjectorTimeoutMode = true;
+        internal const int DefaultTimeout = 1000;
     }
 }

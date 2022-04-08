@@ -69,6 +69,9 @@ namespace AlgoRay.UnitTests.Setups.Dummies
             internal static string[] RandomStringsFor_CombinationWithoutRepetitionTest_1 { get; } = new string[] { "A", "B", "C" };
             internal static int LengthOfCombinationWithoutRepetitions_1 { get; } = 2;
 
+            internal static string[] RandomStringsFor_CombinationWithRepetitionTest_1 { get; } = new string[] { "A", "B", "C" };
+            internal static int LengthOfCombinationWithRepetitions_1 { get; } = 2;
+
             //Outputs
             public static List<string[]> Expected_CombinationWithoutRepetition_1 { get; } = new List<string[]>
             {
@@ -76,6 +79,16 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 new string[] {"A", "C"},
                 new string[] {"B", "C"},
             };
+            public static List<string[]> Expected_CombinationWithRepetition_1 { get; } = new List<string[]>
+            {
+                new string[] {"A", "A"},
+                new string[] {"A", "B"},
+                new string[] {"A", "C"},
+                new string[] {"B", "B"},
+                new string[] {"B", "C"},
+                new string[] {"C", "C"},
+            };
         }
     }
 }
+

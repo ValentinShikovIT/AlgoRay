@@ -34,19 +34,10 @@ namespace AlgoRay_Projector
             Console.WriteLine();
             Console.WriteLine(new string('_', 100));
 
-
             globalStopwatch.Stop();
 
             _uiManager.PrintEndingMessages(succededTests, failedTests, globalStopwatch.Elapsed.TotalSeconds);
         }
-
-        private static MethodInfo[] GetAllTestMethodsFromTestingAssembly(Type testRunner)
-            => Assembly
-                .GetAssembly(testRunner)
-                .GetTypes()
-                .SelectMany(t => t.GetMethods())
-                .Where(m => m.GetCustomAttributes(typeof(TestMethodAttribute), false).Length > 0)
-                .ToArray();
 
         private static async Task MainLogic(ICollection<MethodInfo> allTestMethods,
             int testNumber)
@@ -95,9 +86,17 @@ namespace AlgoRay_Projector
             }
         }
 
+        private static MethodInfo[] GetAllTestMethodsFromTestingAssembly(Type testRunner)
+            => Assembly
+                .GetAssembly(testRunner)
+                .GetTypes()
+                .SelectMany(t => t.GetMethods())
+                .Where(m => m.GetCustomAttributes(typeof(TestMethodAttribute), false).Length > 0)
+                .ToArray();
+
         private static int GetProjectorTimeout(int? timeoutInMilliseconds)
-            => Settings.isInProjectorTimeoutMode && timeoutInMilliseconds != null ? 
+            => Settings.IsInProjectorTimeoutMode && timeoutInMilliseconds != null ? 
             timeoutInMilliseconds.Value : 
-            Settings.defaultTimeout;
+            Settings.DefaultTimeout;
     }
 }
