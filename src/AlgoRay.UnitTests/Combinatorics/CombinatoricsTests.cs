@@ -1,6 +1,6 @@
 ﻿using AlgoRay.Combinatorics;
 using AlgoRay.UnitTests.Helpers;
-using AlgoRay.UnitTests.Setups;
+using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -15,12 +15,12 @@ namespace AlgoRay.UnitTests.Combinatorics
             //Arrange
             var inputs = new string[][]
             {
-                DummyInputs.RandomStringsFor_PermutationWithoutRepetitionTest_1
+                CombinatoricsDummies.Permutations.RandomStringsFor_PermutationWithoutRepetitionTest_1
             };
 
             var outputs = new List<string[]>[]
             {
-                DummyOutputs.Expected_PermutationWithoutRepetition_1
+                CombinatoricsDummies.Permutations.Expected_PermutationWithoutRepetition_1
             };
 
             //Act
@@ -43,12 +43,12 @@ namespace AlgoRay.UnitTests.Combinatorics
             //Arrange
             var inputs = new string[][]
             {
-                DummyInputs.RandomStringsFor_PermutationWithRepetitionTest_1
+                CombinatoricsDummies.Permutations.RandomStringsFor_PermutationWithRepetitionTest_1
             };
 
             var outputs = new List<string[]>[]
             {
-                DummyOutputs.Expected_PermutationWithRepetition_1
+                CombinatoricsDummies.Permutations.Expected_PermutationWithRepetition_1
             };
 
             //Act
@@ -58,6 +58,38 @@ namespace AlgoRay.UnitTests.Combinatorics
                 {
                     return PermutationsWithRepetitions<string>
                     .Run(inputs[test]);
+                },
+                100);
+
+                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+            }
+        }
+
+        [TestMethod]
+        public void VariationsWithoutRepetition_ShouldGetAllVariations_Correctly()
+        {
+            //Arrange
+            var inputs = new string[][]
+            {
+                CombinatoricsDummies.Variations.RandomStringsFor_VariationWithoutRepetitionTest_1
+            };
+
+            var outputs = new List<string[]>[]
+            {
+                CombinatoricsDummies.Variations.Expected_VariationWithoutRepetition_1
+            };
+
+            var lengthOfVariation = CombinatoricsDummies
+                .Variations
+                .LengthOfVariationWithoutRepetitions_1;
+
+            //Act
+            for (int test = 0; test < inputs.Length; test++)
+            {
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return VariationsWithoutRepetitions<string>
+                    .Run(inputs[test], lengthOfVariation);
                 },
                 100);
 

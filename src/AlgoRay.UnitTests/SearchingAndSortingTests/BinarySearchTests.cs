@@ -1,6 +1,7 @@
 ﻿using AlgoRay.SearchingAndSortingAlgorithms;
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups;
+using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
         [ClassInitialize]
         public static void SetupDummyData(TestContext testContext)
         {
-            dummyInput = DummyInputs.BinarySearch_1;
+            dummyInput = SortingAndBinarySearchDummies.Inputs.BinarySearch_1;
         }
 
         [TestMethod]
