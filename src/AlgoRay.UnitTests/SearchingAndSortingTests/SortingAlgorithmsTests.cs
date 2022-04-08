@@ -83,7 +83,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return InsertionSortIterative.Run(unsortedInputData_Medium);
             },
-            5_000);
+            6_000);
 
             AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium, false, false);
         }
