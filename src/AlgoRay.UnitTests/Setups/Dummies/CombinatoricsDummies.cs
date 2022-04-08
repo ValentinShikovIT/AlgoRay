@@ -62,5 +62,20 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 new string[] {"C", "C"},
             };
         }
+
+        internal static class Combinations
+        {
+            // Combination Inputs
+            internal static string[] RandomStringsFor_CombinationWithoutRepetitionTest_1 { get; } = new string[] { "A", "B", "C" };
+            internal static int LengthOfCombinationWithoutRepetitions_1 { get; } = 2;
+
+            //Outputs
+            public static List<string[]> Expected_CombinationWithoutRepetition_1 { get; } = new List<string[]>
+            {
+                new string[] {"A", "B"},
+                new string[] {"A", "C"},
+                new string[] {"B", "C"},
+            };
+        }
     }
 }

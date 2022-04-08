@@ -128,5 +128,37 @@ namespace AlgoRay.UnitTests.Combinatorics
                 AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
             }
         }
+
+        [TestMethod]
+        public void CombinationsWithoutRepetition_ShouldGetAllCombinations_Correctly()
+        {
+            //Arrange
+            var inputs = new string[][]
+            {
+                CombinatoricsDummies.Combinations.RandomStringsFor_CombinationWithoutRepetitionTest_1
+            };
+
+            var outputs = new List<string[]>[]
+            {
+                CombinatoricsDummies.Combinations.Expected_CombinationWithoutRepetition_1
+            };
+
+            var lengthOfVariation = CombinatoricsDummies
+                .Combinations
+                .LengthOfCombinationWithoutRepetitions_1;
+
+            //Act
+            for (int test = 0; test < inputs.Length; test++)
+            {
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return CombinationsWithoutRepetitions<string>
+                    .Run(inputs[test], lengthOfVariation);
+                },
+                100);
+
+                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+            }
+        }
     }
 }
