@@ -96,5 +96,37 @@ namespace AlgoRay.UnitTests.Combinatorics
                 AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
             }
         }
+
+        [TestMethod]
+        public void VariationsWithRepetition_ShouldGetAllVariations_Correctly()
+        {
+            //Arrange
+            var inputs = new string[][]
+            {
+                CombinatoricsDummies.Variations.RandomStringsFor_VariationWithRepetitionTest_1
+            };
+
+            var outputs = new List<string[]>[]
+            {
+                CombinatoricsDummies.Variations.Expected_VariationWithRepetition_1
+            };
+
+            var lengthOfVariation = CombinatoricsDummies
+                .Variations
+                .LengthOfVariationWithRepetitions_1;
+
+            //Act
+            for (int test = 0; test < inputs.Length; test++)
+            {
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return VariationsWithRepetitions<string>
+                    .Run(inputs[test], lengthOfVariation);
+                },
+                100);
+
+                AssertTestResultFromAlgorithmicResponse(testOutput, outputs[test]);
+            }
+        }
     }
 }

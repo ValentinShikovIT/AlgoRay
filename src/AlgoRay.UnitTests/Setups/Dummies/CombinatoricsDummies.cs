@@ -35,6 +35,9 @@ namespace AlgoRay.UnitTests.Setups.Dummies
             internal static string[] RandomStringsFor_VariationWithoutRepetitionTest_1 { get; } = new string[] { "A", "B", "C" };
             internal static int LengthOfVariationWithoutRepetitions_1 { get; } = 2;
 
+            internal static string[] RandomStringsFor_VariationWithRepetitionTest_1 { get; } = new string[] { "A", "B", "C" };
+            internal static int LengthOfVariationWithRepetitions_1 { get; } = 2;
+
             // Outputs
             public static List<string[]> Expected_VariationWithoutRepetition_1 { get; } = new List<string[]>
             {
@@ -44,6 +47,19 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 new string[] {"B", "C"},
                 new string[] {"C", "A"},
                 new string[] {"C", "B"},
+            };
+
+            public static List<string[]> Expected_VariationWithRepetition_1 { get; } = new List<string[]>
+            {
+                new string[] {"A", "A"},
+                new string[] {"A", "B"},
+                new string[] {"A", "C"},
+                new string[] {"B", "A"},
+                new string[] {"B", "B"},
+                new string[] {"B", "C"},
+                new string[] {"C", "A"},
+                new string[] {"C", "B"},
+                new string[] {"C", "C"},
             };
         }
     }
