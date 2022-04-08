@@ -13,7 +13,7 @@ namespace AlgoRay.Combinatorics
         {
             combinations = new T[lengthOfCombination];
 
-            Combinations(0, 0,input);
+            Combinations(0, 0, input);
 
             return new AlgorithmicResponse<IList<T[]>>(allCombinations, true);
         }

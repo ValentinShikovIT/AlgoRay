@@ -25,7 +25,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
         private static void MergeSortHelper<T>(T[] source, T[] copy, int leftIndex, int rightIndex)
             where T : IComparable
         {
-            if(leftIndex >= rightIndex)
+            if (leftIndex >= rightIndex)
             {
                 return;
             }
@@ -45,9 +45,9 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             var leftPointer = leftIndex;
             var rightPointer = middleIndex + 1;
 
-            while(leftPointer <= middleIndex && rightPointer <= rightIndex)
+            while (leftPointer <= middleIndex && rightPointer <= rightIndex)
             {
-                if(copy[leftPointer].CompareTo(copy[rightPointer]) == -1)
+                if (copy[leftPointer].CompareTo(copy[rightPointer]) == -1)
                 {
                     source[sourcePointer++] = copy[leftPointer++];
                 }

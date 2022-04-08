@@ -9,7 +9,7 @@ namespace AlgoRay.Combinatorics
         private static T[] variation;
         private readonly static IList<T[]> allVariations = new List<T[]>();
 
-         public static AlgorithmicResponse<IList<T[]>> Run(T[] input, int lengthOfVariation)
+        public static AlgorithmicResponse<IList<T[]>> Run(T[] input, int lengthOfVariation)
         {
             variation = new T[lengthOfVariation];
 

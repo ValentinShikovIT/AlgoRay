@@ -18,7 +18,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
         private static void Recursion<T>(IList<T> inputElements, int start, int end)
             where T : IComparable
         {
-            if(start >= end)
+            if (start >= end)
             {
                 return;
             }
@@ -27,20 +27,20 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             var left = start + 1;
             var right = end;
 
-            while(left <= right)
+            while (left <= right)
             {
-                if(inputElements[left].CompareTo(inputElements[pivot]) == 1 &&
+                if (inputElements[left].CompareTo(inputElements[pivot]) == 1 &&
                     inputElements[right].CompareTo(inputElements[pivot]) == -1)
                 {
                     Swap(inputElements, left, right);
                 }
 
-                if(inputElements[left].CompareTo(inputElements[pivot]) <= 0)
+                if (inputElements[left].CompareTo(inputElements[pivot]) <= 0)
                 {
                     left++;
                 }
 
-                if(inputElements[right].CompareTo(inputElements[pivot]) >= 0)
+                if (inputElements[right].CompareTo(inputElements[pivot]) >= 0)
                 {
                     right--;
                 }

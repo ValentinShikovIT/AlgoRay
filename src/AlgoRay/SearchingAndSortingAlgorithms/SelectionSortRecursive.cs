@@ -20,13 +20,13 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
         private static void Recursion<T>(IList<T> inputElements, int startingIndex, int currentIndex, int indexOfMin)
             where T : IComparable
         {
-            if(currentIndex >= inputElements.Count)
+            if (currentIndex >= inputElements.Count)
             {
                 (inputElements[indexOfMin], inputElements[startingIndex]) = (inputElements[startingIndex], inputElements[indexOfMin]);
                 return;
             }
 
-            if(inputElements[indexOfMin].CompareTo(inputElements[currentIndex]) == 1)
+            if (inputElements[indexOfMin].CompareTo(inputElements[currentIndex]) == 1)
             {
                 indexOfMin = currentIndex;
             }

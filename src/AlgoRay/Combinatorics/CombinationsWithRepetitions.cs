@@ -18,7 +18,7 @@ namespace AlgoRay.Combinatorics
             return new AlgorithmicResponse<IList<T[]>>(allCombinations, true);
         }
 
-        private static void Combinations(int index, int startIndex,T[] input)
+        private static void Combinations(int index, int startIndex, T[] input)
         {
             if (index >= combinations.Length)
             {
@@ -29,7 +29,7 @@ namespace AlgoRay.Combinatorics
             for (int i = startIndex; i < input.Length; i++)
             {
                 combinations[index] = input[i];
-                Combinations(index + 1, i,input);
+                Combinations(index + 1, i, input);
             }
         }
     }

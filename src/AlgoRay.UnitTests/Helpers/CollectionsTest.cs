@@ -11,7 +11,7 @@ namespace AlgoRay.UnitTests.Helpers
     public abstract class CollectionsTest
     {
         public void AssertTestResultFromTestRunningResponse<T>(
-            TestResult<AlgorithmicResponse<IList<T>>> result, 
+            TestResult<AlgorithmicResponse<IList<T>>> result,
             ICollection<T> expected,
             bool orderExpected = true,
             bool orderActual = true)
@@ -35,7 +35,7 @@ namespace AlgoRay.UnitTests.Helpers
         }
 
         public void AssertTestResultFromTestRunningResponse<T>(
-            TestResult<AlgorithmicResponse<IList<T[]>>> result, 
+            TestResult<AlgorithmicResponse<IList<T[]>>> result,
             ICollection<T[]> expected,
             bool orderExpected = true,
             bool orderActual = true)

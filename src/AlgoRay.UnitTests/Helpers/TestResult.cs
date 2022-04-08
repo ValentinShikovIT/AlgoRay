@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgoRay.UnitTests.Helpers
+﻿namespace AlgoRay.UnitTests.Helpers
 {
     public class TestResult<T>
     {

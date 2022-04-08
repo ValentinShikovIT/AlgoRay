@@ -12,7 +12,7 @@ namespace AlgoRay_Projector
 
         public void ClassInitialize_IfExits(Type typeofClass, object instance = null)
         {
-            if(_initilizedClasses.Contains(typeofClass))
+            if (_initilizedClasses.Contains(typeofClass))
             {
                 return;
             }
@@ -35,7 +35,7 @@ namespace AlgoRay_Projector
 
         public dynamic GetTestClassInstance(Type type)
         {
-            if(_testClassInstances.ContainsKey(type))
+            if (_testClassInstances.ContainsKey(type))
             {
                 return _testClassInstances[type];
             }

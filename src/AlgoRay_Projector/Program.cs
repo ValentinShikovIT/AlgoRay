@@ -57,7 +57,7 @@ namespace AlgoRay_Projector
                     var stopwatch = await CoreProjector.ProjectTest(() =>
                     {
                         testMethod.Invoke(instance, new object[0]);
-                    }, 
+                    },
                     testTimeoutTimeInMilliseconds);
 
                     _uiManager.PrintAssertSuccessfullMessage(testMethod.Name, testNumber, stopwatch.ElapsedMilliseconds);
@@ -95,8 +95,8 @@ namespace AlgoRay_Projector
                 .ToArray();
 
         private static int GetProjectorTimeout(int? timeoutInMilliseconds)
-            => Settings.IsInProjectorTimeoutMode && timeoutInMilliseconds != null ? 
-            timeoutInMilliseconds.Value : 
+            => Settings.IsInProjectorTimeoutMode && timeoutInMilliseconds != null ?
+            timeoutInMilliseconds.Value :
             Settings.DefaultTimeout;
     }
 }
