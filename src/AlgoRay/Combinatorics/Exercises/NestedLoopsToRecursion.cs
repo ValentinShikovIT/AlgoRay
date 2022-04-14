@@ -10,7 +10,7 @@ namespace AlgoRay.Combinatorics.Exercises
         private static int[] result;
         private static readonly IList<int[]> loops = new List<int[]>();
 
-        public static AlgorithmicResponse<IList<int[]>> Run(int input)
+        public static AlgorithmicResult<IList<int[]>> Run(int input)
         {
             n = input;
 
@@ -18,7 +18,7 @@ namespace AlgoRay.Combinatorics.Exercises
 
             CreateLoops(0);
 
-            return new AlgorithmicResponse<IList<int[]>>(loops, true);
+            return new AlgorithmicResult<IList<int[]>>(loops, true);
         }
 
         private static void CreateLoops(int index)

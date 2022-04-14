@@ -2,8 +2,6 @@
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AlgoRay.UnitTests.Combinatorics
 {
@@ -20,7 +18,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 CombinatoricsDummies.ReverseArrayByRecursion.InputStrings_2
             };
 
-            var outputs = new string[][]
+            var expectedOutputs = new string[][]
             {
                 CombinatoricsDummies.ReverseArrayByRecursion.ExpectedNumbers_1,
                 CombinatoricsDummies.ReverseArrayByRecursion.ExpectedStrings_2
@@ -36,7 +34,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, expectedOutputs[test]);
             }
         }
 
@@ -45,7 +43,7 @@ namespace AlgoRay.UnitTests.Combinatorics
         {
             // Arrange
             var input = CombinatoricsDummies.NestedLoopsToRecursion.InputNumberOfLoops_1;
-            var output = CombinatoricsDummies.NestedLoopsToRecursion.ExpectedLoops_1;
+            var expectedOutput = CombinatoricsDummies.NestedLoopsToRecursion.ExpectedLoops_1;
 
             // Act
             var testOutput = TestRunner.RunTest(() =>
@@ -55,7 +53,25 @@ namespace AlgoRay.UnitTests.Combinatorics
             },
             100);
 
-            AssertTestResultFromTestRunningResponse(testOutput, output);
+            AssertTestResultFromTestRunningResponse(testOutput, expectedOutput);
+        }
+
+        [TestMethod]
+        public void ConnectedAreaInMatrix_ShouldReturn_ExpectedResult()
+        {
+            // Arrange
+            var input = CombinatoricsDummies.ConnectedAreasInMatrix.InputMatrix_1;
+            var expectedOutput = CombinatoricsDummies.ConnectedAreasInMatrix.ExpectedResult_1;
+
+            // Act
+            var testOutput = TestRunner.RunTest(() =>
+            {
+                return ConnectedAreaInAMatrix
+                .Run(input);
+            },
+            100);
+
+            AssertTestResultFromTestRunningResponse(testOutput, expectedOutput);
         }
     }
 }

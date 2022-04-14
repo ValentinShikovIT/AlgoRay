@@ -1,8 +1,8 @@
 ﻿namespace AlgoRay.Helpers
 {
-    public class AlgorithmicResponse<T>
+    public class AlgorithmicResult<T>
     {
-        public AlgorithmicResponse(T result, bool isSuccessful)
+        public AlgorithmicResult(T result, bool isSuccessful)
         {
             this.AlgorithmResult = result;
             this.IsSuccessful = isSuccessful;

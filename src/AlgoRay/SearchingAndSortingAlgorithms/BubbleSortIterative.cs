@@ -6,7 +6,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public static class BubbleSortIterative
     {
-        public static AlgorithmicResponse<IList<T>> Run<T>(IList<T> inputElements)
+        public static AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             for (int i = 0; i < inputElements.Count; i++)
@@ -28,7 +28,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
                 }
             }
 
-            return new AlgorithmicResponse<IList<T>>(inputElements, true);
+            return new AlgorithmicResult<IList<T>>(inputElements, true);
         }
     }
 }

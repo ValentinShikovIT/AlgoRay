@@ -11,7 +11,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
     /// </summary>
     public static class BinarySearchIterative
     {
-        public static new AlgorithmicResponse<int> Run<T>(IList<T> sortedInput, T searchedItem)
+        public static new AlgorithmicResult<int> Run<T>(IList<T> sortedInput, T searchedItem)
             where T : IComparable
         {
             var leftPointer = 0;
@@ -23,7 +23,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
 
                 if (sortedInput[middlePointer].Equals(searchedItem))
                 {
-                    return new AlgorithmicResponse<int>(middlePointer, true);
+                    return new AlgorithmicResult<int>(middlePointer, true);
                 }
 
                 if (searchedItem.CompareTo(sortedInput[middlePointer]) == 1)
@@ -36,7 +36,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
                 }
             }
 
-            return new AlgorithmicResponse<int>(-1, false);
+            return new AlgorithmicResult<int>(-1, false);
         }
     }
 }

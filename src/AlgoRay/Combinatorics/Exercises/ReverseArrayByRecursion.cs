@@ -6,13 +6,13 @@ namespace AlgoRay.Combinatorics.Exercises
     {
         private static T[] reversedArray;
 
-        public static AlgorithmicResponse<T[]> Run(T[] arr)
+        public static AlgorithmicResult<T[]> Run(T[] arr)
         {
             reversedArray = new T[arr.Length];
 
             ReverseArray(arr, 0);
 
-            return new AlgorithmicResponse<T[]>(reversedArray, true);
+            return new AlgorithmicResult<T[]>(reversedArray, true);
         }
 
         private static void ReverseArray(T[] arr, int index)

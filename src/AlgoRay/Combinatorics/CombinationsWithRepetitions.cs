@@ -9,13 +9,13 @@ namespace AlgoRay.Combinatorics
         private static T[] combinations;
         private static IList<T[]> allCombinations = new List<T[]>();
 
-        public static AlgorithmicResponse<IList<T[]>> Run(T[] input, int lengthOfCombination)
+        public static AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfCombination)
         {
             combinations = new T[lengthOfCombination];
 
             Combinations(0, 0, input);
 
-            return new AlgorithmicResponse<IList<T[]>>(allCombinations, true);
+            return new AlgorithmicResult<IList<T[]>>(allCombinations, true);
         }
 
         private static void Combinations(int index, int startIndex, T[] input)

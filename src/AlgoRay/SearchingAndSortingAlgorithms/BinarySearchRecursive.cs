@@ -11,13 +11,13 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
     /// </summary>
     public static class BinarySearchRecursive
     {
-        public static AlgorithmicResponse<int> Run<T>(IList<T> sortedInput, T searchedItem)
+        public static AlgorithmicResult<int> Run<T>(IList<T> sortedInput, T searchedItem)
             where T : IComparable
         {
             var resultingIndex = Recursion<T>(sortedInput, searchedItem, 0, sortedInput.Count - 1);
 
-            return resultingIndex == -1 ? new AlgorithmicResponse<int>(resultingIndex, false) :
-                new AlgorithmicResponse<int>(resultingIndex, true);
+            return resultingIndex == -1 ? new AlgorithmicResult<int>(resultingIndex, false) :
+                new AlgorithmicResult<int>(resultingIndex, true);
         }
 
         private static int Recursion<T>(IList<T> sortedInput,

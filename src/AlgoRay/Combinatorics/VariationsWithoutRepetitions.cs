@@ -10,14 +10,14 @@ namespace AlgoRay.Combinatorics
         private static bool[] used;
         private static IList<T[]> allVariations = new List<T[]>();
 
-        public static AlgorithmicResponse<IList<T[]>> Run(T[] input, int lengthOfVariation)
+        public static AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfVariation)
         {
             variation = new T[lengthOfVariation];
             used = new bool[input.Length];
 
             Variations(0, input);
 
-            return new AlgorithmicResponse<IList<T[]>>(allVariations, true);
+            return new AlgorithmicResult<IList<T[]>>(allVariations, true);
         }
 
         private static void Variations(int index, T[] input)

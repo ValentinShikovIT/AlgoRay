@@ -4,11 +4,11 @@ namespace AlgoRay.Combinatorics
 {
     public class NChooseKCount
     {
-        public static AlgorithmicResponse<int> Run(int n, int k)
+        public static AlgorithmicResult<int> Run(int n, int k)
         {
             var binom = GetBinom(n, k);
 
-            return new AlgorithmicResponse<int>(binom, true);
+            return new AlgorithmicResult<int>(binom, true);
         }
 
         private static int GetBinom(int row, int col)

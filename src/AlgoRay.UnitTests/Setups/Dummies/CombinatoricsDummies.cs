@@ -127,6 +127,25 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 new[] { 2, 2 },
             };
         }
+
+        internal static class ConnectedAreasInMatrix
+        {
+            internal static char[,] InputMatrix_1 { get; } = new char[,]
+            {
+                { '-', '-', '-', '*', '-', '-', '-', '*', '-' },
+                { '-', '-', '-', '*', '-', '-', '-', '*', '-' },
+                { '-', '-', '-', '*', '-', '-', '-', '*', '-' },
+                { '-', '-', '-', '-', '*', '-', '*', '-', '-' }
+            };
+
+            internal static IList<string> ExpectedResult_1 { get; } = new List<string>
+            {
+                "Total areas found: 3",
+                "Area #1 at (0, 0), size: 13",
+                "Area #2 at (0, 4), size: 10",
+                "Area #3 at (0, 8), size: 5"
+            };
+        }
     }
 }
 

@@ -11,7 +11,7 @@ namespace AlgoRay.UnitTests.Helpers
     public abstract class CollectionsTest
     {
         public void AssertTestResultFromTestRunningResponse<T>(
-            TestResult<AlgorithmicResponse<IList<T>>> result,
+            TestResult<AlgorithmicResult<IList<T>>> result,
             ICollection<T> expected,
             bool orderExpected = true,
             bool orderActual = true)
@@ -35,7 +35,7 @@ namespace AlgoRay.UnitTests.Helpers
         }
 
         public void AssertTestResultFromTestRunningResponse<T>(
-            TestResult<AlgorithmicResponse<IList<T[]>>> result,
+            TestResult<AlgorithmicResult<IList<T[]>>> result,
             ICollection<T[]> expected,
             bool orderExpected = true,
             bool orderActual = true)
@@ -62,19 +62,19 @@ namespace AlgoRay.UnitTests.Helpers
         }
 
         public void AssertTestResultFromTestRunningResponse<T>(
-            TestResult<AlgorithmicResponse<T[]>> result,
+            TestResult<AlgorithmicResult<T[]>> result,
             ICollection<T> expected,
             bool orderExpected = true,
             bool orderActual = true)
             => AssertTestResultFromTestRunningResponse(
-                new TestResult<AlgorithmicResponse<IList<T>>>(result.IsInTimeLimit,
-                    new AlgorithmicResponse<IList<T>>(result.Value.AlgorithmResult.ToList(), result.Value.IsSuccessful)),
+                new TestResult<AlgorithmicResult<IList<T>>>(result.IsInTimeLimit,
+                    new AlgorithmicResult<IList<T>>(result.Value.AlgorithmResult.ToList(), result.Value.IsSuccessful)),
                 expected,
                 orderExpected,
                 orderActual);
 
         public void AssertTestResultFromTestRunningResponse<T>(
-            TestResult<AlgorithmicResponse<T>> result,
+            TestResult<AlgorithmicResult<T>> result,
             T expected)
             where T : IComparable
         {

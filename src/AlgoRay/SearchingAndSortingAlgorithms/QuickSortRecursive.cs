@@ -7,12 +7,12 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
     public static class QuickSortRecursive
     {
         //Implement Quick sort algorithm without O(log n) memory optimization
-        public static AlgorithmicResponse<IList<T>> Run<T>(IList<T> inputElements)
+        public static AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             Recursion(inputElements, 0, inputElements.Count - 1);
 
-            return new AlgorithmicResponse<IList<T>>(inputElements, true);
+            return new AlgorithmicResult<IList<T>>(inputElements, true);
         }
 
         private static void Recursion<T>(IList<T> inputElements, int start, int end)
