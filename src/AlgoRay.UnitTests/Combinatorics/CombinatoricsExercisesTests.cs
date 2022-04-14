@@ -2,6 +2,7 @@
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgoRay.UnitTests.Combinatorics
@@ -37,6 +38,24 @@ namespace AlgoRay.UnitTests.Combinatorics
 
                 AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
             }
+        }
+
+        [TestMethod]
+        public void NestedLoopsToRecursion_ShouldCreateIntegerLoops_Correctly()
+        {
+            // Arrange
+            var input = CombinatoricsDummies.NestedLoopsToRecursion.InputNumberOfLoops_1;
+            var output = CombinatoricsDummies.NestedLoopsToRecursion.ExpectedLoops_1;
+
+            // Act
+            var testOutput = TestRunner.RunTest(() =>
+            {
+                return NestedLoopsToRecursion
+                .Run(input);
+            },
+            100);
+
+            AssertTestResultFromTestRunningResponse(testOutput, output);
         }
     }
 }

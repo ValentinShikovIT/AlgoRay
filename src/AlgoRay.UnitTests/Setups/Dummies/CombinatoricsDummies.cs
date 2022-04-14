@@ -107,12 +107,25 @@ namespace AlgoRay.UnitTests.Setups.Dummies
 
         internal static class ReverseArrayByRecursion
         {
-            internal static string[] InputStrings_1 = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-            internal static string[] InputStrings_2 = new string[] { "asd", "rtex", "sad" };
+            internal static string[] InputStrings_1 { get; } = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+            internal static string[] InputStrings_2 { get; } = new string[] { "asd", "rtex", "sad" };
 
             // Outputs
-            internal static string[] ExpectedNumbers_1 = InputStrings_1.Reverse().ToArray();
-            internal static string[] ExpectedStrings_2 = InputStrings_2.Reverse().ToArray();
+            internal static string[] ExpectedNumbers_1 { get; } = InputStrings_1.Reverse().ToArray();
+            internal static string[] ExpectedStrings_2 { get; } = InputStrings_2.Reverse().ToArray();
+        }
+
+        internal static class NestedLoopsToRecursion
+        {
+            internal static int InputNumberOfLoops_1 { get; } = 2;
+
+            internal static IList<int[]> ExpectedLoops_1 { get; } = new List<int[]>()
+            {
+                new[] { 1, 1 },
+                new[] { 1, 2 },
+                new[] { 2, 1 },
+                new[] { 2, 2 },
+            };
         }
     }
 }
