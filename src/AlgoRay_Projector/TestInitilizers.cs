@@ -27,10 +27,10 @@ namespace AlgoRay_Projector
 
         public void TestInitialize_IfExists(Type typeofClass, object instance = null)
         {
-            var classInitializeMethod = typeofClass.GetMethods()
+            var testInitializeMethod = typeofClass.GetMethods()
                 .FirstOrDefault(method => method.GetCustomAttributes(typeof(TestInitializeAttribute), false).Length > 0);
 
-            classInitializeMethod?.Invoke(instance, new object[0]);
+            testInitializeMethod?.Invoke(instance, new object[0]);
         }
 
         public dynamic GetTestClassInstance(Type type)

@@ -25,11 +25,9 @@ namespace AlgoRay_Projector
 
             var allTestMethods = GetAllTestMethodsFromTestingAssembly(typeof(TestRunner));
 
-            int testNumber = 1;
-
             Console.WriteLine(new string('-', 100));
 
-            await MainLogic(allTestMethods, testNumber);
+            await MainLogic(allTestMethods);
 
             Console.WriteLine();
             Console.WriteLine(new string('_', 100));
@@ -39,9 +37,10 @@ namespace AlgoRay_Projector
             _uiManager.PrintEndingMessages(succededTests, failedTests, globalStopwatch.Elapsed.TotalSeconds);
         }
 
-        private static async Task MainLogic(ICollection<MethodInfo> allTestMethods,
-            int testNumber)
+        private static async Task MainLogic(ICollection<MethodInfo> allTestMethods)
         {
+            int testNumber = 1;
+
             foreach (var testMethod in allTestMethods)
             {
                 var instance = _initializers.GetTestClassInstance(testMethod.DeclaringType);
