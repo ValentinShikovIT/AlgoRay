@@ -6,13 +6,13 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 {
     public class ConnectedComponents
     {
-        private static IList<int>[] _graph;
-        private static bool[] visited;
-        private static List<int> result;
+        private IList<int>[] _graph;
+        private bool[] visited;
+        private List<int> result;
 
-        private static IList<int[]> outputResult = new List<int[]>();
+        private readonly IList<int[]> outputResult = new List<int[]>();
 
-        public static AlgorithmicResult<IList<int[]>> Run(IList<int>[] graph)
+        public AlgorithmicResult<IList<int[]>> Run(IList<int>[] graph)
         {
             _graph = graph;
             visited = new bool[graph.Length];
@@ -30,7 +30,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
             return new AlgorithmicResult<IList<int[]>>(outputResult, true);
         }
 
-        private static void BFS(int nodeNumber)
+        private void BFS(int nodeNumber)
         {
             var stack = new Stack<int>();
             var queue = new Queue<int>();

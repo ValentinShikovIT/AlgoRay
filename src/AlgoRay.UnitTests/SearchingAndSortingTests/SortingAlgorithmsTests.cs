@@ -41,7 +41,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             400);
 
-            AssertTestResultFromTestRunningResponse(result, sortedInputData_Small, false, false);
+            AssertTestResultFromTestRunningResponse(result, sortedInputData_Small);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             8_000);
 
-            AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium, false, false);
+            AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             400);
 
-            AssertTestResultFromTestRunningResponse(result, sortedInputData_Small, false, false);
+            AssertTestResultFromTestRunningResponse(result, sortedInputData_Small);
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             6_000);
 
-            AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium, false, false);
+            AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium);
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             100);
 
-            AssertTestResultFromTestRunningResponse(result, sortedInputData_Large, false, false);
+            AssertTestResultFromTestRunningResponse(result, sortedInputData_Large);
         }
 
         [TestMethod]
@@ -115,7 +115,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             },
             100);
 
-            AssertTestResultFromTestRunningResponse(result, sortedInputData_Large, false, false);
+            AssertTestResultFromTestRunningResponse(result, sortedInputData_Large);
         }
     }
 }

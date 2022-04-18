@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlgoRay.UnitTests.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -160,7 +161,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 @"Amy Peter George Rick
                 Amy George Peter Rick"
                 .Split(Environment.NewLine)
-                .Select(names => names.Split())
+                .Select(names => names.TrimStart().SplitWihtoutEmptyEntries())
                 .ToList());
 
             internal static (IList<string> Names, IDictionary<string, int> PlaceChanges, IList<string[]> Expected) Test_2 { get; } =
@@ -178,7 +179,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 Simon Anna Buddy Garry Liam Teddy
                 Simon Anna Buddy Teddy Liam Garry"
                 .Split(Environment.NewLine)
-                .Select(names => names.Split())
+                .Select(names => names.TrimStart().SplitWihtoutEmptyEntries())
                 .ToList());
         }
 
@@ -208,7 +209,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 Yoana, Marta, Rachel, George, Bob
                 Yoana, Marta, Rachel, Garry, Bob"
                 .Split(Environment.NewLine)
-                .Select(names => names.Split(", "))
+                .Select(names => names.TrimStart().SplitWihtoutEmptyEntries(", "))
                 .ToList());
         }
 
@@ -230,7 +231,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 Word cr un ch er
                 Word cr unch er
                 Word cruncher".Split(Environment.NewLine)
-                .Select(names => names.Split())
+                .Select(names => names.TrimStart().SplitWihtoutEmptyEntries())
                 .ToList());
 
             internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_3 { get; } =
@@ -242,7 +243,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 stu p i d
                 stu pi d
                 stu pid".Split(Environment.NewLine)
-                .Select(names => names.Split())
+                .Select(names => names.TrimStart().SplitWihtoutEmptyEntries())
                 .ToList());
         }
     }

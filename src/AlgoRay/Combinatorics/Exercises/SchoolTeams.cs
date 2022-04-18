@@ -6,14 +6,14 @@ namespace AlgoRay.Combinatorics.Exercises
 {
     public class SchoolTeams
     {
-        private static IList<string> _girlNames = new List<string>();
-        private static IList<string> _boysNames = new List<string>();
-        private static readonly string[] result = new string[5];
+        private IList<string> _girlNames = new List<string>();
+        private IList<string> _boysNames = new List<string>();
+        private readonly string[] result = new string[5];
 
-        private static IList<string[]> outputResults = new List<string[]>();
+        private readonly IList<string[]> outputResults = new List<string[]>();
 
 
-        public static AlgorithmicResult<IList<string[]>> Run(IList<string> girlNames, IList<string> boyNames)
+        public AlgorithmicResult<IList<string[]>> Run(IList<string> girlNames, IList<string> boyNames)
         {
             _girlNames = girlNames;
             _boysNames = boyNames;
@@ -23,7 +23,7 @@ namespace AlgoRay.Combinatorics.Exercises
             return new AlgorithmicResult<IList<string[]>>(outputResults, true);
         }
 
-        private static void Combine(int index, int startIndexGirl, int startIndexBoy)
+        private void Combine(int index, int startIndexGirl, int startIndexBoy)
         {
             if (index >= result.Length)
             {

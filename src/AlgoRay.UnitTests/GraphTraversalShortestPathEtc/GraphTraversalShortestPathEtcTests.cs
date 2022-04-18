@@ -24,12 +24,12 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
             {
                 var testResult = TestRunner.RunTest(() =>
                 {
-                    return ConnectedComponents
+                    return new ConnectedComponents()
                     .Run(Graph);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testResult, Expected, false, false);
+                AssertTestResultFromTestRunningResponse(testResult, Expected);
             }
         }
 
@@ -52,9 +52,9 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                     return new TopologicalSortSourceRemoval()
                     .Run(Graph);
                 },
-                10000);
+                100);
 
-                AssertTestResultFromTestRunningResponse(testResult, Expected, false, false, ExpectedSuccessful);
+                AssertTestResultFromTestRunningResponse(testResult, Expected, ExpectedSuccessful);
             }
         }
 
@@ -77,7 +77,7 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testResult, Expected, false, false);
+                AssertTestResultFromTestRunningResponse(testResult, Expected);
             }
         }
     }

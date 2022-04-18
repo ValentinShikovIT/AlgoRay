@@ -1,5 +1,4 @@
 ﻿using AlgoRay.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,14 +6,14 @@ namespace AlgoRay.Combinatorics.Exercises
 {
     public class WordCruncher
     {
-        private static string[] _wordParts;
-        private static string word;
-        private static readonly Dictionary<int, List<string>> allIndexes = new Dictionary<int, List<string>>();
-        private static readonly Dictionary<string, int> availableAmount = new Dictionary<string, int>();
-        private static readonly LinkedList<string> result = new LinkedList<string>();
-        private static readonly IList<string[]> outputResults = new List<string[]>();
+        private string[] _wordParts;
+        private string word;
+        private readonly Dictionary<int, List<string>> allIndexes = new Dictionary<int, List<string>>();
+        private readonly Dictionary<string, int> availableAmount = new Dictionary<string, int>();
+        private readonly LinkedList<string> result = new LinkedList<string>();
+        private IList<string[]> outputResults = new List<string[]>();
 
-        public static AlgorithmicResult<IList<string[]>> Run(string[] wordParts, string theWord)
+        public AlgorithmicResult<IList<string[]>> Run(string[] wordParts, string theWord)
         {
             _wordParts = wordParts;
 
@@ -49,14 +48,14 @@ namespace AlgoRay.Combinatorics.Exercises
 
             Variation(0);
 
-            outputResults
+            outputResults = outputResults
                 .OrderBy(word => string.Join(" ", word))
                 .ToList();
 
             return new AlgorithmicResult<IList<string[]>>(outputResults, true);
         }
 
-        private static List<int> FindIndexes(string item)
+        private List<int> FindIndexes(string item)
         {
             var list = new List<int>();
             var index = 0;
@@ -77,7 +76,7 @@ namespace AlgoRay.Combinatorics.Exercises
             return list;
         }
 
-        private static void Variation(int index)
+        private void Variation(int index)
         {
             if (index == word.Length)
             {

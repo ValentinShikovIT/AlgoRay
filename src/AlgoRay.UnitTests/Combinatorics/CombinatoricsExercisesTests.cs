@@ -3,6 +3,7 @@ using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgoRay.UnitTests.Combinatorics
 {
@@ -90,12 +91,16 @@ namespace AlgoRay.UnitTests.Combinatorics
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return Cinema
+                    return new Cinema()
                     .Run(Names, PlaceChanges);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, Expected, false, false);
+                var orderedExpected = Expected
+                    .Select(combo => combo.OrderBy(name => name).ToArray())
+                    .ToList();
+
+                AssertTestResultFromTestRunningResponse(testOutput, orderedExpected);
             }
         }
 
@@ -114,12 +119,12 @@ namespace AlgoRay.UnitTests.Combinatorics
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return SchoolTeams
+                    return new SchoolTeams()
                     .Run(GirlNames, BoyNames);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, Expected, false, false);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -139,12 +144,12 @@ namespace AlgoRay.UnitTests.Combinatorics
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return WordCruncher
+                    return new WordCruncher()
                     .Run(WordParts, Word);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, Expected, false, false);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
     }

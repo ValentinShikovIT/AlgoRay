@@ -6,25 +6,39 @@ namespace AlgoRay.Combinatorics.Exercises
 {
     public class Cinema
     {
-        private static IList<string> _names = new List<string>();
-        private static string[] result;
-        private static bool[] locked;
+        private IList<string> _names = new List<string>();
+        private string[] result;
+        private bool[] locked;
 
-        private static IList<string[]> outputResults = new List<string[]>();
+        private readonly IList<string[]> outputResults = new List<string[]>();
 
-        public static AlgorithmicResult<IList<string[]>> Run(IList<string> names, IDictionary<string, int> placeChanges)
+        public AlgorithmicResult<IList<string[]>> Run(IList<string> names, IDictionary<string, int> placeChanges)
         {
             _names = names;
 
             result = new string[names.Count];
             locked = new bool[names.Count];
 
+            AdjustFixedPlaces(placeChanges);
+
             Permutations(0);
 
-            return new AlgorithmicResult<IList<string[]>>(outputResults, true);
+            return new AlgorithmicResult<IList<string[]>>
+                (outputResults.Select(x => x.OrderBy(x => x).ToArray()).ToList(), true);
         }
 
-        private static void Permutations(int index)
+        private void AdjustFixedPlaces(IDictionary<string, int> placeChanges)
+        {
+            foreach (var changedPlace in placeChanges)
+            {
+                result[changedPlace.Value - 1] = changedPlace.Key;
+                locked[changedPlace.Value - 1] = true;
+
+                _names.Remove(changedPlace.Key);
+            }
+        }
+
+        private void Permutations(int index)
         {
             if (index >= _names.Count)
             {
@@ -42,12 +56,14 @@ namespace AlgoRay.Combinatorics.Exercises
             }
         }
 
-        private static void Swap(int first, int second)
+        private void Swap(int first, int second)
         {
-            (_names[second], _names[first]) = (_names[first], _names[second]);
+            var temp = _names[first];
+            _names[first] = _names[second];
+            _names[second] = temp;
         }
 
-        private static void PrintResult(IList<string> arr)
+        private void PrintResult(IList<string> arr)
         {
             var arrIndex = 0;
             for (int i = 0; i < result.Length; i++)
