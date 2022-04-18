@@ -16,13 +16,33 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
         {
             _graph = graph;
 
+            foreach (var node in _graph.Keys)
+            {
+                if (!nodeParents.ContainsKey(node))
+                {
+                    nodeParents[node] = 0;
+                }
+
+                foreach (var child in _graph[node])
+                {
+                    if (nodeParents.ContainsKey(child))
+                    {
+                        nodeParents[child]++;
+                    }
+                    else
+                    {
+                        nodeParents[child] = 1;
+                    }
+                }
+            }
+
             while (nodeParents.Count > 0)
             {
                 var nodeWithZeroParents = nodeParents.FirstOrDefault(x => x.Value == 0);
 
                 if (nodeWithZeroParents.Equals(default(KeyValuePair<string, int>)))
                 {
-                    return new AlgorithmicResult<IList<string>>(null, false);
+                    return new AlgorithmicResult<IList<string>>(new List<string>(), false);
                 }
 
                 foreach (var child in _graph[nodeWithZeroParents.Key])

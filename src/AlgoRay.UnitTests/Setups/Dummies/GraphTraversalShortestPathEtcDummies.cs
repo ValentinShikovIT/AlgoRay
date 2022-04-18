@@ -36,5 +36,48 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 .Select(components => components.SplitWihtoutEmptyEntries().Select(int.Parse).ToArray())
                 .ToList());
         }
+
+        internal class TopologicalSortSourceRemoval
+        {
+            internal static (IDictionary<string, IList<string>> Graph, IList<string> Expected, bool ExpectedSuccessful) Test_1 { get; } =
+                (@"A -> B, C
+                B -> D, E
+                C -> F
+                D -> C, F
+                E -> D
+                F -> ".Split(Environment.NewLine)
+                .Select(nodesToChildren => nodesToChildren.TrimStart().SplitWihtoutEmptyEntries(" -> "))
+                .ToDictionary(key => key[0], value => value.Length > 1 ? (IList<string>)value[1].SplitWihtoutEmptyEntries(", ")
+                .ToList() : new List<string>()),
+                "A, B, E, D, C, F"
+                    .Split(", ")
+                    .ToList(),
+                true);
+
+            internal static (IDictionary<string, IList<string>> Graph, IList<string> Expected, bool ExpectedSuccessful) Test_2 { get; } =
+                (@"IDEs -> variables, loops
+                variables -> conditionals, loops, bits
+                conditionals -> loops
+                loops -> bits
+                bits -> ".Split(Environment.NewLine)
+                .Select(nodesToChildren => nodesToChildren.TrimStart().SplitWihtoutEmptyEntries(" -> "))
+                .ToDictionary(key => key[0], value => value.Length > 1 ? (IList<string>)value[1].SplitWihtoutEmptyEntries(", ")
+                .ToList() : new List<string>()),
+                "IDEs, variables, conditionals, loops, bits"
+                    .Split(", ")
+                    .ToList(),
+                true);
+
+            internal static (IDictionary<string, IList<string>> Graph, IList<string> Expected, bool ExpectedSuccessful) Test_3 { get; } =
+                (@"A -> B
+                B -> A".Split(Environment.NewLine)
+                .Select(nodesToChildren => nodesToChildren.TrimStart().SplitWihtoutEmptyEntries(" -> "))
+                .ToDictionary(key => key[0], value => value.Length > 1 ? (IList<string>)value[1].SplitWihtoutEmptyEntries(", ")
+                .ToList() : new List<string>()),
+                ""
+                    .Split(", ")
+                    .ToList(),
+                false);
+        }
     }
 }

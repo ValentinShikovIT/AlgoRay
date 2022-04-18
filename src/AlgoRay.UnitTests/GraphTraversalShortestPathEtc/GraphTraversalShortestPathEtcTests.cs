@@ -32,5 +32,30 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 AssertTestResultFromTestRunningResponse(testResult, Expected, false, false);
             }
         }
+
+        [TestMethod]
+        public void TopologicalSortSourceRemoval_ShouldReturn_CorrectResult()
+        {
+            // Arrange
+            var tests = new (IDictionary<string, IList<string>> Graph, IList<string> Expected, bool ExpectedSuccessful)[]
+            {
+                GraphTraversalShortestPathEtcDummies.TopologicalSortSourceRemoval.Test_1,
+                GraphTraversalShortestPathEtcDummies.TopologicalSortSourceRemoval.Test_2,
+                GraphTraversalShortestPathEtcDummies.TopologicalSortSourceRemoval.Test_3
+            };
+
+            // Act
+            foreach (var (Graph, Expected, ExpectedSuccessful) in tests)
+            {
+                var testResult = TestRunner.RunTest(() =>
+                {
+                    return TopologicalSortSourceRemoval
+                    .Run(Graph);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testResult, Expected, false, false, ExpectedSuccessful);
+            }
+        }
     }
 }
