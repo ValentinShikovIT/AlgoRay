@@ -2,6 +2,7 @@
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace AlgoRay.UnitTests.Combinatorics
 {
@@ -72,6 +73,57 @@ namespace AlgoRay.UnitTests.Combinatorics
             100);
 
             AssertTestResultFromTestRunningResponse(testOutput, expectedOutput);
+        }
+
+        [TestMethod]
+        public void Cinema_ShouldReturn_ExpectedResult()
+        {
+            // Arrange
+            var test1Inputs = new object[]
+            {
+                CombinatoricsDummies.Cinema.InputNames_Test1,
+                CombinatoricsDummies.Cinema.PlaceChanging_Test1
+            };
+
+            var test2Inputs = new object[]
+            {
+                CombinatoricsDummies.Cinema.InputNames_Test2,
+                CombinatoricsDummies.Cinema.PlaceChanging_Test2
+            };
+
+            var test1Outputs = new object[]
+            {
+                CombinatoricsDummies.Cinema.Expected_Test1
+            };
+
+            var test2Outputs = new object[]
+            {
+                CombinatoricsDummies.Cinema.Expected_Test2
+            };
+
+            var tests = new Dictionary<object[], object[]>()
+            {
+                { test1Inputs, test1Outputs },
+                { test2Inputs, test2Outputs }
+            };
+
+            // Act
+            foreach (var test in tests)
+            {
+                var firstParam = (IList<string>)test.Key[0];
+                var secondParam = (IDictionary<string, int>)test.Key[1];
+
+                var expectedOutput = (IList<string[]>)test.Value[0];
+
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return Cinema
+                    .Run(firstParam, secondParam);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testOutput, expectedOutput, false, false);
+            }
         }
     }
 }

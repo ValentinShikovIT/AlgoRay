@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgoRay.UnitTests.Setups.Dummies
@@ -145,6 +146,43 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 "Area #2 at (0, 4), size: 10",
                 "Area #3 at (0, 8), size: 5"
             };
+        }
+
+        internal static class Cinema
+        {
+            internal static IList<string> InputNames_Test1 { get; } = "Peter, Amy, George, Rick".Split(", ").ToList();
+            internal static IDictionary<string, int> PlaceChanging_Test1 { get; } = new Dictionary<string, int>()
+            {
+                {"Amy", 1},
+                {"Rick", 4 }
+            };
+
+            internal static IList<string> InputNames_Test2 { get; } = "Garry, Liam, Teddy, Anna, Buddy, Simon".Split(", ").ToList();
+            internal static IDictionary<string, int> PlaceChanging_Test2 { get; } = new Dictionary<string, int>()
+            {
+                {"Buddy", 3 },
+                {"Liam", 5 },
+                {"Simon", 1 }
+            };
+
+            // Output
+            internal static IList<string[]> Expected_Test1 { get; } =
+                @"Amy Peter George Rick
+                Amy George Peter Rick"
+                .Split(Environment.NewLine)
+                .Select(names => names.Split())
+                .ToList();
+
+            internal static IList<string[]> Expected_Test2 { get; } =
+                @"Simon Garry Buddy Teddy Liam Anna
+                Simon Garry Buddy Anna Liam Teddy
+                Simon Teddy Buddy Garry Liam Anna
+                Simon Teddy Buddy Anna Liam Garry
+                Simon Anna Buddy Garry Liam Teddy
+                Simon Anna Buddy Teddy Liam Garry"
+                .Split(Environment.NewLine)
+                .Select(names => names.Split())
+                .ToList();
         }
     }
 }
