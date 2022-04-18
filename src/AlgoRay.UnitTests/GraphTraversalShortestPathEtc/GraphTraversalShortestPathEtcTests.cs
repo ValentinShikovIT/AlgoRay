@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
 {
     [TestClass]
-    public class GraphTraversalShortestPathEtcTests : CollectionsTest
+    public class GraphTraversalShortestPathEtcTests : TestBase
     {
         [TestMethod]
         public void ConnectedComponents_ShouldReturn_CorrectResult()

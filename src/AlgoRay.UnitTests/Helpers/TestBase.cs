@@ -8,16 +8,17 @@ using System.Linq;
 
 namespace AlgoRay.UnitTests.Helpers
 {
-    public abstract class CollectionsTest
+    public abstract class TestBase
     {
         public void AssertTestResultFromTestRunningResponse<T>(
             TestResult<AlgorithmicResult<IList<T>>> result,
             ICollection<T> expected,
             bool orderExpected = true,
-            bool orderActual = true)
+            bool orderActual = true,
+            bool shouldBeSuccessful = true)
         {
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            Assert.AreEqual(result.Value.IsSuccessful, shouldBeSuccessful);
 
             T[] expectedAsOrderedArray = null;
             T[] resultAsOrderedArray = null;
@@ -38,10 +39,11 @@ namespace AlgoRay.UnitTests.Helpers
             TestResult<AlgorithmicResult<IList<T[]>>> result,
             ICollection<T[]> expected,
             bool orderExpected = true,
-            bool orderActual = true)
+            bool orderActual = true,
+            bool shouldBeSuccessful = true)
         {
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
-            Assert.IsTrue(result.Value.IsSuccessful);
+            Assert.AreEqual(result.Value.IsSuccessful, shouldBeSuccessful);
 
             T[][] expectedAsOrderedArray = null;
             T[][] resultAsOrderedArray = null;
@@ -65,13 +67,15 @@ namespace AlgoRay.UnitTests.Helpers
             TestResult<AlgorithmicResult<T[]>> result,
             ICollection<T> expected,
             bool orderExpected = true,
-            bool orderActual = true)
+            bool orderActual = true,
+            bool shouldBeSuccessful = true)
             => AssertTestResultFromTestRunningResponse(
                 new TestResult<AlgorithmicResult<IList<T>>>(result.IsInTimeLimit,
                     new AlgorithmicResult<IList<T>>(result.Value.AlgorithmResult.ToList(), result.Value.IsSuccessful)),
                 expected,
                 orderExpected,
-                orderActual);
+                orderActual,
+                shouldBeSuccessful);
 
         public void AssertTestResultFromTestRunningResponse<T>(
             TestResult<AlgorithmicResult<T>> result,

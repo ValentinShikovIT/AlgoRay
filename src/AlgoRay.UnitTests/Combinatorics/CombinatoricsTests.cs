@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace AlgoRay.UnitTests.Combinatorics
 {
     [TestClass]
-    public class CombinatoricsTests : CollectionsTest
+    public class CombinatoricsTests : TestBase
     {
         [TestMethod]
         public void PermutationsWithoutRepetition_ShouldGetAllPermutations_Correctly()

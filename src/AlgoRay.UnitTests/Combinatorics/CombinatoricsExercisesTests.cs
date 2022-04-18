@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace AlgoRay.UnitTests.Combinatorics
 {
     [TestClass]
-    public class CombinatoricsExercisesTests : CollectionsTest
+    public class CombinatoricsExercisesTests : TestBase
     {
         [TestMethod]
         public void ReverseArrayByRecursion_ShouldReturnReversedArray_Correctly()

@@ -8,7 +8,7 @@ using System.Linq;
 namespace AlgoRay.UnitTests.SearchingAndSortingTests
 {
     [TestClass]
-    public class SortingAlgorithmsTests : CollectionsTest
+    public class SortingAlgorithmsTests : TestBase
     {
         private static IList<int> unsortedInputData_Small;
         private static IList<int> unsortedInputData_Medium;
