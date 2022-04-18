@@ -8,11 +8,11 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 {
     public class TopologicalSortSourceRemoval
     {
-        private static IDictionary<string, IList<string>> _graph = new Dictionary<string, IList<string>>();
-        private static readonly Dictionary<string, int> nodeParents = new Dictionary<string, int>();
-        private static readonly List<string> outputResults = new List<string>();
+        private IDictionary<string, IList<string>> _graph = new Dictionary<string, IList<string>>();
+        private readonly Dictionary<string, int> nodeParents = new Dictionary<string, int>();
+        private readonly List<string> outputResults = new List<string>();
 
-        public static AlgorithmicResult<IList<string>> Run(IDictionary<string, IList<string>> graph)
+        public AlgorithmicResult<IList<string>> Run(IDictionary<string, IList<string>> graph)
         {
             _graph = graph;
 

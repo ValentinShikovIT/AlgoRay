@@ -20,8 +20,8 @@ namespace AlgoRay.UnitTests.Helpers
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.AreEqual(result.Value.IsSuccessful, shouldBeSuccessful);
 
-            T[] expectedAsOrderedArray = null;
-            T[] resultAsOrderedArray = null;
+            T[] expectedAsOrderedArray = expected.ToArray();
+            T[] resultAsOrderedArray = result.Value.AlgorithmResult.ToArray();
             if (orderExpected)
             {
                 expectedAsOrderedArray = expected.OrderBy(x => x).ToArray();

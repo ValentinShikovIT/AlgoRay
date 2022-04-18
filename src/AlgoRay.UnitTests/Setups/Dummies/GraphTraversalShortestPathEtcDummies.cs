@@ -74,10 +74,72 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 .Select(nodesToChildren => nodesToChildren.TrimStart().SplitWihtoutEmptyEntries(" -> "))
                 .ToDictionary(key => key[0], value => value.Length > 1 ? (IList<string>)value[1].SplitWihtoutEmptyEntries(", ")
                 .ToList() : new List<string>()),
-                ""
-                    .Split(", ")
-                    .ToList(),
+                new List<string>(),
                 false);
+        }
+
+        internal class ShortestPath
+        {
+            internal static (IList<int>[] Graph, int Start, int End, IList<int> Expected) Test_1 { get; } =
+                (ParseGraph(@"1 2
+                    1 4
+                    2 3
+                    4 5
+                    5 8
+                    5 6
+                    5 7
+                    5 8
+                    6 7
+                    7 8"),
+                Start: 1,
+                End: 7,
+                "1 4 5 7".Split().Select(int.Parse).ToList());
+
+            internal static (IList<int>[] Graph, int Start, int End, IList<int> Expected) Test_2 { get; } =
+                (ParseGraph(@"1 5
+                    1 4
+                    5 7
+                    7 8
+                    8 2
+                    2 3
+                    3 4
+                    4 1
+                    6 2
+                    9 10
+                    11 9"),
+                Start: 6,
+                End: 3,
+                "6 2 3".Split().Select(int.Parse).ToList());
+
+            private static IList<int>[] ParseGraph(string graphStr)
+            {
+                var edges =
+                    graphStr.Split(Environment.NewLine);
+
+                var graph = new List<int>[edges.Length + 1];
+
+                for (int i = 0; i < graph.Length; i++)
+                {
+                    graph[i] = new List<int>();
+                }
+
+                foreach (var edge in edges)
+                {
+                    var nodeToChild = edge
+                    .TrimStart()
+                    .SplitWihtoutEmptyEntries()
+                    .Select(int.Parse)
+                    .ToArray();
+
+                    var firstNode = nodeToChild[0];
+                    var secondNode = nodeToChild[1];
+
+                    graph[firstNode].Add(secondNode);
+                    graph[secondNode].Add(firstNode);
+                }
+
+                return graph;
+            }
         }
     }
 }

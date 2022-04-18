@@ -25,9 +25,9 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             unsortedInputData_Medium = new List<int>(SortingAndBinarySearchDummies.Inputs.UnsortedDummyData_Medium);
             unsortedInputData_Large = new List<int>(SortingAndBinarySearchDummies.Inputs.UnsortedDummyData_Big);
 
-            sortedInputData_Small = new List<int>(SortingAndBinarySearchDummies.Outputs.SortedData_Small);
-            sortedInputData_Medium = new List<int>(SortingAndBinarySearchDummies.Outputs.SortedData_Medium);
-            sortedInputData_Large = new List<int>(SortingAndBinarySearchDummies.Outputs.SortedData_Large);
+            sortedInputData_Small = unsortedInputData_Small.OrderBy(x => x).ToList();
+            sortedInputData_Medium = unsortedInputData_Medium.OrderBy(x => x).ToList();
+            sortedInputData_Large = unsortedInputData_Large.OrderBy(x => x).ToList();
         }
 
         [TestMethod]
