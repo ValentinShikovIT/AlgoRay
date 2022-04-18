@@ -184,6 +184,39 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 .Select(names => names.Split())
                 .ToList();
         }
+
+        internal static class SchoolTeams
+        {
+            internal static IList<string> GirlNamesInput_test1 { get; } = "Linda, Amy, Katty".Split(", ").ToList();
+            internal static IList<string> BoyNamesInput_test1 { get; } = "John, Bill".Split(", ").ToList();
+
+            internal static IList<string> GirlNamesInput_test2 { get; } = "Lisa, Yoana, Marta, Rachel".Split(", ").ToList();
+            internal static IList<string> BoyNamesInput_test2 { get; } = "George, Garry, Bob".Split(", ").ToList();
+
+            // Output
+            internal static IList<string[]> Expected_test1 { get; } = 
+                "Linda, Amy, Katty, John, Bill"
+                .Split(Environment.NewLine)
+                .Select(names => names.Split(", "))
+                .ToList();
+
+            internal static IList<string[]> Expected_test2 { get; } =
+                @"Lisa, Yoana, Marta, George, Garry
+                Lisa, Yoana, Marta, George, Bob
+                Lisa, Yoana, Marta, Garry, Bob
+                Lisa, Yoana, Rachel, George, Garry
+                Lisa, Yoana, Rachel, George, Bob
+                Lisa, Yoana, Rachel, Garry, Bob
+                Lisa, Marta, Rachel, George, Garry
+                Lisa, Marta, Rachel, George, Bob
+                Lisa, Marta, Rachel, Garry, Bob
+                Yoana, Marta, Rachel, George, Garry
+                Yoana, Marta, Rachel, George, Bob
+                Yoana, Marta, Rachel, Garry, Bob"
+                .Split(Environment.NewLine)
+                .Select(names => names.Split(", "))
+                .ToList();
+        }
     }
 }
 

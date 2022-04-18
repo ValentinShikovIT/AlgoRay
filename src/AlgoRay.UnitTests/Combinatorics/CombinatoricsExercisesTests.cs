@@ -125,5 +125,56 @@ namespace AlgoRay.UnitTests.Combinatorics
                 AssertTestResultFromTestRunningResponse(testOutput, expectedOutput, false, false);
             }
         }
+
+        [TestMethod]
+        public void SchoolTeams_ShouldReturn_ExpectedResult()
+        {
+            // Arrange
+            var test1Inputs = new object[]
+            {
+                CombinatoricsDummies.SchoolTeams.GirlNamesInput_test1,
+                CombinatoricsDummies.SchoolTeams.BoyNamesInput_test1
+            };
+
+            var test2Inputs = new object[]
+            {
+                CombinatoricsDummies.SchoolTeams.GirlNamesInput_test2,
+                CombinatoricsDummies.SchoolTeams.BoyNamesInput_test2
+            };
+
+            var test1Outputs = new object[]
+            {
+                CombinatoricsDummies.SchoolTeams.Expected_test1
+            };
+
+            var test2Outputs = new object[]
+            {
+                CombinatoricsDummies.SchoolTeams.Expected_test2
+            };
+
+            var tests = new Dictionary<object[], object[]>()
+            {
+                { test1Inputs, test1Outputs },
+                { test2Inputs, test2Outputs }
+            };
+
+            // Act
+            foreach (var test in tests)
+            {
+                var firstParam = (IList<string>)test.Key[0];
+                var secondParam = (IList<string>)test.Key[1];
+
+                var expectedOutput = (IList<string[]>)test.Value[0];
+
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return SchoolTeams
+                    .Run(firstParam, secondParam);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testOutput, expectedOutput, false, false);
+            }
+        }
     }
 }
