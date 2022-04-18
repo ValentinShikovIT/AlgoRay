@@ -2,6 +2,7 @@
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace AlgoRay.UnitTests.Combinatorics
@@ -174,6 +175,31 @@ namespace AlgoRay.UnitTests.Combinatorics
                 100);
 
                 AssertTestResultFromTestRunningResponse(testOutput, expectedOutput, false, false);
+            }
+        }
+
+        [TestMethod]
+        public void WordCruncher_ShouldReturn_ExpectedResult()
+        {
+            // Arrange
+            var tests = new (string[] WordParts, string Word, IList<string[]> Expected)[]
+            {
+                CombinatoricsDummies.WordCruncher.Test_1,
+                CombinatoricsDummies.WordCruncher.Test_2,
+                CombinatoricsDummies.WordCruncher.Test_3
+            };
+
+            // Act
+            foreach (var (WordParts, Word, Expected) in tests)
+            {
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return WordCruncher
+                    .Run(WordParts, Word);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testOutput, Expected, false, false);
             }
         }
     }

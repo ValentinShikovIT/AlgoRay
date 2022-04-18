@@ -217,6 +217,40 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 .Select(names => names.Split(", "))
                 .ToList();
         }
+
+        internal static class WordCruncher
+        {
+            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_1 { get; } = 
+                ("text, me, so, do, m, ran".Split(", ").ToArray(), 
+                "somerandomtext", 
+                "so me ran do m text".Split(Environment.NewLine)
+                .Select(names => names.Split())
+                .ToList());
+
+            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_2 { get; } = 
+                ("Word, cruncher, cr, h, unch, c, r, un, ch, er".Split(", ").ToArray(),
+                "Wordcruncher",
+                @"Word c r un ch er
+                Word c r unch er
+                Word cr un c h er
+                Word cr un ch er
+                Word cr unch er
+                Word cruncher".Split(Environment.NewLine)
+                .Select(names => names.Split())
+                .ToList());
+
+            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_3 { get; } =
+                ("tu, stu, p, i, d, pi, pid, s, pi".Split(", ").ToArray(),
+                "stupid",
+                @"s tu p i d
+                s tu pi d
+                s tu pid
+                stu p i d
+                stu pi d
+                stu pid".Split(Environment.NewLine)
+                .Select(names => names.Split())
+                .ToList());
+        }
     }
 }
 
