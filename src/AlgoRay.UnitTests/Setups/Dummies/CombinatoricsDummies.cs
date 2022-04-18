@@ -150,31 +150,28 @@ namespace AlgoRay.UnitTests.Setups.Dummies
 
         internal static class Cinema
         {
-            internal static IList<string> InputNames_Test1 { get; } = "Peter, Amy, George, Rick".Split(", ").ToList();
-            internal static IDictionary<string, int> PlaceChanging_Test1 { get; } = new Dictionary<string, int>()
-            {
-                {"Amy", 1},
-                {"Rick", 4 }
-            };
-
-            internal static IList<string> InputNames_Test2 { get; } = "Garry, Liam, Teddy, Anna, Buddy, Simon".Split(", ").ToList();
-            internal static IDictionary<string, int> PlaceChanging_Test2 { get; } = new Dictionary<string, int>()
-            {
-                {"Buddy", 3 },
-                {"Liam", 5 },
-                {"Simon", 1 }
-            };
-
-            // Output
-            internal static IList<string[]> Expected_Test1 { get; } =
+            internal static (IList<string> Names, IDictionary<string, int> PlaceChanges, IList<string[]> Expected) Test_1 { get; } =
+                ("Peter, Amy, George, Rick".Split(", ").ToList(),
+                new Dictionary<string, int>()
+                {
+                    {"Amy", 1},
+                    {"Rick", 4 }
+                },
                 @"Amy Peter George Rick
                 Amy George Peter Rick"
                 .Split(Environment.NewLine)
                 .Select(names => names.Split())
-                .ToList();
+                .ToList());
 
-            internal static IList<string[]> Expected_Test2 { get; } =
-                @"Simon Garry Buddy Teddy Liam Anna
+            internal static (IList<string> Names, IDictionary<string, int> PlaceChanges, IList<string[]> Expected) Test_2 { get; } =
+                ("Garry, Liam, Teddy, Anna, Buddy, Simon".Split(", ").ToList(),
+                new Dictionary<string, int>()
+                {
+                    {"Buddy", 3 },
+                    {"Liam", 5 },
+                    {"Simon", 1 }
+                },
+                 @"Simon Garry Buddy Teddy Liam Anna
                 Simon Garry Buddy Anna Liam Teddy
                 Simon Teddy Buddy Garry Liam Anna
                 Simon Teddy Buddy Anna Liam Garry
@@ -182,25 +179,22 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 Simon Anna Buddy Teddy Liam Garry"
                 .Split(Environment.NewLine)
                 .Select(names => names.Split())
-                .ToList();
+                .ToList());
         }
 
         internal static class SchoolTeams
         {
-            internal static IList<string> GirlNamesInput_test1 { get; } = "Linda, Amy, Katty".Split(", ").ToList();
-            internal static IList<string> BoyNamesInput_test1 { get; } = "John, Bill".Split(", ").ToList();
-
-            internal static IList<string> GirlNamesInput_test2 { get; } = "Lisa, Yoana, Marta, Rachel".Split(", ").ToList();
-            internal static IList<string> BoyNamesInput_test2 { get; } = "George, Garry, Bob".Split(", ").ToList();
-
-            // Output
-            internal static IList<string[]> Expected_test1 { get; } = 
+            internal static (IList<string> GirlNames, IList<string> BoyNames, IList<string[]> Expected) Test_1 { get; } =
+                ("Linda, Amy, Katty".Split(", ").ToList(),
+                "John, Bill".Split(", ").ToList(),
                 "Linda, Amy, Katty, John, Bill"
                 .Split(Environment.NewLine)
                 .Select(names => names.Split(", "))
-                .ToList();
+                .ToList());
 
-            internal static IList<string[]> Expected_test2 { get; } =
+            internal static (IList<string> GirlNames, IList<string> BoyNames, IList<string[]> Expected) Test_2 { get; } =
+                ("Lisa, Yoana, Marta, Rachel".Split(", ").ToList(),
+                "George, Garry, Bob".Split(", ").ToList(),
                 @"Lisa, Yoana, Marta, George, Garry
                 Lisa, Yoana, Marta, George, Bob
                 Lisa, Yoana, Marta, Garry, Bob
@@ -215,7 +209,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 Yoana, Marta, Rachel, Garry, Bob"
                 .Split(Environment.NewLine)
                 .Select(names => names.Split(", "))
-                .ToList();
+                .ToList());
         }
 
         internal static class WordCruncher

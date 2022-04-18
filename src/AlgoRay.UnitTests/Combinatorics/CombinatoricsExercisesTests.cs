@@ -2,7 +2,6 @@
 using AlgoRay.UnitTests.Helpers;
 using AlgoRay.UnitTests.Setups.Dummies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 
 namespace AlgoRay.UnitTests.Combinatorics
@@ -80,50 +79,23 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void Cinema_ShouldReturn_ExpectedResult()
         {
             // Arrange
-            var test1Inputs = new object[]
+            var tests = new (IList<string> Names, IDictionary<string, int> PlaceChanges, IList<string[]> Expected)[]
             {
-                CombinatoricsDummies.Cinema.InputNames_Test1,
-                CombinatoricsDummies.Cinema.PlaceChanging_Test1
-            };
-
-            var test2Inputs = new object[]
-            {
-                CombinatoricsDummies.Cinema.InputNames_Test2,
-                CombinatoricsDummies.Cinema.PlaceChanging_Test2
-            };
-
-            var test1Outputs = new object[]
-            {
-                CombinatoricsDummies.Cinema.Expected_Test1
-            };
-
-            var test2Outputs = new object[]
-            {
-                CombinatoricsDummies.Cinema.Expected_Test2
-            };
-
-            var tests = new Dictionary<object[], object[]>()
-            {
-                { test1Inputs, test1Outputs },
-                { test2Inputs, test2Outputs }
+                CombinatoricsDummies.Cinema.Test_1,
+                CombinatoricsDummies.Cinema.Test_2
             };
 
             // Act
-            foreach (var test in tests)
+            foreach (var (Names, PlaceChanges, Expected) in tests)
             {
-                var firstParam = (IList<string>)test.Key[0];
-                var secondParam = (IDictionary<string, int>)test.Key[1];
-
-                var expectedOutput = (IList<string[]>)test.Value[0];
-
                 var testOutput = TestRunner.RunTest(() =>
                 {
                     return Cinema
-                    .Run(firstParam, secondParam);
+                    .Run(Names, PlaceChanges);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, expectedOutput, false, false);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected, false, false);
             }
         }
 
@@ -131,50 +103,23 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void SchoolTeams_ShouldReturn_ExpectedResult()
         {
             // Arrange
-            var test1Inputs = new object[]
+            var tests = new (IList<string> GirlNames, IList<string> BoyNames, IList<string[]> Expected)[]
             {
-                CombinatoricsDummies.SchoolTeams.GirlNamesInput_test1,
-                CombinatoricsDummies.SchoolTeams.BoyNamesInput_test1
-            };
-
-            var test2Inputs = new object[]
-            {
-                CombinatoricsDummies.SchoolTeams.GirlNamesInput_test2,
-                CombinatoricsDummies.SchoolTeams.BoyNamesInput_test2
-            };
-
-            var test1Outputs = new object[]
-            {
-                CombinatoricsDummies.SchoolTeams.Expected_test1
-            };
-
-            var test2Outputs = new object[]
-            {
-                CombinatoricsDummies.SchoolTeams.Expected_test2
-            };
-
-            var tests = new Dictionary<object[], object[]>()
-            {
-                { test1Inputs, test1Outputs },
-                { test2Inputs, test2Outputs }
+                CombinatoricsDummies.SchoolTeams.Test_1,
+                CombinatoricsDummies.SchoolTeams.Test_2
             };
 
             // Act
-            foreach (var test in tests)
+            foreach (var (GirlNames, BoyNames, Expected) in tests)
             {
-                var firstParam = (IList<string>)test.Key[0];
-                var secondParam = (IList<string>)test.Key[1];
-
-                var expectedOutput = (IList<string[]>)test.Value[0];
-
                 var testOutput = TestRunner.RunTest(() =>
                 {
                     return SchoolTeams
-                    .Run(firstParam, secondParam);
+                    .Run(GirlNames, BoyNames);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, expectedOutput, false, false);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected, false, false);
             }
         }
 
