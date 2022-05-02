@@ -32,7 +32,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 new List<int[]>());
         }
 
-        internal class TopologicalSortSourceRemoval
+        internal static class TopologicalSortSourceRemoval
         {
             internal static (IDictionary<string, IList<string>> Graph, IList<string> Expected, bool ExpectedSuccessful) Test_1 { get; } =
                 (@"A -> B, C
@@ -73,7 +73,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 false);
         }
 
-        internal class ShortestPath
+        internal static class ShortestPath
         {
             internal static (IList<int>[] Graph, int Start, int End, IList<int> Expected) Test_1 { get; } =
                 (ParseGraph(@"1 2
@@ -134,6 +134,150 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 }
 
                 return graph;
+            }
+        }
+
+        internal static class DistanceBetweenVertices
+        {
+            internal static (IDictionary<int, List<int>> graph, (int from, int to)[] targetPaths, (int from, int to, int distance)[] expected) Test_1 { get; } =
+                (ParseGraph(@"1:2
+                   2:"),
+                @"1-2
+                  2-1"
+                .Trim()
+                .Split(Environment.NewLine)
+                .Select(x =>
+                {
+                    var splittedInput = x.SplitWihtoutEmptyEntries("-").Select(int.Parse).ToArray();
+                    return (splittedInput[0], splittedInput[1]);
+                })
+                .ToArray(),
+                @"{1, 2} -> 1
+                  {2, 1} -> -1"
+                .Replace("{", string.Empty)
+                .Replace("}", string.Empty)
+                .Replace(" ", string.Empty)
+                .Split(Environment.NewLine)
+                .Select(x =>
+                {
+                    var splitted = x.SplitWihtoutEmptyEntries("->");
+                    var path = splitted[0].SplitWihtoutEmptyEntries(",").Select(int.Parse).ToArray();
+                    return (path[0], path[1], int.Parse(splitted[1]));
+                })
+                .ToArray()
+                );
+
+            internal static (IDictionary<int, List<int>> graph, (int from, int to)[] targetPaths, (int from, int to, int distance)[] expected) Test_2 { get; } =
+                (ParseGraph(@"1:4
+                2:4
+                3:4 5
+                4:6
+                5:3 7 8
+                6:
+                7:8
+                8:"),
+                @"1-6
+                  1-5
+                  5-6
+                  5-8"
+                .Trim()
+                .Split(Environment.NewLine)
+                .Select(x =>
+                {
+                    var splittedInput = x.SplitWihtoutEmptyEntries("-").Select(int.Parse).ToArray();
+                    return (splittedInput[0], splittedInput[1]);
+                })
+                .ToArray(),
+                @"{1, 6} -> 2
+                  {1, 5} -> -1
+                  {5, 6} -> 3
+                  {5, 8} -> 1"
+                .Replace("{", string.Empty)
+                .Replace("}", string.Empty)
+                .Replace(" ", string.Empty)
+                .Split(Environment.NewLine)
+                .Select(x =>
+                {
+                    var splitted = x.SplitWihtoutEmptyEntries("->");
+                    var path = splitted[0].SplitWihtoutEmptyEntries(",").Select(int.Parse).ToArray();
+                    return (path[0], path[1], int.Parse(splitted[1]));
+                })
+                .ToArray()
+                );
+
+            internal static (IDictionary<int, List<int>> graph, (int from, int to)[] targetPaths, (int from, int to, int distance)[] expected) Test_3 { get; } =
+                (ParseGraph(@"11:4
+                4:12 1
+                1:12 21 7
+                7:21
+                12:4 19
+                19:1 21
+                21:14 31
+                14:14
+                31:"),
+                @"11-7
+                11-21
+                21-4
+                19-14
+                1-4
+                1-11
+                31-21
+                11-14"
+                .Trim()
+                .Split(Environment.NewLine)
+                .Select(x =>
+                {
+                    var splittedInput = x.SplitWihtoutEmptyEntries("-").Select(int.Parse).ToArray();
+                    return (splittedInput[0], splittedInput[1]);
+                })
+                .ToArray(),
+                @"{11, 7} -> 3
+                  {11, 21} -> 3
+                  {21, 4} -> -1
+                  {19, 14} -> 2
+                  {1, 4} -> 2
+                  {1, 11} -> -1
+                  {31, 21} -> -1
+                  {11, 14} -> 4"
+                .Replace("{", string.Empty)
+                .Replace("}", string.Empty)
+                .Replace(" ", string.Empty)
+                .Split(Environment.NewLine)
+                .Select(x =>
+                {
+                    var splitted = x.SplitWihtoutEmptyEntries("->");
+                    var path = splitted[0].SplitWihtoutEmptyEntries(",").Select(int.Parse).ToArray();
+                    return (path[0], path[1], int.Parse(splitted[1]));
+                })
+                .ToArray()
+                );
+
+            private static IDictionary<int, List<int>> ParseGraph(string input)
+            {
+                var elements = input
+                    .Split(Environment.NewLine)
+                    .Select(x => x.SplitWihtoutEmptyEntries(":"));
+
+                var result = new Dictionary<int, List<int>>();
+                foreach (var element in elements)
+                {
+                    var from = int.Parse(element[0].Trim());
+                    var children = element.Length > 1 ? element.Skip(1)
+                        .SelectMany(x => x.Split())
+                        .Select(int.Parse) : 
+                        Enumerable.Empty<int>();
+
+                    if (result.ContainsKey(from))
+                    {
+                        result[from].AddRange(children);
+                    }
+                    else
+                    {
+                        result[from] = new List<int>(children);
+                    }
+                }
+
+                return result;
             }
         }
     }

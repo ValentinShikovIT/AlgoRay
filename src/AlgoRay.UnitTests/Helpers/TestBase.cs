@@ -18,7 +18,7 @@ namespace AlgoRay.UnitTests.Helpers
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.AreEqual(result.Value.IsSuccessful, shouldBeSuccessful);
 
-            expected.ShouldDeepEqual(result.Value.AlgorithmResult);
+            result.Value.AlgorithmResult.ShouldDeepEqual(expected);
         }
 
         public void AssertTestResultFromTestRunningResponse<T>(
@@ -29,7 +29,7 @@ namespace AlgoRay.UnitTests.Helpers
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.AreEqual(result.Value.IsSuccessful, shouldBeSuccessful);
 
-            expected.ShouldDeepEqual(result.Value.AlgorithmResult);
+            result.Value.AlgorithmResult.ShouldDeepEqual(expected);
         }
 
         public void AssertTestResultFromTestRunningResponse<T>(
