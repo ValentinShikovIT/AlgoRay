@@ -337,5 +337,48 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 return dictionaryGraph;
             }
         }
+
+        internal static class Salaries
+        {
+            internal static (IList<int>[] graph, int expected) Test_1 { get; } =
+                (ParseGraph(@"NNYN
+                              NNYN
+                              NNNN
+                              NYYN"),
+                5);
+
+            internal static (IList<int>[] graph, int expected) Test_2 { get; } =
+                (ParseGraph(@"NNNNNN
+                              YNYNNY
+                              YNNNNY
+                              NNNNNN
+                              YNYNNN
+                              YNNYNN"),
+                17);
+
+            private static IList<int>[] ParseGraph(string graphAsString)
+            {
+                var splittedRows = graphAsString.Split(Environment.NewLine).Select(x => x.Trim()).ToArray();
+                var graph = new List<int>[splittedRows.First().Length];
+
+                for (int i = 0; i < graph.Length; i++)
+                {
+                    graph[i] = new List<int>();
+                    var rowInput = splittedRows[i];
+
+                    for (int j = 0; j < rowInput.Length; j++)
+                    {
+                        if (rowInput[j] == 'Y')
+                        {
+                            graph[i].Add(j);
+                        }
+                    }
+                }
+
+                return graph;
+            }
+                
+
+        }
     }
 }

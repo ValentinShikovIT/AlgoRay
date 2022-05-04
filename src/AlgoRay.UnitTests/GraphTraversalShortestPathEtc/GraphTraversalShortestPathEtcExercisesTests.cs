@@ -59,5 +59,29 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 AssertTestResultFromTestRunningResponse(testResult, Expected);
             }
         }
+
+        [TestMethod]
+        public void Salaries_Should_ReturnTheCorrectCummulations()
+        {
+            // Arrange
+            var tests = new (IList<int>[] Graph, int Expected)[]
+            {
+                GraphTraversalShortestPathEtcDummies.Salaries.Test_1,
+                GraphTraversalShortestPathEtcDummies.Salaries.Test_2
+            };
+
+            // Act
+            foreach (var (Graph, Expected) in tests)
+            {
+                var testResult = TestRunner.RunTest(() =>
+                {
+                    return new Salaries()
+                    .Run(Graph);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testResult, Expected);
+            }
+        }
     }
 }
