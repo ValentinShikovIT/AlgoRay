@@ -50,7 +50,7 @@ namespace AlgoRay.UnitTests.Helpers
             Assert.IsTrue(result.IsInTimeLimit, TestMessages.MaximumAllowedTimeExceeded);
             Assert.IsTrue(result.Value.IsSuccessful);
 
-            Assert.AreEqual(result.Value.AlgorithmResult, expected);
+            Assert.AreEqual(expected, result.Value.AlgorithmResult);
         }
     }
 }

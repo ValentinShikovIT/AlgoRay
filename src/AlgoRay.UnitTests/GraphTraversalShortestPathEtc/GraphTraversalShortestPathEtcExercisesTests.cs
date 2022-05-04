@@ -33,5 +33,31 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 AssertTestResultFromTestRunningResponse(testResult, Expected);
             }
         }
+
+        [TestMethod]
+        public void CyclesInGraph_Should_DetectCyclesInDirectedGraph()
+        {
+            // Arrange
+            var tests = new (IDictionary<string, List<string>> Graph, bool expected)[]
+            {
+                GraphTraversalShortestPathEtcDummies.CyclesInGraph.Test_1,
+                GraphTraversalShortestPathEtcDummies.CyclesInGraph.Test_2,
+                GraphTraversalShortestPathEtcDummies.CyclesInGraph.Test_3,
+                GraphTraversalShortestPathEtcDummies.CyclesInGraph.Test_4
+            };
+
+            // Act
+            foreach (var (Graph, Expected) in tests)
+            {
+                var testResult = TestRunner.RunTest(() =>
+                {
+                    return new CyclesInGraph()
+                    .Run(Graph);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testResult, Expected);
+            }
+        }
     }
 }

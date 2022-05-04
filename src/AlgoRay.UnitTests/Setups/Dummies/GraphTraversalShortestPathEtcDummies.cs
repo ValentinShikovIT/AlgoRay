@@ -264,7 +264,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                     var from = int.Parse(element[0].Trim());
                     var children = element.Length > 1 ? element.Skip(1)
                         .SelectMany(x => x.Split())
-                        .Select(int.Parse) : 
+                        .Select(int.Parse) :
                         Enumerable.Empty<int>();
 
                     if (result.ContainsKey(from))
@@ -278,6 +278,63 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 }
 
                 return result;
+            }
+        }
+
+        internal static class CyclesInGraph
+        {
+            internal static (IDictionary<string, List<string>> Graph, bool ExpectedIsAcyclic) Test_1 { get; } =
+                (ParseGraph(@"C-G"),
+                true);
+
+            internal static (IDictionary<string, List<string>> Graph, bool ExpectedIsAcyclic) Test_2 { get; } =
+                (ParseGraph(@"A-F
+                              F-D
+                              D-A"),
+                false);
+
+            internal static (IDictionary<string, List<string>> Graph, bool ExpectedIsAcyclic) Test_3 { get; } =
+                (ParseGraph(@"E-Q
+                              Q-P
+                              P-B"),
+                true);
+
+            internal static (IDictionary<string, List<string>> Graph, bool ExpectedIsAcyclic) Test_4 { get; } =
+                (ParseGraph(@"K-J
+                              J-N
+                              N-L
+                              N-M
+                              M-I"),
+                true);
+
+
+            private static IDictionary<string, List<string>> ParseGraph(string graph)
+            {
+                var dictionaryGraph = new Dictionary<string, List<string>>();
+
+                var elements = graph.Split(Environment.NewLine)
+                .Select(element => element.Trim());
+
+                foreach (var element in elements)
+                {
+                    var splittedElement = element.Split("-");
+                    var Key = splittedElement[0];
+                    var Value = splittedElement[1];
+
+                    if(!dictionaryGraph.ContainsKey(Value))
+                    {
+                        dictionaryGraph[Value] = new List<string>();
+                    }
+
+                    if(!dictionaryGraph.ContainsKey(Key))
+                    {
+                        dictionaryGraph[Key] = new List<string>();
+                    }
+
+                    dictionaryGraph[Key].Add(Value);
+                }
+
+                return dictionaryGraph;
             }
         }
     }
