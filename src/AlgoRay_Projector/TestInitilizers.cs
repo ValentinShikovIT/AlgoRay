@@ -8,9 +8,9 @@ namespace AlgoRay_Projector
     internal class TestInitilizers
     {
         private readonly HashSet<Type> _initilizedClasses = new HashSet<Type>();
-        private readonly Dictionary<Type, object> _testClassInstances = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, dynamic> _testClassInstances = new Dictionary<Type, object>();
 
-        public void ClassInitialize_IfExits(Type typeofClass, object instance = null)
+        public void IfClassInitializeAttr_Initialize(Type typeofClass, object instance = null)
         {
             if (_initilizedClasses.Contains(typeofClass))
             {
@@ -25,7 +25,7 @@ namespace AlgoRay_Projector
             classInitializeMethod?.Invoke(instance, new object[] { null });
         }
 
-        public void TestInitialize_IfExists(Type typeofClass, object instance = null)
+        public void IfTestInitializeAttr_Initialize(Type typeofClass, object instance = null)
         {
             var testInitializeMethod = typeofClass.GetMethods()
                 .FirstOrDefault(method => method.GetCustomAttributes(typeof(TestInitializeAttribute), false).Length > 0);

@@ -45,8 +45,8 @@ namespace AlgoRay_Projector
             {
                 var instance = _initializers.GetTestClassInstance(testMethod.DeclaringType);
 
-                _initializers.ClassInitialize_IfExits(testMethod.DeclaringType, instance);
-                _initializers.TestInitialize_IfExists(testMethod.DeclaringType, instance);
+                _initializers.IfClassInitializeAttr_Initialize(testMethod.DeclaringType, instance);
+                _initializers.IfTestInitializeAttr_Initialize(testMethod.DeclaringType, instance);
 
                 var projectorAttribute = testMethod.GetCustomAttribute<ProjectorTimeOutAttribute>();
                 var testTimeoutTimeInMilliseconds = GetProjectorTimeout(projectorAttribute?.TimeoutTimeInMilliseconds);

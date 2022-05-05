@@ -377,8 +377,81 @@ namespace AlgoRay.UnitTests.Setups.Dummies
 
                 return graph;
             }
-                
+        }
 
+        internal static class BreakCycles
+        {
+            internal static (IList<(string fromNode, string toNode)> EdgesOfGraph, IList<(string fromNode, string toNode)> Expected) Test_1 { get; } =
+                (ParseGraph(@"1 -> 2 5 4
+                              2 -> 1 3
+                              3 -> 2 5
+                              4 -> 1
+                              5 -> 1 3
+                              6 -> 7 8
+                              7 -> 6 8
+                              8 -> 6 7"),
+                ParseExpected( @"1 - 2
+                   6 - 7"));
+
+            internal static (IList<(string fromNode, string toNode)> EdgesOfGraph, IList<(string fromNode, string toNode)> Expected) Test_2 { get; } =
+                (ParseGraph(@"K -> X J
+                              J -> K N
+                              N -> J X L M
+                              X -> K N Y
+                              M -> N I
+                              Y -> X L
+                              L -> N I Y
+                              I -> M L
+                              A -> Z Z Z
+                              Z -> A A A
+                              F -> E B P
+                              E -> F P
+                              P -> B F E
+                              B -> F P"),
+                ParseExpected(@"A - Z
+                                A - Z
+                                B - F
+                                E - F
+                                I - L
+                                J - K
+                                L - N"));
+
+            private static IList<(string fromNode, string toNode)> ParseGraph(string graphAsString)
+            {
+                var inputElements = graphAsString
+                    .Split(Environment.NewLine)
+                    .Select(x => x.Trim())
+                    .ToArray();
+
+                var returnResult = new List<(string, string)>();
+
+                foreach (var element in inputElements)
+                {
+                    var splittedInput = element.SplitWihtoutEmptyEntries(" -> ");
+                    var parent = splittedInput[0];
+
+                    var children = splittedInput[1].SplitWihtoutEmptyEntries();
+
+                    foreach (var child in children)
+                    {
+                        returnResult.Add((parent, child));
+                    }
+                }
+
+                return returnResult;
+            }
+
+            private static IList<(string fromNode, string toNode)> ParseExpected(string expectedAsString)
+                => expectedAsString
+                .Split(Environment.NewLine)
+                .Select(x => x
+                .Trim())
+                .Select(x =>
+                {
+                    var parentChild = x.SplitWihtoutEmptyEntries(" - ");
+                    return (parentChild[0], parentChild[1]);
+                })
+                    .ToList();
         }
     }
 }

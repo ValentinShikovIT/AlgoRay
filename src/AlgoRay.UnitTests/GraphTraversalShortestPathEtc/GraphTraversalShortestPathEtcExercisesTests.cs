@@ -83,5 +83,29 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 AssertTestResultFromTestRunningResponse(testResult, Expected);
             }
         }
+
+        [TestMethod]
+        public void BreakCycles_Should_ReturnAVariationOfThePossibleEdgesToRemoveInOrderToAchieveAcyclicGraph()
+        {
+            // Arrange
+            var tests = new (IList<(string fromNode, string toNode)> EdgesOfGraph, IList<(string fromNode, string toNode)> ExpectedEdgesToBeRemoved)[]
+            {
+                GraphTraversalShortestPathEtcDummies.BreakCycles.Test_1,
+                GraphTraversalShortestPathEtcDummies.BreakCycles.Test_2,
+            };
+
+            // Act
+            foreach (var (EdgesOfGraph, ExpectedEdgesToBeRemoved) in tests)
+            {
+                var testResult = TestRunner.RunTest(() =>
+                {
+                    return new BreakCycles()
+                    .Run(EdgesOfGraph);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testResult, ExpectedEdgesToBeRemoved);
+            }
+        }
     }
 }
