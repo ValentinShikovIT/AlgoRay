@@ -453,5 +453,56 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 })
                     .ToList();
         }
+
+        internal static class RoadConstruction
+        {
+            internal static (IList<(int building1, int building2)> BuildingConnections, IList<(int building1, int building2)> ExpectedConnections) Test_1 { get; } =
+                (ParseGraph(@"1 - 0
+                              0 - 2
+                              2 - 1
+                              0 - 3
+                              3 - 4"),
+                ParseExpected(@"0 3
+                                3 4"));
+
+            internal static (IList<(int building1, int building2)> BuildingConnections, IList<(int building1, int building2)> ExpectedConnections) Test_2 { get; } =
+                (ParseGraph(@"0 - 1
+                              1 - 2
+                              2 - 0
+                              1 - 3
+                              1 - 4
+                              1 - 6
+                              3 - 5
+                              4 - 5"),
+                ParseExpected(@"1 6"));
+
+            private static IList<(int building1, int building2)> ParseGraph(string buildingConnectionsAsString)
+                =>  buildingConnectionsAsString
+                    .Split(Environment.NewLine)
+                    .Select(x => x.Trim())
+                    .Select(x =>
+                    {
+                        var parentChild = x.SplitWihtoutEmptyEntries(" - ")
+                        .Select(int.Parse)
+                        .ToArray();
+
+                        return (parentChild[0], parentChild[1]);
+                    })
+                    .ToList();
+
+            private static IList<(int building1, int building2)> ParseExpected(string expectedAsString)
+                => expectedAsString
+                .Split(Environment.NewLine)
+                .Select(x => x.Trim())
+                .Select(x =>
+                {
+                    var parentChild = x.SplitWihtoutEmptyEntries()
+                    .Select(int.Parse)
+                    .ToArray();
+
+                    return (parentChild[0], parentChild[1]);
+                })
+                    .ToList();
+        }
     }
 }

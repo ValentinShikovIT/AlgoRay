@@ -107,5 +107,29 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 AssertTestResultFromTestRunningResponse(testResult, ExpectedEdgesToBeRemoved);
             }
         }
+
+        [TestMethod]
+        public void RoadConstruction_Should_ReturnAVariationOfThePossibleEdgesThatWillBreakTheConnectionBetweenTheBuildings()
+        {
+            // Arrange
+            var tests = new (IList<(int building1, int buildimg2)> EdgesOfGraph, IList<(int building1, int building2)> ExpectedEdges)[]
+            {
+                GraphTraversalShortestPathEtcDummies.RoadConstruction.Test_1,
+                GraphTraversalShortestPathEtcDummies.RoadConstruction.Test_2,
+            };
+
+            // Act
+            foreach (var (EdgesOfGraph, ExpectedEdges) in tests)
+            {
+                var testResult = TestRunner.RunTest(() =>
+                {
+                    return new RoadConstruction()
+                    .Run(EdgesOfGraph);
+                },
+                100);
+
+                AssertTestResultFromTestRunningResponse(testResult, ExpectedEdges);
+            }
+        }
     }
 }
