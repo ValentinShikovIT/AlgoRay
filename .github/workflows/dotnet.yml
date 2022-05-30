@@ -1,4 +1,4 @@
-name: AlgoRay.UnitTests
+name: UnitTests
 
 on:
   push:
@@ -23,6 +23,6 @@ jobs:
     - name: Build
       working-directory: src/
       run: dotnet build --no-restore
-    - name: Test
+    - name: UnitTests
       working-directory: src/
       run: dotnet test --no-build --verbosity normal
