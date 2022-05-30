@@ -39,7 +39,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return new BubbleSortIterative().Run(unsortedInputData_Small);
             },
-            400);
+            800);
 
             AssertTestResultFromTestRunningResponse(result, sortedInputData_Small);
         }
@@ -54,7 +54,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return new BubbleSortIterative().Run(unsortedInputData_Medium);
             },
-            15_000);
+            12_000);
 
             AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium);
         }
@@ -68,7 +68,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return new InsertionSortIterative().Run(unsortedInputData_Small);
             },
-            400);
+            800);
 
             AssertTestResultFromTestRunningResponse(result, sortedInputData_Small);
         }
@@ -83,7 +83,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             {
                 return new InsertionSortIterative().Run(unsortedInputData_Medium);
             },
-            15_000);
+            12_000);
 
             AssertTestResultFromTestRunningResponse(result, sortedInputData_Medium);
         }
