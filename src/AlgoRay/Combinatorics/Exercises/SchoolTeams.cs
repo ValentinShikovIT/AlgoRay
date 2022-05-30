@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,12 +16,24 @@ namespace AlgoRay.Combinatorics.Exercises
 
         public AlgorithmicResult<IList<string[]>> Run(IList<string> girlNames, IList<string> boyNames)
         {
+            try
+            {
+                return Logic(girlNames, boyNames);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<string[]>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<string[]>> Logic(IList<string> girlNames, IList<string> boyNames)
+        {
             _girlNames = girlNames;
             _boysNames = boyNames;
 
             Combine(0, 0, 0);
 
-            return new AlgorithmicResult<IList<string[]>>(outputResults, true);
+            return new AlgorithmicResult<IList<string[]>>(outputResults);
         }
 
         private void Combine(int index, int startIndexGirl, int startIndexBoy)

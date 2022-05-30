@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,16 +10,28 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
         private IDictionary<string, List<string>> graph = new Dictionary<string, List<string>>();
         private IList<Edge> _edges = new List<Edge>();
 
-        public AlgorithmicResult<IList<(string fromNode, string toNode)>> Run(IList<(string fromNode, string toNode)> EdgesOfGraph)
+        public AlgorithmicResult<IList<(string fromNode, string toNode)>> Run(IList<(string fromNode, string toNode)> edgesOfGraph)
+        {
+            try
+            {
+                return Logic(edgesOfGraph);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<(string fromNode, string toNode)>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<(string fromNode, string toNode)>> Logic(IList<(string fromNode, string toNode)> EdgesOfGraph)
         {
             foreach (var edge in EdgesOfGraph)
             {
-                if(!graph.ContainsKey(edge.fromNode))
+                if (!graph.ContainsKey(edge.fromNode))
                 {
                     graph[edge.fromNode] = new List<string>();
                 }
 
-                if(!graph.ContainsKey(edge.toNode))
+                if (!graph.ContainsKey(edge.toNode))
                 {
                     graph[edge.toNode] = new List<string>();
                 }
@@ -57,7 +70,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
                 graph[edge.to].Add(edge.from);
             }
 
-            return new AlgorithmicResult<IList<(string, string)>>(results, true);
+            return new AlgorithmicResult<IList<(string, string)>>(results);
         }
 
         private bool BFS(string from, string to)

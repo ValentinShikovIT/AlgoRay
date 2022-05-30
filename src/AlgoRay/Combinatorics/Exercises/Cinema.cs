@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,18 @@ namespace AlgoRay.Combinatorics.Exercises
 
         public AlgorithmicResult<IList<string[]>> Run(IList<string> names, IDictionary<string, int> placeChanges)
         {
+            try
+            {
+                return Logic(names, placeChanges);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<string[]>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<string[]>> Logic(IList<string> names, IDictionary<string, int> placeChanges)
+        {
             _names = names;
 
             result = new string[names.Count];
@@ -24,7 +37,7 @@ namespace AlgoRay.Combinatorics.Exercises
             Permutations(0);
 
             return new AlgorithmicResult<IList<string[]>>
-                (outputResults.Select(x => x.OrderBy(x => x).ToArray()).ToList(), true);
+                (outputResults.Select(x => x.OrderBy(x => x).ToArray()).ToList());
         }
 
         private void AdjustFixedPlaces(IDictionary<string, int> placeChanges)

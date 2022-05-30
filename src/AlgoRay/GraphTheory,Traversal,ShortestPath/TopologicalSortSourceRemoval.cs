@@ -14,6 +14,18 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 
         public AlgorithmicResult<IList<string>> Run(IDictionary<string, IList<string>> graph)
         {
+            try
+            {
+                return Logic(graph);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<string>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<string>> Logic(IDictionary<string, IList<string>> graph)
+        {
             _graph = graph;
 
             foreach (var node in _graph.Keys)
@@ -42,7 +54,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 
                 if (nodeWithZeroParents.Equals(default(KeyValuePair<string, int>)))
                 {
-                    return new AlgorithmicResult<IList<string>>(new List<string>(), false);
+                    return new AlgorithmicResult<IList<string>>(new List<string>());
                 }
 
                 foreach (var child in _graph[nodeWithZeroParents.Key])
@@ -54,7 +66,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
                 nodeParents.Remove(nodeWithZeroParents.Key);
             }
 
-            return new AlgorithmicResult<IList<string>>(outputResults, true);
+            return new AlgorithmicResult<IList<string>>(outputResults);
         }
     }
 }

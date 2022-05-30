@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,18 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 
         public AlgorithmicResult<IList<int[]>> Run(IList<int>[] graph)
         {
+            try
+            {
+                return Logic(graph);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<int[]>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<int[]>> Logic(IList<int>[] graph)
+        {
             _graph = graph;
             visited = new bool[graph.Length];
 
@@ -27,7 +40,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
                 }
             }
 
-            return new AlgorithmicResult<IList<int[]>>(outputResult, true);
+            return new AlgorithmicResult<IList<int[]>>(outputResult);
         }
 
         private void BFS(int nodeNumber)

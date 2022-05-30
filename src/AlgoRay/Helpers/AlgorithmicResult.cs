@@ -1,15 +1,17 @@
-﻿namespace AlgoRay.Helpers
+﻿using System;
+
+namespace AlgoRay.Helpers
 {
     public class AlgorithmicResult<T>
     {
-        public AlgorithmicResult(T result, bool isSuccessful)
+        public AlgorithmicResult(T result, string exceptionMessage = null)
         {
             this.AlgorithmResult = result;
-            this.IsSuccessful = isSuccessful;
+            this.ExceptionMessage = exceptionMessage;
         }
 
         public T AlgorithmResult { get; }
 
-        public bool IsSuccessful { get; }
+        public string ExceptionMessage { get; }
     }
 }

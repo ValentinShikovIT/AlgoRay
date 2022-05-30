@@ -9,6 +9,7 @@ namespace AlgoRay_Projector
 {
     internal class Program
     {
+        // TODO: Add DIContainer
         private static readonly ITestInitializer initializer = new TestInitializer();
         private static readonly IUiManager uiManager = new UiManager();
         private static readonly IStopwatch globalStopwatch = new GlobalStopwatch();

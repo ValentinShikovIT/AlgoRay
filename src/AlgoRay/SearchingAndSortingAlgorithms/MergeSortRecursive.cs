@@ -8,9 +8,22 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
         public AlgorithmicResult<T[]> Run<T>(T[] inputElements)
             where T : IComparable
         {
+            try
+            {
+                return Logic(inputElements);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<T[]>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<T[]> Logic<T>(T[] inputElements)
+            where T : IComparable
+        {
             if (inputElements.Length <= 1)
             {
-                return new AlgorithmicResult<T[]>(inputElements, true);
+                return new AlgorithmicResult<T[]>(inputElements);
             }
 
             var copy = new T[inputElements.Length];
@@ -19,7 +32,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 
             MergeSortHelper(inputElements, copy, 0, inputElements.Length - 1);
 
-            return new AlgorithmicResult<T[]>(inputElements, true);
+            return new AlgorithmicResult<T[]>(inputElements);
         }
 
         private void MergeSortHelper<T>(T[] source, T[] copy, int leftIndex, int rightIndex)

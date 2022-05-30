@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 
 namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
@@ -11,11 +12,23 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
 
         public AlgorithmicResult<IList<(int from, int to, int distance)>> Run(IDictionary<int, List<int>> graph, (int from, int to)[] targetPaths)
         {
+            try
+            {
+                return Logic(graph, targetPaths);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<(int from, int to, int distance)>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<(int from, int to, int distance)>> Logic(IDictionary<int, List<int>> graph, (int from, int to)[] targetPaths)
+        {
             _graph = graph;
 
             CalculatePaths(targetPaths);
 
-            return new AlgorithmicResult<IList<(int from, int to, int distance)>>(result, true);
+            return new AlgorithmicResult<IList<(int from, int to, int distance)>>(result);
         }
 
         private void CalculatePaths((int from, int to)[] paths)

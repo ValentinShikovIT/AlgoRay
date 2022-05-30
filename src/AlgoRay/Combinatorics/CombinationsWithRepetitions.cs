@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,11 +12,23 @@ namespace AlgoRay.Combinatorics
 
         public AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfCombination)
         {
+            try
+            {
+                return Logic(input, lengthOfCombination);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<T[]>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<T[]>> Logic(T[] input, int lengthOfCombination)
+        {
             combinations = new T[lengthOfCombination];
 
             Combinations(0, 0, input);
 
-            return new AlgorithmicResult<IList<T[]>>(allCombinations, true);
+            return new AlgorithmicResult<IList<T[]>>(allCombinations);
         }
 
         private void Combinations(int index, int startIndex, T[] input)

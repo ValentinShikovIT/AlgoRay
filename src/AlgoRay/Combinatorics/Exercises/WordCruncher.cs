@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,18 @@ namespace AlgoRay.Combinatorics.Exercises
         private IList<string[]> outputResults = new List<string[]>();
 
         public AlgorithmicResult<IList<string[]>> Run(string[] wordParts, string theWord)
+        {
+            try
+            {
+                return Logic(wordParts, theWord);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<string[]>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<string[]>> Logic(string[] wordParts, string theWord)
         {
             _wordParts = wordParts;
 
@@ -52,7 +65,7 @@ namespace AlgoRay.Combinatorics.Exercises
                 .OrderBy(word => string.Join(" ", word))
                 .ToList();
 
-            return new AlgorithmicResult<IList<string[]>>(outputResults, true);
+            return new AlgorithmicResult<IList<string[]>>(outputResults);
         }
 
         private List<int> FindIndexes(string item)

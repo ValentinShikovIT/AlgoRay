@@ -13,16 +13,28 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
 
         public AlgorithmicResult<IList<(int building1, int building2)>> Run(IList<(int building1, int building2)> buildingConnections)
         {
+            try
+            {
+                return Logic(buildingConnections);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<(int building1, int building2)>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<(int building1, int building2)>> Logic(IList<(int building1, int building2)> buildingConnections)
+        {
             graph = new List<int>[buildingConnections.Max(x => Math.Max(x.building1, x.building2)) + 1];
 
             foreach (var buildingConnection in buildingConnections)
             {
-                if(graph[buildingConnection.building1] == null)
+                if (graph[buildingConnection.building1] == null)
                 {
                     graph[buildingConnection.building1] = new List<int>();
                 }
 
-                if(graph[buildingConnection.building2] == null)
+                if (graph[buildingConnection.building2] == null)
                 {
                     graph[buildingConnection.building2] = new List<int>();
                 }
@@ -36,7 +48,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
 
             visited = new bool[graph.Length];
 
-            var results= new List<(int building1, int building2)>();
+            var results = new List<(int building1, int building2)>();
             foreach (var edge in edges)
             {
                 var alreadyRemoved = graph[edge.from].Remove(edge.to) && graph[edge.to].Remove(edge.from);
@@ -61,7 +73,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
                 graph[edge.to].Add(edge.from);
             }
 
-            return new AlgorithmicResult<IList<(int building1, int building2)>>(results, true);
+            return new AlgorithmicResult<IList<(int building1, int building2)>>(results);
         }
 
         private bool DFS(int from, int to)

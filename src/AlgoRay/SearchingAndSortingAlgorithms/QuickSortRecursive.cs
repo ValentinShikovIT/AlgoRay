@@ -10,9 +10,22 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
         public AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
+            try
+            {
+                return Logic(inputElements);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<T>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<T>> Logic<T>(IList<T> inputElements)
+            where T : IComparable
+        {
             Recursion(inputElements, 0, inputElements.Count - 1);
 
-            return new AlgorithmicResult<IList<T>>(inputElements, true);
+            return new AlgorithmicResult<IList<T>>(inputElements);
         }
 
         private void Recursion<T>(IList<T> inputElements, int start, int end)

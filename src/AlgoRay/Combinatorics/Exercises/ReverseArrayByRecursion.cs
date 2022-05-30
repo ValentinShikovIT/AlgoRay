@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 
 namespace AlgoRay.Combinatorics.Exercises
 {
@@ -8,11 +9,23 @@ namespace AlgoRay.Combinatorics.Exercises
 
         public AlgorithmicResult<T[]> Run(T[] arr)
         {
+            try
+            {
+                return Logic(arr);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<T[]>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<T[]> Logic(T[] arr)
+        {
             reversedArray = new T[arr.Length];
 
             ReverseArray(arr, 0);
 
-            return new AlgorithmicResult<T[]>(reversedArray, true);
+            return new AlgorithmicResult<T[]>(reversedArray);
         }
 
         private void ReverseArray(T[] arr, int index)

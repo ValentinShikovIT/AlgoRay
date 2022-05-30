@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,11 +13,23 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
 
         public AlgorithmicResult<bool> Run(IDictionary<string, List<string>> graph)
         {
+            try
+            {
+                return Logic(graph);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<bool>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<bool> Logic(IDictionary<string, List<string>> graph)
+        {
             this._graph = graph;
 
             var isAcyclic = BFS(graph.First().Key);
 
-            return new AlgorithmicResult<bool>(!isAcyclic, true);
+            return new AlgorithmicResult<bool>(!isAcyclic);
         }
 
         private bool BFS(string key)

@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,13 +13,25 @@ namespace AlgoRay.Combinatorics.Exercises
 
         public AlgorithmicResult<IList<int[]>> Run(int input)
         {
+            try
+            {
+                return Logic(input);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<int[]>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<int[]>> Logic(int input)
+        {
             n = input;
 
             result = new int[n];
 
             CreateLoops(0);
 
-            return new AlgorithmicResult<IList<int[]>>(loops, true);
+            return new AlgorithmicResult<IList<int[]>>(loops);
         }
 
         private void CreateLoops(int index)

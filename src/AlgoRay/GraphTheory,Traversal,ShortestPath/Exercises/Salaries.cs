@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 using System.Collections.Generic;
 
 namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
@@ -9,6 +10,18 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
         private readonly IDictionary<int, int> nodeWithPoints = new Dictionary<int, int>();
 
         public AlgorithmicResult<int> Run(IList<int>[] graph)
+        {
+            try
+            {
+                return Logic(graph);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<int>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<int> Logic(IList<int>[] graph)
         {
             _graph = graph;
 
@@ -24,7 +37,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath.Exercises
                 result += DFS(i);
             }
 
-            return new AlgorithmicResult<int>(result, true);
+            return new AlgorithmicResult<int>(result);
         }
 
         private int DFS(int node)

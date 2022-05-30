@@ -54,7 +54,7 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testResult, Expected, ExpectedSuccessful);
+                AssertTestResultFromTestRunningResponse(testResult, Expected);
             }
         }
 

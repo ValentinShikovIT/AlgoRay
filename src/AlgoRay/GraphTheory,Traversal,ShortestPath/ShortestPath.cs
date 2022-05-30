@@ -14,6 +14,18 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 
         public AlgorithmicResult<IList<int>> Run(IList<int>[] graph, int start, int end)
         {
+            try
+            {
+                return Logic(graph, start, end);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<int>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<int>> Logic(IList<int>[] graph, int start, int end)
+        {
             _graph = graph;
             visited = new bool[graph.Length + 1];
             parent = new int[graph.Length + 1];
@@ -21,7 +33,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 
             FindShortestPath(start, end);
 
-            return new AlgorithmicResult<IList<int>>(shortestPath, true);
+            return new AlgorithmicResult<IList<int>>(shortestPath);
         }
 
         private void FindShortestPath(int node, int searched)

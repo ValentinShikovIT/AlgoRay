@@ -11,7 +11,9 @@ namespace AlgoRay
 
             var foundNum = new BinarySearchRecursive().Run(arr, 8);
 
-            Console.WriteLine(foundNum);
+            Console.WriteLine(foundNum.AlgorithmResult);
+
+            // You can try some of the algorithms!!!
         }
     }
 }

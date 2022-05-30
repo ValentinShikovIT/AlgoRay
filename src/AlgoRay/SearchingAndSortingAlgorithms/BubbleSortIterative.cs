@@ -9,6 +9,19 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
         public AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
+            try
+            {
+                return Logic(inputElements);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<T>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<T>> Logic<T>(IList<T> inputElements)
+            where T : IComparable
+        {
             for (int i = 0; i < inputElements.Count; i++)
             {
                 var isSorted = true;
@@ -28,7 +41,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
                 }
             }
 
-            return new AlgorithmicResult<IList<T>>(inputElements, true);
+            return new AlgorithmicResult<IList<T>>(inputElements);
         }
     }
 }

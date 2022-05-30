@@ -13,6 +13,18 @@ namespace AlgoRay.Combinatorics.Exercises
 
         public AlgorithmicResult<IList<string>> Run(char[,] matrix)
         {
+            try
+            {
+                return Logic(matrix);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<IList<string>>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<IList<string>> Logic(char[,] matrix)
+        {
             localMatrix = matrix;
 
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -30,7 +42,7 @@ namespace AlgoRay.Combinatorics.Exercises
 
             FillResultsInOutputResults();
 
-            return new AlgorithmicResult<IList<string>>(outputResults, true);
+            return new AlgorithmicResult<IList<string>>(outputResults);
         }
 
         private void SolvePaths(int row, int col)

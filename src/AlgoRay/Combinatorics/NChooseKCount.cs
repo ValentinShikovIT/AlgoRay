@@ -1,4 +1,5 @@
 ﻿using AlgoRay.Helpers;
+using System;
 
 namespace AlgoRay.Combinatorics
 {
@@ -6,9 +7,21 @@ namespace AlgoRay.Combinatorics
     {
         public AlgorithmicResult<int> Run(int n, int k)
         {
+            try
+            {
+                return Logic(n, k);
+            }
+            catch (Exception ex)
+            {
+                return new AlgorithmicResult<int>(default, ex.Message);
+            }
+        }
+
+        public AlgorithmicResult<int> Logic(int n, int k)
+        {
             var binom = GetBinom(n, k);
 
-            return new AlgorithmicResult<int>(binom, true);
+            return new AlgorithmicResult<int>(binom);
         }
 
         private int GetBinom(int row, int col)
