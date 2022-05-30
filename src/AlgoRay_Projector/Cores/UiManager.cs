@@ -1,9 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AlgoRay_Projector.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace AlgoRay_Projector
+namespace AlgoRay_Projector.Cores
 {
-    internal class UiManager
+    internal class UiManager : IUiManager
     {
         public void PrintAssertFailedExceptionMessage(
             AssertFailedException exception,
@@ -37,6 +38,9 @@ namespace AlgoRay_Projector
 
         public void PrintEndingMessages(int succededTests, int failedTests, double elapsedSeconds)
         {
+            Console.WriteLine();
+            Console.WriteLine(new string('_', 100));
+
             Console.ForegroundColor = failedTests > 0 ?
                 ConsoleColor.Yellow : ConsoleColor.DarkGreen;
 
@@ -51,6 +55,7 @@ namespace AlgoRay_Projector
             Console.WriteLine($"Testing run beginning...   Date: {DateTime.Now:f}");
             Console.WriteLine(new string('_', 100));
             Console.WriteLine();
+            Console.WriteLine(new string('-', 100));
         }
     }
 }

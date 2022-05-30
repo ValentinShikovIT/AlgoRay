@@ -1,13 +1,14 @@
-﻿using System;
+﻿using AlgoRay_Projector.Interfaces;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlgoRay_Projector
+namespace AlgoRay_Projector.ProjectorFunctionality
 {
-    internal static class CoreProjector
+    internal class CoreProjector : ICoreProjector
     {
-        public static async Task<Stopwatch> ProjectTest(Action testMethod, int millisecondsTimeout)
+        public async Task<Stopwatch> ProjectTest(Action testMethod, int millisecondsTimeout)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -20,7 +21,7 @@ namespace AlgoRay_Projector
                 },
                 cancellationTokenSource.Token);
 
-                await newTask.TryTimeOutTaskAsync(cancellationTokenSource);
+                await TryTimeOutTaskAsync(newTask, cancellationTokenSource);
             }
 
             stopwatch.Stop();
@@ -28,7 +29,7 @@ namespace AlgoRay_Projector
             return stopwatch;
         }
 
-        private static async Task TryTimeOutTaskAsync(this Task task, CancellationTokenSource cancel)
+        private async Task TryTimeOutTaskAsync( Task task, CancellationTokenSource cancel)
         {
             task.Start();
 

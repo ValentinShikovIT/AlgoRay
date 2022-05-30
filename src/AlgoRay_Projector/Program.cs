@@ -1,9 +1,7 @@
-﻿using AlgoRay.UnitTests.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using AlgoRay_Projector.Cores;
+using AlgoRay_Projector.Interfaces;
+using AlgoRay_Projector.ProjectorFunctionality;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -11,91 +9,38 @@ namespace AlgoRay_Projector
 {
     internal class Program
     {
-        private static readonly TestInitilizers _initializers = new TestInitilizers();
-        private static readonly UiManager _uiManager = new UiManager();
+        private static readonly ITestInitializer initializer = new TestInitializer();
+        private static readonly IUiManager uiManager = new UiManager();
+        private static readonly IStopwatch globalStopwatch = new GlobalStopwatch();
+        private static readonly IProjector projector = new Projector(new CoreProjector(), uiManager, initializer, new Settings());
+
+        private static ICollection<MethodInfo> allTestMethods;
         private static int failedTests = 0;
         private static int succededTests = 0;
 
         static async Task Main(string[] args)
         {
-            _uiManager.PrintStartingMessages();
+            BeforeMain();
 
-            var globalStopwatch = new Stopwatch();
+            (succededTests, failedTests) = await projector.MainLogic(allTestMethods);
+
+            AfterMain();
+        }
+
+        private static void BeforeMain()
+        {
+            uiManager.PrintStartingMessages();
+
             globalStopwatch.Start();
 
-            var allTestMethods = GetAllTestMethodsFromTestingAssembly(typeof(TestRunner));
+            allTestMethods = initializer.GetTestsFromAssembly(default);
+        }
 
-            Console.WriteLine(new string('-', 100));
-
-            await MainLogic(allTestMethods);
-
-            Console.WriteLine();
-            Console.WriteLine(new string('_', 100));
-
+        private static void AfterMain()
+        {
             globalStopwatch.Stop();
 
-            _uiManager.PrintEndingMessages(succededTests, failedTests, globalStopwatch.Elapsed.TotalSeconds);
+            uiManager.PrintEndingMessages(succededTests, failedTests, globalStopwatch.GetStopwatch().Elapsed.TotalSeconds);
         }
-
-        private static async Task MainLogic(ICollection<MethodInfo> allTestMethods)
-        {
-            int testNumber = 1;
-
-            foreach (var testMethod in allTestMethods)
-            {
-                var instance = _initializers.GetTestClassInstance(testMethod.DeclaringType);
-
-                _initializers.IfClassInitializeAttr_Initialize(testMethod.DeclaringType, instance);
-                _initializers.IfTestInitializeAttr_Initialize(testMethod.DeclaringType, instance);
-
-                var projectorAttribute = testMethod.GetCustomAttribute<ProjectorTimeOutAttribute>();
-                var testTimeoutTimeInMilliseconds = GetProjectorTimeout(projectorAttribute?.TimeoutTimeInMilliseconds);
-
-                try
-                {
-                    var stopwatch = await CoreProjector.ProjectTest(() =>
-                    {
-                        testMethod.Invoke(instance, new object[0]);
-                    },
-                    testTimeoutTimeInMilliseconds);
-
-                    _uiManager.PrintAssertSuccessfullMessage(testMethod.Name, testNumber, stopwatch.ElapsedMilliseconds);
-
-                    succededTests++;
-                }
-                catch (Exception generalException)
-                {
-                    if (generalException?.InnerException is AssertFailedException assertFailedException)
-                    {
-                        _uiManager.PrintAssertFailedExceptionMessage(assertFailedException, testMethod.Name, testNumber);
-                        failedTests++;
-                    }
-                    else
-                    {
-                        _uiManager.PrintGeneralExceptionMessage(generalException, testMethod.Name, testNumber);
-                        failedTests++;
-                    }
-                }
-                finally
-                {
-                    Console.WriteLine(new string('-', 100));
-                }
-
-                testNumber++;
-            }
-        }
-
-        private static MethodInfo[] GetAllTestMethodsFromTestingAssembly(Type testRunner)
-            => Assembly
-                .GetAssembly(testRunner)
-                .GetTypes()
-                .SelectMany(t => t.GetMethods())
-                .Where(m => m.GetCustomAttributes(typeof(TestMethodAttribute), false).Length > 0)
-                .ToArray();
-
-        private static int GetProjectorTimeout(int? timeoutInMilliseconds)
-            => Settings.IsInProjectorTimeoutMode && timeoutInMilliseconds != null ?
-            timeoutInMilliseconds.Value :
-            Settings.DefaultTimeout;
     }
 }
