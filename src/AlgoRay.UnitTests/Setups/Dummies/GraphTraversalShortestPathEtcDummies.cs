@@ -321,12 +321,12 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                     var Key = splittedElement[0];
                     var Value = splittedElement[1];
 
-                    if(!dictionaryGraph.ContainsKey(Value))
+                    if (!dictionaryGraph.ContainsKey(Value))
                     {
                         dictionaryGraph[Value] = new List<string>();
                     }
 
-                    if(!dictionaryGraph.ContainsKey(Key))
+                    if (!dictionaryGraph.ContainsKey(Key))
                     {
                         dictionaryGraph[Key] = new List<string>();
                     }
@@ -390,7 +390,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                               6 -> 7 8
                               7 -> 6 8
                               8 -> 6 7"),
-                ParseExpected( @"1 - 2
+                ParseExpected(@"1 - 2
                    6 - 7"));
 
             internal static (IList<(string fromNode, string toNode)> EdgesOfGraph, IList<(string fromNode, string toNode)> Expected) Test_2 { get; } =
@@ -477,7 +477,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
                 ParseExpected(@"1 6"));
 
             private static IList<(int building1, int building2)> ParseGraph(string buildingConnectionsAsString)
-                =>  buildingConnectionsAsString
+                => buildingConnectionsAsString
                     .Split(Environment.NewLine)
                     .Select(x => x.Trim())
                     .Select(x =>

@@ -19,7 +19,7 @@ namespace AlgoRay.Combinatorics
             }
             catch (Exception ex)
             {
-                return new AlgorithmicResult<IList<T[]>>(default, ex.Message);   
+                return new AlgorithmicResult<IList<T[]>>(default, ex.Message);
             }
         }
 

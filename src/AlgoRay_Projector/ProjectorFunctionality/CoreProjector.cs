@@ -29,7 +29,7 @@ namespace AlgoRay_Projector.ProjectorFunctionality
             return stopwatch;
         }
 
-        private async Task TryTimeOutTaskAsync( Task task, CancellationTokenSource cancel)
+        private async Task TryTimeOutTaskAsync(Task task, CancellationTokenSource cancel)
         {
             task.Start();
 
@@ -37,7 +37,7 @@ namespace AlgoRay_Projector.ProjectorFunctionality
             {
                 if (cancel.IsCancellationRequested)
                 {
-                    throw new TimeoutException("Test timed out and took too long to run!");
+                    throw new TimeoutException("Test timed out and took too long to complete!");
                 }
             }
 

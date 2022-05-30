@@ -61,13 +61,13 @@ namespace AlgoRay_Projector.ProjectorFunctionality
                     if (generalException?.InnerException is AssertFailedException assertFailedException)
                     {
                         uiManager.PrintAssertFailedExceptionMessage(assertFailedException, testMethod.Name, testNumber);
-                        failedTests++;
                     }
                     else
                     {
                         uiManager.PrintGeneralExceptionMessage(generalException, testMethod.Name, testNumber);
-                        failedTests++;
                     }
+
+                    failedTests++;
                 }
                 finally
                 {

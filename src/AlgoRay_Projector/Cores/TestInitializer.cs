@@ -10,12 +10,12 @@ namespace AlgoRay_Projector.Cores
 {
     internal class TestInitializer : ITestInitializer
     {
-        private readonly HashSet<Type> _initilizedClasses = new HashSet<Type>();
+        private readonly HashSet<Type> attrInitilizedClasses = new HashSet<Type>();
         private readonly Dictionary<Type, dynamic> _testClassInstances = new Dictionary<Type, object>();
 
         public void IfClassInitializeAttrExists_Initialize(Type typeofClass, object instance = null)
         {
-            if (_initilizedClasses.Contains(typeofClass))
+            if (attrInitilizedClasses.Contains(typeofClass))
             {
                 return;
             }
@@ -23,7 +23,7 @@ namespace AlgoRay_Projector.Cores
             var classInitializeMethod = typeofClass.GetMethods()
                 .FirstOrDefault(method => method.GetCustomAttributes(typeof(ClassInitializeAttribute), false).Length > 0);
 
-            _initilizedClasses.Add(typeofClass);
+            attrInitilizedClasses.Add(typeofClass);
 
             classInitializeMethod?.Invoke(instance, new object[] { null });
         }
@@ -52,7 +52,7 @@ namespace AlgoRay_Projector.Cores
 
         public ICollection<MethodInfo> GetTestsFromAssembly(Type typeInAssembly)
         => Assembly
-                .GetAssembly(typeInAssembly?? typeof(TestRunner))
+                .GetAssembly(typeInAssembly ?? typeof(TestRunner))
                 .GetExportedTypes()
                 .SelectMany(t => t.GetMethods())
                 .Where(m => m.GetCustomAttributes(typeof(TestMethodAttribute), false).Length > 0)

@@ -19,7 +19,7 @@ namespace AlgoRay.UnitTests.Combinatorics
                 };
 
             //Act
-            foreach(var (Input, Expected) in tests)
+            foreach (var (Input, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {

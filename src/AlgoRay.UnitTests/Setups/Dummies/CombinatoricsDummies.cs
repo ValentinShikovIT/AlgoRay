@@ -101,7 +101,7 @@ namespace AlgoRay.UnitTests.Setups.Dummies
         internal static class ReverseArrayByRecursion
         {
             public static (string[] Input, string[] Expected) Test_1 { get; } =
-                (new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, 
+                (new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" },
                 new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }.Reverse().ToArray());
 
             public static (string[] Input, string[] Expected) Test_2 { get; } =
@@ -207,14 +207,14 @@ namespace AlgoRay.UnitTests.Setups.Dummies
 
         internal static class WordCruncher
         {
-            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_1 { get; } = 
-                ("text, me, so, do, m, ran".Split(", ").ToArray(), 
-                "somerandomtext", 
+            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_1 { get; } =
+                ("text, me, so, do, m, ran".Split(", ").ToArray(),
+                "somerandomtext",
                 "so me ran do m text".Split(Environment.NewLine)
                 .Select(names => names.Split())
                 .ToList());
 
-            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_2 { get; } = 
+            internal static (string[] WordParts, string Word, IList<string[]> Expected) Test_2 { get; } =
                 ("Word, cruncher, cr, h, unch, c, r, un, ch, er".Split(", ").ToArray(),
                 "Wordcruncher",
                 @"Word c r un ch er

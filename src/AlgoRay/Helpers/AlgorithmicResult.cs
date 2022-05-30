@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgoRay.Helpers
+﻿namespace AlgoRay.Helpers
 {
     public class AlgorithmicResult<T>
     {

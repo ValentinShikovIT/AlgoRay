@@ -12,6 +12,6 @@ namespace AlgoRay_Projector.Interfaces
 
         public dynamic GetTestClassInstance(Type type);
 
-        public ICollection<MethodInfo> GetTestsFromAssembly(Type typeInAssembly); 
+        public ICollection<MethodInfo> GetTestsFromAssembly(Type typeInAssembly);
     }
 }
