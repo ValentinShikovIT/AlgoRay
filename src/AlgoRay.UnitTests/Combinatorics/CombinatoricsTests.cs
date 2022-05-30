@@ -13,27 +13,22 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void PermutationsWithoutRepetition_ShouldGetAllPermutations_Correctly()
         {
             //Arrange
-            var inputs = new string[][]
-            {
-                CombinatoricsDummies.Permutations.RandomStringsFor_PermutationWithoutRepetitionTest_1
-            };
-
-            var outputs = new List<string[]>[]
-            {
-                CombinatoricsDummies.Permutations.Expected_PermutationWithoutRepetition_1
-            };
+            var tests = new (string[] Input, List<string[]> ExpectedOutput)[]
+                {
+                    CombinatoricsDummies.Permutations.Test_WithoutRepetition
+                };
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach(var (Input, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return PermutationsWithoutRepetitions<string>
-                    .Run(inputs[test]);
+                    return new PermutationsWithoutRepetitions<string>()
+                    .Run(Input);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -41,27 +36,22 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void PermutationsWithRepetition_ShouldGetAllPermutations_Correctly()
         {
             //Arrange
-            var inputs = new string[][]
-            {
-                CombinatoricsDummies.Permutations.RandomStringsFor_PermutationWithRepetitionTest_1
-            };
-
-            var outputs = new List<string[]>[]
-            {
-                CombinatoricsDummies.Permutations.Expected_PermutationWithRepetition_1
-            };
+            var tests = new (string[] Input, List<string[]> ExpectedOutput)[]
+                {
+                    CombinatoricsDummies.Permutations.Test_WithRepetition
+                };
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (Input, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return PermutationsWithRepetitions<string>
-                    .Run(inputs[test]);
+                    return new PermutationsWithRepetitions<string>()
+                    .Run(Input);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -69,31 +59,22 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void VariationsWithoutRepetition_ShouldGetAllVariations_Correctly()
         {
             //Arrange
-            var inputs = new string[][]
-            {
-                CombinatoricsDummies.Variations.RandomStringsFor_VariationWithoutRepetitionTest_1
-            };
-
-            var outputs = new List<string[]>[]
-            {
-                CombinatoricsDummies.Variations.Expected_VariationWithoutRepetition_1
-            };
-
-            var lengthOfVariation = CombinatoricsDummies
-                .Variations
-                .LengthOfVariationWithoutRepetitions_1;
+            var tests = new (string[] Input, int LengthOfVariationWithoutRepetitions, List<string[]> Expected)[]
+                {
+                    CombinatoricsDummies.Variations.Test_WithoutRepetition
+                };
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (Input, LengthOfVariationWithoutRepetitions, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return VariationsWithoutRepetitions<string>
-                    .Run(inputs[test], lengthOfVariation);
+                    return new VariationsWithoutRepetitions<string>()
+                    .Run(Input, LengthOfVariationWithoutRepetitions);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -101,31 +82,22 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void VariationsWithRepetition_ShouldGetAllVariations_Correctly()
         {
             //Arrange
-            var inputs = new string[][]
-            {
-                CombinatoricsDummies.Variations.RandomStringsFor_VariationWithRepetitionTest_1
-            };
-
-            var outputs = new List<string[]>[]
-            {
-                CombinatoricsDummies.Variations.Expected_VariationWithRepetition_1
-            };
-
-            var lengthOfVariation = CombinatoricsDummies
-                .Variations
-                .LengthOfVariationWithRepetitions_1;
+            var tests = new (string[] Input, int LengthOfVariationWithRepetitions, List<string[]> Expected)[]
+                 {
+                    CombinatoricsDummies.Variations.Test_WithRepetition
+                 };
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (Input, LengthOfVariationWithRepetitions, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return VariationsWithRepetitions<string>
-                    .Run(inputs[test], lengthOfVariation);
+                    return new VariationsWithRepetitions<string>()
+                    .Run(Input, LengthOfVariationWithRepetitions);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -133,31 +105,23 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void CombinationsWithoutRepetition_ShouldGetAllCombinations_Correctly()
         {
             //Arrange
-            var inputs = new string[][]
-            {
-                CombinatoricsDummies.Combinations.RandomStringsFor_CombinationWithoutRepetitionTest_1
-            };
+            var tests = new (string[] Input, int LengthOfCombinationsWithoutRepetitions, List<string[]> Expected)[]
+                 {
+                    CombinatoricsDummies.Combinations.Test_WithoutRepetition
+                 };
 
-            var outputs = new List<string[]>[]
-            {
-                CombinatoricsDummies.Combinations.Expected_CombinationWithoutRepetition_1
-            };
-
-            var lengthOfVariation = CombinatoricsDummies
-                .Combinations
-                .LengthOfCombinationWithoutRepetitions_1;
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (Input, LengthOfCombinationsWithoutRepetitions, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return CombinationsWithoutRepetitions<string>
-                    .Run(inputs[test], lengthOfVariation);
+                    return new CombinationsWithoutRepetitions<string>()
+                    .Run(Input, LengthOfCombinationsWithoutRepetitions);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -165,31 +129,23 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void CombinationsWithRepetition_ShouldGetAllCombinations_Correctly()
         {
             //Arrange
-            var inputs = new string[][]
-            {
-                CombinatoricsDummies.Combinations.RandomStringsFor_CombinationWithRepetitionTest_1
-            };
+            var tests = new (string[] Input, int LengthOfCombinationsWithRepetitions, List<string[]> Expected)[]
+                 {
+                    CombinatoricsDummies.Combinations.Test_WithRepetition
+                 };
 
-            var outputs = new List<string[]>[]
-            {
-                CombinatoricsDummies.Combinations.Expected_CombinationWithRepetition_1
-            };
-
-            var lengthOfVariation = CombinatoricsDummies
-                .Combinations
-                .LengthOfCombinationWithRepetitions_1;
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (Input, LengthOfCombinationsWithRepetitions, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return CombinationsWithRepetitions<string>
-                    .Run(inputs[test], lengthOfVariation);
+                    return new CombinationsWithRepetitions<string>()
+                    .Run(Input, LengthOfCombinationsWithRepetitions);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -197,39 +153,23 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void NChooseKCount_ShouldGetBinom_Correctly()
         {
             //Arrange
-            var inputs = new int[][]
+            var tests = new (int N, int K, int Expected)[]
             {
-                new int[] {CombinatoricsDummies.NChooseKCountBinom.Choice_1_For_N,
-                            CombinatoricsDummies.NChooseKCountBinom.Choice_1_For_K},
-
-                new int[] {CombinatoricsDummies.NChooseKCountBinom.Choice_2_For_N,
-                            CombinatoricsDummies.NChooseKCountBinom.Choice_2_For_K},
+                CombinatoricsDummies.NChooseKCountBinom.Test_1,
+                CombinatoricsDummies.NChooseKCountBinom.Test_2
             };
-
-            var outputs = new int[]
-            {
-                CombinatoricsDummies.NChooseKCountBinom.ExpectedFromTest_1,
-                CombinatoricsDummies.NChooseKCountBinom.ExpectedFromTest_2
-            };
-
-            var lengthOfVariation = CombinatoricsDummies
-                .Combinations
-                .LengthOfCombinationWithRepetitions_1;
 
             //Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (N, K, Expected) in tests)
             {
-                var n = inputs[test][0];
-                var k = inputs[test][1];
-
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return NChooseKCount
-                    .Run(n, k);
+                    return new NChooseKCount()
+                    .Run(N, K);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, outputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
     }

@@ -6,12 +6,12 @@ namespace AlgoRay.Combinatorics.Exercises
 {
     public class ConnectedAreaInAMatrix
     {
-        private static char[,] localMatrix;
-        private static int counter;
-        private static readonly SortedSet<Area> allAreas = new SortedSet<Area>();
-        private static readonly IList<string> outputResults = new List<string>();
+        private char[,] localMatrix;
+        private int counter;
+        private readonly SortedSet<Area> allAreas = new SortedSet<Area>();
+        private readonly IList<string> outputResults = new List<string>();
 
-        public static AlgorithmicResult<IList<string>> Run(char[,] matrix)
+        public AlgorithmicResult<IList<string>> Run(char[,] matrix)
         {
             localMatrix = matrix;
 
@@ -33,7 +33,7 @@ namespace AlgoRay.Combinatorics.Exercises
             return new AlgorithmicResult<IList<string>>(outputResults, true);
         }
 
-        private static void SolvePaths(int row, int col)
+        private void SolvePaths(int row, int col)
         {
             if (IsOutOfBounds(row, col) || localMatrix[row, col] == '*')
             {
@@ -49,13 +49,13 @@ namespace AlgoRay.Combinatorics.Exercises
             SolvePaths(row, col - 1);
         }
 
-        private static bool IsOutOfBounds(int row, int col)
+        private bool IsOutOfBounds(int row, int col)
         {
             return row < 0 || row >= localMatrix.GetLength(0) ||
                 col < 0 || col >= localMatrix.GetLength(1);
         }
 
-        private static void FillResultsInOutputResults()
+        private void FillResultsInOutputResults()
         {
             outputResults.Add($"Total areas found: {allAreas.Count}");
 

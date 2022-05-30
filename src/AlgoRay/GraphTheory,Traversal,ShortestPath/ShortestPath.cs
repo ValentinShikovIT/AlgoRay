@@ -6,13 +6,13 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
 {
     public class ShortestPath
     {
-        private static IList<int>[] _graph;
-        private static bool[] visited;
-        private static int[] parent;
+        private IList<int>[] _graph;
+        private bool[] visited;
+        private int[] parent;
 
         private static IList<int> shortestPath;
 
-        public static AlgorithmicResult<IList<int>> Run(IList<int>[] graph, int start, int end)
+        public AlgorithmicResult<IList<int>> Run(IList<int>[] graph, int start, int end)
         {
             _graph = graph;
             visited = new bool[graph.Length + 1];
@@ -24,7 +24,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
             return new AlgorithmicResult<IList<int>>(shortestPath, true);
         }
 
-        private static void FindShortestPath(int node, int searched)
+        private void FindShortestPath(int node, int searched)
         {
             var queue = new Queue<int>();
 
@@ -56,7 +56,7 @@ namespace AlgoRay.GraphTheory_Traversal_ShortestPath
             }
         }
 
-        private static Stack<int> GetPath(int[] parent, int start)
+        private Stack<int> GetPath(int[] parent, int start)
         {
             var list = new Stack<int>();
 

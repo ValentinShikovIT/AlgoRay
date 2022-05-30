@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
-    public static class QuickSortRecursive
+    public class QuickSortRecursive
     {
         //Implement Quick sort algorithm without O(log n) memory optimization
-        public static AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
+        public AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             Recursion(inputElements, 0, inputElements.Count - 1);
@@ -15,7 +15,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             return new AlgorithmicResult<IList<T>>(inputElements, true);
         }
 
-        private static void Recursion<T>(IList<T> inputElements, int start, int end)
+        private void Recursion<T>(IList<T> inputElements, int start, int end)
             where T : IComparable
         {
             if (start >= end)
@@ -51,7 +51,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             Recursion(inputElements, right + 1, end);
         }
 
-        private static void Swap<T>(IList<T> inputElements, int first, int second)
+        private void Swap<T>(IList<T> inputElements, int first, int second)
             where T : IComparable
             => (inputElements[second], inputElements[first]) = (inputElements[first], inputElements[second]);
     }

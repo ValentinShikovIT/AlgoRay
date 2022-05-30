@@ -6,7 +6,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public class SelectionSortRecursive
     {
-        public static AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
+        public AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             for (int i = 0; i < inputElements.Count; i++)
@@ -17,7 +17,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             return new AlgorithmicResult<IList<T>>(inputElements, true);
         }
 
-        private static void Recursion<T>(IList<T> inputElements, int startingIndex, int currentIndex, int indexOfMin)
+        private void Recursion<T>(IList<T> inputElements, int startingIndex, int currentIndex, int indexOfMin)
             where T : IComparable
         {
             if (currentIndex >= inputElements.Count)

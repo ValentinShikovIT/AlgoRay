@@ -6,11 +6,11 @@ namespace AlgoRay.Combinatorics
 {
     public class VariationsWithoutRepetitions<T>
     {
-        private static T[] variation;
-        private static bool[] used;
-        private static IList<T[]> allVariations = new List<T[]>();
+        private T[] variation;
+        private bool[] used;
+        private IList<T[]> allVariations = new List<T[]>();
 
-        public static AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfVariation)
+        public AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfVariation)
         {
             variation = new T[lengthOfVariation];
             used = new bool[input.Length];
@@ -20,7 +20,7 @@ namespace AlgoRay.Combinatorics
             return new AlgorithmicResult<IList<T[]>>(allVariations, true);
         }
 
-        private static void Variations(int index, T[] input)
+        private void Variations(int index, T[] input)
         {
             if (index >= variation.Length)
             {

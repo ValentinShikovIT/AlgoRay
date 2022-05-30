@@ -37,7 +37,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var result = TestRunner.RunTest(() =>
             {
-                return BubbleSortIterative.Run(unsortedInputData_Small);
+                return new BubbleSortIterative().Run(unsortedInputData_Small);
             },
             400);
 
@@ -52,7 +52,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var result = TestRunner.RunTest(() =>
             {
-                return BubbleSortIterative.Run(unsortedInputData_Medium);
+                return new BubbleSortIterative().Run(unsortedInputData_Medium);
             },
             8_000);
 
@@ -66,7 +66,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var result = TestRunner.RunTest(() =>
             {
-                return InsertionSortIterative.Run(unsortedInputData_Small);
+                return new InsertionSortIterative().Run(unsortedInputData_Small);
             },
             400);
 
@@ -81,7 +81,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var result = TestRunner.RunTest(() =>
             {
-                return InsertionSortIterative.Run(unsortedInputData_Medium);
+                return new InsertionSortIterative().Run(unsortedInputData_Medium);
             },
             6_000);
 
@@ -97,7 +97,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var result = TestRunner.RunTest(() =>
             {
-                return MergeSortRecursive.Run(inputDataAsArray);
+                return new MergeSortRecursive().Run(inputDataAsArray);
             },
             100);
 
@@ -111,7 +111,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var result = TestRunner.RunTest(() =>
             {
-                return QuickSortRecursive.Run(unsortedInputData_Large);
+                return new QuickSortRecursive().Run(unsortedInputData_Large);
             },
             100);
 

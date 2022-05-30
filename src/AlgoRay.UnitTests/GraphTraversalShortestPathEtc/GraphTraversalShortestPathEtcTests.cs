@@ -72,7 +72,7 @@ namespace AlgoRay.UnitTests.GraphTraversalShortestPathEtc
             {
                 var testResult = TestRunner.RunTest(() =>
                 {
-                    return ShortestPath
+                    return new ShortestPath()
                     .Run(Graph, Start, End);
                 },
                 100);

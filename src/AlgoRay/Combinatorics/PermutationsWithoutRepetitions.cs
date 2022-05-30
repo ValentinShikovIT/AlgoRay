@@ -6,11 +6,11 @@ namespace AlgoRay.Combinatorics
 {
     public class PermutationsWithoutRepetitions<T>
     {
-        private static T[] permutation;
-        private static bool[] used;
-        private static readonly List<T[]> allPermutations = new List<T[]>();
+        private T[] permutation;
+        private bool[] used;
+        private readonly List<T[]> allPermutations = new List<T[]>();
 
-        public static AlgorithmicResult<IList<T[]>> Run(T[] input)
+        public AlgorithmicResult<IList<T[]>> Run(T[] input)
         {
             permutation = new T[input.Length];
             used = new bool[input.Length];
@@ -20,7 +20,7 @@ namespace AlgoRay.Combinatorics
             return new AlgorithmicResult<IList<T[]>>(allPermutations, true);
         }
 
-        private static void Permutations(int index, T[] input)
+        private void Permutations(int index, T[] input)
         {
             if (index >= permutation.Length)
             {

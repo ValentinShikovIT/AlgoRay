@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
-    public static class SelectionSortIterative
+    public class SelectionSortIterative
     {
-        public static AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
+        public AlgorithmicResult<IList<T>> Run<T>(IList<T> inputElements)
             where T : IComparable
         {
             for (int i = 0; i < inputElements.Count; i++)

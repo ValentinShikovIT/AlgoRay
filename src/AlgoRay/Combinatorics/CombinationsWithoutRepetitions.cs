@@ -6,10 +6,10 @@ namespace AlgoRay.Combinatorics
 {
     public class CombinationsWithoutRepetitions<T>
     {
-        private static T[] combinations;
-        private static IList<T[]> allCombinations = new List<T[]>();
+        private T[] combinations;
+        private IList<T[]> allCombinations = new List<T[]>();
 
-        public static AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfCombination)
+        public AlgorithmicResult<IList<T[]>> Run(T[] input, int lengthOfCombination)
         {
             combinations = new T[lengthOfCombination];
 
@@ -18,7 +18,7 @@ namespace AlgoRay.Combinatorics
             return new AlgorithmicResult<IList<T[]>>(allCombinations, true);
         }
 
-        private static void Combinations(int index, int startIndex, T[] input)
+        private void Combinations(int index, int startIndex, T[] input)
         {
             if (index >= combinations.Length)
             {

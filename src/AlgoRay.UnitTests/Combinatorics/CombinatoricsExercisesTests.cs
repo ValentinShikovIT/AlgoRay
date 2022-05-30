@@ -14,29 +14,23 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void ReverseArrayByRecursion_ShouldReturnReversedArray_Correctly()
         {
             // Arrange
-            var inputs = new string[][]
+            var tests = new (string[] Input, string[] Expected)[]
             {
-                CombinatoricsDummies.ReverseArrayByRecursion.InputStrings_1,
-                CombinatoricsDummies.ReverseArrayByRecursion.InputStrings_2
-            };
-
-            var expectedOutputs = new string[][]
-            {
-                CombinatoricsDummies.ReverseArrayByRecursion.ExpectedNumbers_1,
-                CombinatoricsDummies.ReverseArrayByRecursion.ExpectedStrings_2
+                CombinatoricsDummies.ReverseArrayByRecursion.Test_1,
+                CombinatoricsDummies.ReverseArrayByRecursion.Test_2
             };
 
             // Act
-            for (int test = 0; test < inputs.Length; test++)
+            foreach (var (Input, Expected) in tests)
             {
                 var testOutput = TestRunner.RunTest(() =>
                 {
-                    return ReverseArrayByRecursion<string>
-                    .Run(inputs[test]);
+                    return new ReverseArrayByRecursion<string>()
+                    .Run(Input);
                 },
                 100);
 
-                AssertTestResultFromTestRunningResponse(testOutput, expectedOutputs[test]);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
             }
         }
 
@@ -44,36 +38,46 @@ namespace AlgoRay.UnitTests.Combinatorics
         public void NestedLoopsToRecursion_ShouldCreateIntegerLoops_Correctly()
         {
             // Arrange
-            var input = CombinatoricsDummies.NestedLoopsToRecursion.InputNumberOfLoops_1;
-            var expectedOutput = CombinatoricsDummies.NestedLoopsToRecursion.ExpectedLoops_1;
+            var tests = new (int Input, IList<int[]> Expected)[]
+            {
+                CombinatoricsDummies.NestedLoopsToRecursion.Test_1
+            };
 
             // Act
-            var testOutput = TestRunner.RunTest(() =>
+            foreach (var (Input, Expected) in tests)
             {
-                return NestedLoopsToRecursion
-                .Run(input);
-            },
-            100);
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return new NestedLoopsToRecursion()
+                    .Run(Input);
+                },
+                100);
 
-            AssertTestResultFromTestRunningResponse(testOutput, expectedOutput);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
+            }
         }
 
         [TestMethod]
         public void ConnectedAreaInMatrix_ShouldReturn_ExpectedResult()
         {
             // Arrange
-            var input = CombinatoricsDummies.ConnectedAreasInMatrix.InputMatrix_1;
-            var expectedOutput = CombinatoricsDummies.ConnectedAreasInMatrix.ExpectedResult_1;
+            var tests = new (char[,] InputMatrix, IList<string> Expected)[]
+            {
+                CombinatoricsDummies.ConnectedAreasInMatrix.Test_1
+            };
 
             // Act
-            var testOutput = TestRunner.RunTest(() =>
+            foreach (var (Input, Expected) in tests)
             {
-                return ConnectedAreaInAMatrix
-                .Run(input);
-            },
-            100);
+                var testOutput = TestRunner.RunTest(() =>
+                {
+                    return new ConnectedAreaInAMatrix()
+                    .Run(Input);
+                },
+                100);
 
-            AssertTestResultFromTestRunningResponse(testOutput, expectedOutput);
+                AssertTestResultFromTestRunningResponse(testOutput, Expected);
+            }
         }
 
         [TestMethod]

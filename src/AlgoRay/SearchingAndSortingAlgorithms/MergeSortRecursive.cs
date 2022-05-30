@@ -5,7 +5,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
 {
     public class MergeSortRecursive
     {
-        public static AlgorithmicResult<T[]> Run<T>(T[] inputElements)
+        public AlgorithmicResult<T[]> Run<T>(T[] inputElements)
             where T : IComparable
         {
             if (inputElements.Length <= 1)
@@ -22,7 +22,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             return new AlgorithmicResult<T[]>(inputElements, true);
         }
 
-        private static void MergeSortHelper<T>(T[] source, T[] copy, int leftIndex, int rightIndex)
+        private void MergeSortHelper<T>(T[] source, T[] copy, int leftIndex, int rightIndex)
             where T : IComparable
         {
             if (leftIndex >= rightIndex)
@@ -38,7 +38,7 @@ namespace AlgoRay.SearchingSortingAndGreedyAlgorithms.SearchingAndSorting
             Merge(source, copy, leftIndex, middleIndex, rightIndex);
         }
 
-        private static void Merge<T>(T[] source, T[] copy, int leftIndex, int middleIndex, int rightIndex)
+        private void Merge<T>(T[] source, T[] copy, int leftIndex, int middleIndex, int rightIndex)
             where T : IComparable
         {
             var sourcePointer = leftIndex;

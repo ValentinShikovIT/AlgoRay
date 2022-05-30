@@ -6,11 +6,11 @@ namespace AlgoRay.Combinatorics.Exercises
 {
     public class NestedLoopsToRecursion
     {
-        private static int n;
-        private static int[] result;
-        private static readonly IList<int[]> loops = new List<int[]>();
+        private int n;
+        private int[] result;
+        private readonly IList<int[]> loops = new List<int[]>();
 
-        public static AlgorithmicResult<IList<int[]>> Run(int input)
+        public AlgorithmicResult<IList<int[]>> Run(int input)
         {
             n = input;
 
@@ -21,7 +21,7 @@ namespace AlgoRay.Combinatorics.Exercises
             return new AlgorithmicResult<IList<int[]>>(loops, true);
         }
 
-        private static void CreateLoops(int index)
+        private void CreateLoops(int index)
         {
             if (index >= result.Length)
             {

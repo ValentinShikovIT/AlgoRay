@@ -29,7 +29,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var testResult = TestRunner.RunTest(() =>
             {
-                return BinarySearchIterative.Run(dummyInput, searchedItem);
+                return new BinarySearchIterative().Run(dummyInput, searchedItem);
             },
             10);
 
@@ -48,7 +48,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var testResult = TestRunner.RunTest(() =>
             {
-                return BinarySearchIterative.Run(dummyInput, searchedItem);
+                return new BinarySearchIterative().Run(dummyInput, searchedItem);
             },
             10);
 
@@ -67,7 +67,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var testResult = TestRunner.RunTest(() =>
             {
-                return BinarySearchRecursive.Run(dummyInput, searchedItem);
+                return new BinarySearchRecursive().Run(dummyInput, searchedItem);
             },
             10);
 
@@ -86,7 +86,7 @@ namespace AlgoRay.UnitTests.SearchingAndSortingTests
             //Act
             var testResult = TestRunner.RunTest(() =>
             {
-                return BinarySearchRecursive.Run(dummyInput, searchedItem);
+                return new BinarySearchRecursive().Run(dummyInput, searchedItem);
             },
             10);
 

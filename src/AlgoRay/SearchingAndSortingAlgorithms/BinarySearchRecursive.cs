@@ -9,9 +9,9 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
     /// as a response.
     /// If the element is not found returns -1 as the result
     /// </summary>
-    public static class BinarySearchRecursive
+    public class BinarySearchRecursive
     {
-        public static AlgorithmicResult<int> Run<T>(IList<T> sortedInput, T searchedItem)
+        public AlgorithmicResult<int> Run<T>(IList<T> sortedInput, T searchedItem)
             where T : IComparable
         {
             var resultingIndex = Recursion<T>(sortedInput, searchedItem, 0, sortedInput.Count - 1);
@@ -20,7 +20,7 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
                 new AlgorithmicResult<int>(resultingIndex, true);
         }
 
-        private static int Recursion<T>(IList<T> sortedInput,
+        private int Recursion<T>(IList<T> sortedInput,
             T searchedItem,
             int leftPointer,
             int rightPointer)

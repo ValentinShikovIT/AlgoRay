@@ -9,9 +9,9 @@ namespace AlgoRay.SearchingAndSortingAlgorithms
     /// as a response.
     /// If the element is not found returns -1 as the result
     /// </summary>
-    public static class BinarySearchIterative
+    public class BinarySearchIterative
     {
-        public static new AlgorithmicResult<int> Run<T>(IList<T> sortedInput, T searchedItem)
+        public new AlgorithmicResult<int> Run<T>(IList<T> sortedInput, T searchedItem)
             where T : IComparable
         {
             var leftPointer = 0;
